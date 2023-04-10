@@ -6,41 +6,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gamekey</title>
     <link rel="stylesheet" href="css/style.css" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css%22%3E"
+    /> -->
   </head>
   <body>
-    <div class="nav">
-      <div class="logo">
-        <p><a href>GAMEKEY</a></p>
-      </div>
-      <div>
-        <ul>
-          <li class="new"><a href>Новинки</a></li>
-          <li class="discount"><a href>Знижки</a></li>
-          <li class="waiting"><a href>Очікуванні</a></li>
-        </ul>
-      </div>
-      <div class="input">
-        <input type="text" placeholder="Ти кто ?" id="mySearch" />
-      </div>
-      <div class="search">
-        <div class="logo-search">
-          <img
-            src="Images/Search.jpg"
-            alt="Search Button"
-            width="35px"
-            height="35px"
-          />
+    <!--Начало панели навигации-->
+    <nav class="nav">
+      <div class="nav-content">
+        <div class="logo">
+          <p><a href>GAMEKEY</a></p>
+        </div>
+        <div>
+          <ul>
+            <li class="new"><a href>Новинки</a></li>
+            <li class="discount"><a href>Знижки</a></li>
+            <li class="waiting"><a href>Очікуванні</a></li>
+          </ul>
+        </div>
+        <div class="input">
+          <input type="text" placeholder="Знайти гру..." id="mySearch" />
+          <div class="search">
+            <div>
+              <img src="Images/Search.svg" alt="Search Button" />
+            </div>
+          </div>
+        </div>
+        <div class="logo-basket">
+          <img src="Images/Basket.svg" alt="Basket Button" />
         </div>
       </div>
-      <div class="logo-basket">
-        <img
-          src="Images/Basket.jpg"
-          alt="Basket Button"
-          width="40px"
-          height="40px"
-        />
+    </nav>
+    <!--Конец панели навигации-->
+    <!-- <marquee class="css1" behavior="alternate" scrollamount="10">
+      НОВИНКИ <i style="font-size: 50px" class="fa">&#xf0a3;</i> НОВИНКИ
+      <i style="font-size: 50px" class="fa">&#xf0a3;</i> НОВИНКИ
+    </marquee> -->
+    <div id="slide">
+      <div>
+        <button id="buttonNext"><img src="Images/Next.svg" alt="" /></button>
+      </div>
+      <div>
+        <button id="buttonPrev"><img src="Images/Prev.svg" alt="" /></button>
+      </div>
+      <div class="slides">
+        <div class="overflow">
+          <div class="images">
+            <div class="images-block">
+              <div>
+                <img src="Images/RE4R.jpg" alt="" />
+                <p class="price">1000 <img src="Images/UAH.svg" alt="" /></p>
+              </div>
+              <div>
+                <img src="Images/TLOUP1.jpg" alt="" />
+                <p class="price">1300 <img src="Images/UAH.svg" alt="" /></p>
+              </div>
+              <div>
+                <img src="Images/HL.jpg" alt="" />
+                <p class="price">1500 <img src="Images/UAH.svg" alt="" /></p>
+              </div>
+            </div>
+            <div class="images-block">
+              <div>
+                <img src="Images/ELDENRING.jpg" alt="" />
+                <p class="price">1500 <img src="Images/UAH.svg" alt="" /></p>
+              </div>
+              <div>
+                <img src="Images/DEADCELLS.jpg" alt="" />
+                <p class="price">1500 <img src="Images/UAH.svg" alt="" /></p>
+              </div>
+              <div>
+                <img src="Images/STRAY.jpg" alt="" />
+                <p class="price">1500 <img src="Images/UAH.svg" alt="" /></p>
+              </div>
+            </div>
+            <div class="images-block">
+              <div>
+                <img src="Images/DEADSPACE.jpeg" alt="" />
+                <p class="price">1500 <img src="Images/UAH.svg" alt="" /></p>
+              </div>
+              <div>
+                <img src="Images/GOW4.jpg" alt="" />
+                <p class="price">1500 <img src="Images/UAH.svg" alt="" /></p>
+              </div>
+              <div>
+                <img src="Images/GTA5.jpg" alt="" />
+                <p class="price">1500 <img src="Images/UAH.svg" alt="" /></p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <script src="js/scripts.js"></script>
   </body>
-  <!-- <script src="js/scripts.js"></script> -->
 </html>
