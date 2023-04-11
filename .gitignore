@@ -375,4 +375,8 @@ poetry.toml
 # LSP config files
 pyrightconfig.json
 
-# End of https://www.toptal.com/developers/gitignore/api/python,django,pycharm+all
+#jshint
+.eslint.js
+package.json
+package-lock.json
+>>>>>>> b7388a88571dd45542b7f95593734ac8810b13bb

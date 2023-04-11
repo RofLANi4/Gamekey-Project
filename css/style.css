@@ -51,14 +51,14 @@ body {
   font-family: "Halvetica-Bold";
   font-size: 60px;
 }
-.nav-content ul {
-  line-height: 70px;
+.nav-list {
+  width: 80%;
 }
 .nav-content li {
   float: left;
   list-style-type: none;
-  margin: 0px 20px;
-  font-family: "Halvetica-Light";
+  margin-right: 40px;
+  font-family: "Halvetica-Roman";
   font-size: 36px;
 }
 .nav-content a,
@@ -121,7 +121,7 @@ body {
   border: 3px solid black;
   border-right: none;
   border-left: none;
-  height: 530px;
+  height: 500px;
   position: relative;
 }
 .slides {
