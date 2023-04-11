@@ -376,7 +376,7 @@ poetry.toml
 pyrightconfig.json
 
 #jshint
-.eslint.js
+.eslintrc.js
 package.json
 package-lock.json
->>>>>>> b7388a88571dd45542b7f95593734ac8810b13bb
+
