@@ -18,6 +18,10 @@
 * added ability to run service on localhost:8000
 * now to see the main page you need to go to http://127.0.0.1:8000/gamekey/
 
+[14.04.2023]
+* added models for database
+* function based views -> class based views
+
 ## How to use
 
 ### Preparation
