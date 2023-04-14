@@ -3,14 +3,15 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Customer(AbstractUser):
-    license_number = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
-        return f"{self.username} ({self.first_name} {self.last_name})"
+        return f"{self.username}"
 
 
 class Game(models.Model):
     name = models.CharField(max_length=255, unique=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    discount = models.DecimalField(max_digits=2, decimal_places=0, default=0)
     description = models.CharField(max_length=255)
     image = models.ImageField(upload_to="images/")
     genre = models.ManyToManyField("Genre", related_name="games")
@@ -36,15 +37,6 @@ class Order(models.Model):
     
     def __str__(self):
         return f"{self.key}, {self.user}, {self.date}"
-
-
-class Price(models.Model):
-    game = models.ForeignKey(Game, on_delete=models.CASCADE)
-    price = models.IntegerField()
-    discount = models.DecimalField(blank=True, null=True, max_digits=3, decimal_places=2)
-
-    def __str__(self):
-        return f"{self.price}"
 
 
 class Genre(models.Model):
