@@ -7,9 +7,10 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["hot_games"] = Game.objects.filter(price__discount__gt=0).values(
+        context["hot_games"] = Game.objects.filter(discount__gt=0).values(
             "image",
-            "price__price",
-            "price__discount")
+            "price",
+            "discount"
+        )
 
         return context
