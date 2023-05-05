@@ -77,52 +77,16 @@
     <div id="gameList">
       <div class="games-column">
         <div class="games-row">
-          <div class="games">
-            <div class="info">
-              <img src="../static/Images/GOW4.jpg" alt="" />
-              <p class="game-name">God of War</p>
-              <p class="price">
-                1500 <img src="../static/Images/UAH.svg" alt="" />
-              </p>
+          {% for game in random_games %}
+            <div class="games">
+              <div class="info">
+                <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
+                <p class="game-name">{{ game.name }}</p>
+                <p class="price">{{ game.price }}<img src="../static/Images/UAH.svg" alt="" />
+                </p>
+              </div>
             </div>
-          </div>
-          <div class="games">
-            <div class="info">
-              <img src="../static/Images/GOW4.jpg" alt="" />
-              <p class="game-name">God of War</p>
-            </div>
-
-            <p class="price">
-              1500 <img src="../static/Images/UAH.svg" alt="" />
-            </p>
-          </div>
-          <div class="games">
-            <div class="info">
-              <img src="../static/Images/GOW4.jpg" alt="" />
-              <p class="game-name">God of War</p>
-              <p class="price">
-                1500 <img src="../static/Images/UAH.svg" alt="" />
-              </p>
-            </div>
-          </div>
-          <div class="games">
-            <div class="info">
-              <img src="../static/Images/GOW4.jpg" alt="" />
-              <p class="game-name">God of War</p>
-              <p class="price">
-                1500 <img src="../static/Images/UAH.svg" alt="" />
-              </p>
-            </div>
-          </div>
-          <div class="games">
-            <div class="info">
-              <img src="../static/Images/GOW4.jpg" alt="" />
-              <p class="game-name">God of War</p>
-              <p class="price">
-                1500 <img src="../static/Images/UAH.svg" alt="" />
-              </p>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
