@@ -6,12 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gamekey</title>
     <link rel="stylesheet" href="../static/css/style.css" />
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css%22%3E"
-    /> -->
   </head>
   <body>
+    <div class="mask"><img src="../static/Images/loader.gif" alt="" /></div>
     <!--Начало панели навигации-->
     <nav class="nav">
       <div class="nav-content">
@@ -38,17 +35,14 @@
         </div>
       </div>
     </nav>
-    <!--Конец панели навигации-->
-    <!-- <marquee class="css1" behavior="alternate" scrollamount="10">
-      НОВИНКИ <i style="font-size: 50px" class="fa">&#xf0a3;</i> НОВИНКИ
-      <i style="font-size: 50px" class="fa">&#xf0a3;</i> НОВИНКИ
-    </marquee> -->
-    <div id="slide">
+    <!--Конец навикгации-->
+
+    <!--Начало слайдера-->
+    <div id="slider">
       <div>
-        <button id="buttonNext"><img src="../static/Images/Next.svg" alt="" /></button>
-      </div>
-      <div>
-        <button id="buttonPrev"><img src="../static/Images/Prev.svg" alt="" /></button>
+        <button id="buttonPrev">
+          <img src="../static/Images/Prev.svg" alt="" />
+        </button>
       </div>
       <div class="slides">
         <div class="overflow">
@@ -56,49 +50,131 @@
             <div class="images-block">
               <div>
                 <img src="../static/Images/RE4R.jpg" alt="" />
-                <p class="price">1000 <img src="../static/Images/UAH.svg" alt="" /></p>
+                <p class="price">
+                  1000 <img src="../static/Images/UAH.svg" alt="" />
+                </p>
               </div>
               <div>
                 <img src="../static/Images/TLOUP1.jpg" alt="" />
-                <p class="price">1300 <img src="../static/Images/UAH.svg" alt="" /></p>
+                <p class="price">
+                  1300 <img src="../static/Images/UAH.svg" alt="" />
+                </p>
               </div>
               <div>
                 <img src="../static/Images/HL.jpg" alt="" />
-                <p class="price">1500 <img src="../static/Images/UAH.svg" alt="" /></p>
+                <p class="price">
+                  1500 <img src="../static/Images/UAH.svg" alt="" />
+                </p>
               </div>
             </div>
             <div class="images-block">
               <div>
                 <img src="../static/Images/ELDENRING.jpg" alt="" />
-                <p class="price">1500 <img src="../static/Images/UAH.svg" alt="" /></p>
+                <p class="price">
+                  1500 <img src="../static/Images/UAH.svg" alt="" />
+                </p>
               </div>
               <div>
                 <img src="../static/Images/DEADCELLS.jpg" alt="" />
-                <p class="price">1500 <img src="../static/Images/UAH.svg" alt="" /></p>
+                <p class="price">
+                  1500 <img src="../static/Images/UAH.svg" alt="" />
+                </p>
               </div>
               <div>
                 <img src="../static/Images/STRAY.jpg" alt="" />
-                <p class="price">1500 <img src="../static/Images/UAH.svg" alt="" /></p>
+                <p class="price">
+                  1500 <img src="../static/Images/UAH.svg" alt="" />
+                </p>
               </div>
             </div>
             <div class="images-block">
               <div>
                 <img src="../static/Images/DEADSPACE.jpeg" alt="" />
-                <p class="price">1500 <img src="../static/Images/UAH.svg" alt="" /></p>
+                <p class="price">
+                  1500 <img src="../static/Images/UAH.svg" alt="" />
+                </p>
               </div>
               <div>
                 <img src="../static/Images/GOW4.jpg" alt="" />
-                <p class="price">1500 <img src="../static/Images/UAH.svg" alt="" /></p>
+                <p class="price">
+                  1500 <img src="../static/Images/UAH.svg" alt="" />
+                </p>
               </div>
               <div>
                 <img src="../static/Images/GTA5.jpg" alt="" />
-                <p class="price">1500 <img src="../static/Images/UAH.svg" alt="" /></p>
+                <p class="price">
+                  1500 <img src="../static/Images/UAH.svg" alt="" />
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div>
+        <button id="buttonNext">
+          <img src="../static/Images/Next.svg" alt="" />
+        </button>
+      </div>
     </div>
+    <!--Конец слайдера-->
+
+    <!--Начало нижней панели с играми-->
+    <div id="gameList">
+      <div class="games-column">
+        <div class="games-row">
+          <div class="games">
+            <div class="info">
+              <img src="../static/Images/GOW4.jpg" alt="" />
+              <p class="game-name">God of War</p>
+              <p class="price">
+                1500 <img src="../static/Images/UAH.svg" alt="" />
+              </p>
+            </div>
+          </div>
+          <div class="games">
+            <div class="info">
+              <img src="../static/Images/GOW4.jpg" alt="" />
+              <p class="game-name">God of War</p>
+            </div>
+
+            >
+            <p class="price">
+              1500 <img src="../static/Images/UAH.svg" alt="" />
+            </p>
+          </div>
+          <div class="games">
+            <div class="info">
+              <img src="../static/Images/GOW4.jpg" alt="" />
+              <p class="game-name">God of War</p>
+              <p class="price">
+                1500 <img src="../static/Images/UAH.svg" alt="" />
+              </p>
+            </div>
+          </div>
+          <div class="games">
+            <div class="info">
+              <img src="../static/Images/GOW4.jpg" alt="" />
+              <p class="game-name">God of War</p>
+              <p class="price">
+                1500 <img src="../static/Images/UAH.svg" alt="" />
+              </p>
+            </div>
+          </div>
+          <div class="games">
+            <div class="info">
+              <img src="../static/Images/GOW4.jpg" alt="" />
+              <p class="game-name">God of War</p>
+              <p class="price">
+                1500 <img src="../static/Images/UAH.svg" alt="" />
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Конец нижней панели с играми-->
+
     <script src="../static/js/scripts.js"></script>
   </body>
 </html>
