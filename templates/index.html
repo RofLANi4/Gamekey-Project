@@ -79,9 +79,7 @@
             <div class="info">
               <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
               <p class="game-name">{{ game.name }}</p>
-              <p class="price">
-                {{ game.price }}<img src="../static/Images/UAH.svg" alt="" />
-              </p>
+              <p class="price" text="{{ game.price }}₴"></p>
             </div>
           </div>
           {% endfor %}

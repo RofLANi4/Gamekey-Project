@@ -95,11 +95,6 @@ const colorPrice = {
   2100: "#00FFFF",
 };
 
-// for (key in colorPrice) {
-//   if (+price[keyInfo].getAttribute("text").replace("₴", "") < key) {
-//   }
-// }
-
 const info = document.querySelectorAll(".info");
 const price = document.querySelectorAll(".info .price");
 
