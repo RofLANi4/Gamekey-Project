@@ -78,9 +78,29 @@ function createSlider() {
   }
 }
 
-// let mask = document.querySelector(".mask");
+const mask = document.querySelector(".mask");
 
-// window.addEventListener("load", () => {
-//   mask.classList.add("hide");
-//   mask.remove();
-// });
+window.addEventListener("load", () => {
+  mask.classList.add("hide");
+  mask.remove();
+});
+
+const colorPrice = {
+  700: "#3DD222",
+  1000: "#5F9AFF",
+  1300: "#FFB400",
+  1400: "#FF9600",
+  1700: "#DE466C",
+  2100: "#00FFFF",
+};
+
+const info = document.querySelectorAll(".info");
+const price = document.querySelectorAll(".info .price");
+
+info.forEach((item, keyInfo) => {
+  for (keyPrice in colorPrice) {
+    if (+price[keyInfo].getAttribute("text").replace("₴", "") > +keyPrice) {
+      item.style.backgroundColor = colorPrice[keyPrice];
+    }
+  }
+});
