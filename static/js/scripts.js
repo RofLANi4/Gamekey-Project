@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const search = document.querySelector(".search"),
   input = document.getElementById("mySearch"),
   next = document.getElementById("buttonNext"),
@@ -78,9 +79,34 @@ function createSlider() {
   }
 }
 
-let mask = document.querySelector(".mask");
+const mask = document.querySelector(".mask");
 
 window.addEventListener("load", () => {
   mask.classList.add("hide");
   mask.remove();
+});
+
+const colorPrice = {
+  700: "#3DD222",
+  1000: "#5F9AFF",
+  1300: "#FFB400",
+  1400: "#FF9600",
+  1700: "#DE466C",
+  2100: "#00FFFF",
+};
+
+// for (key in colorPrice) {
+//   if (+price[keyInfo].getAttribute("text").replace("₴", "") < key) {
+//   }
+// }
+
+const info = document.querySelectorAll(".info");
+const price = document.querySelectorAll(".info .price");
+
+info.forEach((item, keyInfo) => {
+  for (keyPrice in colorPrice) {
+    if (+price[keyInfo].getAttribute("text").replace("₴", "") > +keyPrice) {
+      item.style.backgroundColor = colorPrice[keyPrice];
+    }
+  }
 });

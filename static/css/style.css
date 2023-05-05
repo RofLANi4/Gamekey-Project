@@ -237,16 +237,14 @@ button {
   border-radius: 10px;
   right: 20px;
   bottom: 15px;
-  font-family: "Halvetica-Bold";
+  font-family: "Helvetica";
+  font-weight: 600;
   font-size: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.price img {
-  width: 25px;
-  height: 25px;
-}
+
 .images.shifting {
   transition: left 0.2s ease-out;
 }
@@ -256,7 +254,7 @@ button {
 */
 
 #gameList {
-  margin: 20px 0px;
+  margin: 10px 0px;
 }
 
 .games-column {
@@ -268,11 +266,14 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
+  min-width: 500px;
+  align-items: center;
 }
 .games {
   width: 240px;
   height: 345px;
-  margin: 0px 10px;
+  margin: 10px 10px;
   box-shadow: 5px 5px 0px black;
   border: 2px solid black;
   position: relative;
@@ -294,11 +295,26 @@ button {
   background-color: #4adbc8;
 }
 .game-name {
-  font-family: "Halvetica-Bold";
+  font-family: "HelveticaNeueCyr";
+  font-weight: 600;
   font-size: 24px;
   margin-left: 10px;
 }
 .games :hover {
-  -webkit-filter: brightness(90%);
-  filter: brightness(90%);
+  -webkit-filter: brightness(85%);
+  filter: brightness(85%);
+}
+.info :hover {
+  -webkit-filter: brightness(100%);
+  filter: brightness(100%);
+}
+
+.price::before {
+  content: attr(text);
+}
+
+.price:hover::before {
+  content: url("../Images/Basket.svg");
+  position: relative;
+  top: 3px;
 }

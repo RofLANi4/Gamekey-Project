@@ -52,10 +52,7 @@
               {% endif %}
               <div>
                 <img src="{{ MEDIA_URL }}{{ game.image }}" alt="game image" />
-                <p class="price">
-                  {{ game.price }}
-                  <img src="{% static 'Images/UAH.svg' %}" alt="" />
-                </p>
+                <p class="price" text="{{ game.price }}₴"></p>
               </div>
 
               {% if forloop.counter|divisibleby:3 or forloop.last %}
@@ -81,46 +78,35 @@
             <div class="info">
               <img src="../static/Images/GOW4.jpg" alt="" />
               <p class="game-name">God of War</p>
-              <p class="price">
-                1500 <img src="../static/Images/UAH.svg" alt="" />
-              </p>
+              <p class="price" text="500₴"></p>
             </div>
           </div>
           <div class="games">
             <div class="info">
               <img src="../static/Images/GOW4.jpg" alt="" />
               <p class="game-name">God of War</p>
-            </div>
-
-            <p class="price">
-              1500 <img src="../static/Images/UAH.svg" alt="" />
-            </p>
-          </div>
-          <div class="games">
-            <div class="info">
-              <img src="../static/Images/GOW4.jpg" alt="" />
-              <p class="game-name">God of War</p>
-              <p class="price">
-                1500 <img src="../static/Images/UAH.svg" alt="" />
-              </p>
+              <p class="price" text="1200₴"></p>
             </div>
           </div>
           <div class="games">
             <div class="info">
               <img src="../static/Images/GOW4.jpg" alt="" />
               <p class="game-name">God of War</p>
-              <p class="price">
-                1500 <img src="../static/Images/UAH.svg" alt="" />
-              </p>
+              <p class="price" text="1600₴"></p>
             </div>
           </div>
           <div class="games">
             <div class="info">
               <img src="../static/Images/GOW4.jpg" alt="" />
               <p class="game-name">God of War</p>
-              <p class="price">
-                1500 <img src="../static/Images/UAH.svg" alt="" />
-              </p>
+              <p class="price" text="1800₴"></p>
+            </div>
+          </div>
+          <div class="games">
+            <div class="info">
+              <img src="../static/Images/GOW4.jpg" alt="" />
+              <p class="game-name">God of War</p>
+              <p class="price" text="2200₴"></p>
             </div>
           </div>
         </div>
