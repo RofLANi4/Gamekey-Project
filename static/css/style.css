@@ -15,16 +15,16 @@ dd {
   margin: 0;
 }
 @font-face {
-  font-family: "Halvetica-Bold";
-  src: url("../Fonts/helveticaneuecyr-bold.otf");
+  font-family: "Helvetica-Bold";
+  src: url("../Fonts/Helveticaneuecyr-bold.otf");
 }
 @font-face {
-  font-family: "Halvetica-Light";
-  src: url("../Fonts/helveticaneuecyr-light.otf");
+  font-family: "Helvetica-Light";
+  src: url("../Fonts/Helveticaneuecyr-light.otf");
 }
 @font-face {
-  font-family: "Halvetica-Roman";
-  src: url("../Fonts/helveticaneuecyr-roman.otf");
+  font-family: "Helvetica-Roman";
+  src: url("../Fonts/Helveticaneuecyr-roman.otf");
 }
 body {
   background-color: #e9e9e9;
@@ -62,7 +62,7 @@ body {
 }
 
 .nav-content p {
-  font-family: "Halvetica-Bold";
+  font-family: "Helvetica-Bold";
   font-size: 60px;
 }
 .nav-list {
@@ -72,7 +72,7 @@ body {
   float: left;
   list-style-type: none;
   margin-right: 40px;
-  font-family: "Halvetica-Roman";
+  font-family: "Helvetica-Roman";
   font-size: 36px;
 }
 a,
@@ -295,7 +295,7 @@ button {
   background-color: #4adbc8;
 }
 .game-name {
-  font-family: "HelveticaNeueCyr";
+  font-family: "Helvetica-Bold";
   font-weight: 600;
   font-size: 24px;
   margin-left: 10px;
@@ -316,5 +316,5 @@ button {
 .price:hover::before {
   content: url("../Images/Basket.svg");
   position: relative;
-  top: 3px;
+  top: 4px;
 }
