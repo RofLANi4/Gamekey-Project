@@ -1,4 +1,6 @@
 from django.views.generic import TemplateView
+from random import sample
+
 from .models import Game
 
 
@@ -12,6 +14,16 @@ class HomeView(TemplateView):
             "price",
             "discount"
         )
-        print(context)
+
+        game_ids = Game.objects.filter().values_list('id', flat=True)
+        random_ids = sample(list(game_ids), 5)
+        context["random_games"] = Game.objects.filter(id__in=random_ids).values(
+            "name",
+            "image",
+            "price",
+            "discount"
+        )[:5]
+
+        print(context["random_games"])
 
         return context

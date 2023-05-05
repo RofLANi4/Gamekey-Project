@@ -74,41 +74,17 @@
     <div id="gameList">
       <div class="games-column">
         <div class="games-row">
+          {% for game in random_games %}
           <div class="games">
             <div class="info">
-              <img src="../static/Images/GOW4.jpg" alt="" />
-              <p class="game-name">God of War</p>
-              <p class="price" text="500₴"></p>
+              <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
+              <p class="game-name">{{ game.name }}</p>
+              <p class="price">
+                {{ game.price }}<img src="../static/Images/UAH.svg" alt="" />
+              </p>
             </div>
           </div>
-          <div class="games">
-            <div class="info">
-              <img src="../static/Images/GOW4.jpg" alt="" />
-              <p class="game-name">God of War</p>
-              <p class="price" text="1200₴"></p>
-            </div>
-          </div>
-          <div class="games">
-            <div class="info">
-              <img src="../static/Images/GOW4.jpg" alt="" />
-              <p class="game-name">God of War</p>
-              <p class="price" text="1600₴"></p>
-            </div>
-          </div>
-          <div class="games">
-            <div class="info">
-              <img src="../static/Images/GOW4.jpg" alt="" />
-              <p class="game-name">God of War</p>
-              <p class="price" text="1800₴"></p>
-            </div>
-          </div>
-          <div class="games">
-            <div class="info">
-              <img src="../static/Images/GOW4.jpg" alt="" />
-              <p class="game-name">God of War</p>
-              <p class="price" text="2200₴"></p>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
