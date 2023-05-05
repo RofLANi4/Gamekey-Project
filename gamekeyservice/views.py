@@ -12,5 +12,6 @@ class HomeView(TemplateView):
             "price",
             "discount"
         )
+        print(context)
 
         return context

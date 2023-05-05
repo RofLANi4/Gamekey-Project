@@ -1,0 +1,251 @@
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+@font-face {
+  font-family: "Halvetica-Bold";
+  src: url("../Fonts/helveticaneuecyr-bold.otf");
+}
+@font-face {
+  font-family: "Halvetica-Light";
+  src: url("../Fonts/helveticaneuecyr-light.otf");
+}
+@font-face {
+  font-family: "Halvetica-Roman";
+  src: url("../Fonts/helveticaneuecyr-roman.otf");
+}
+body {
+  background-color: #e9e9e9;
+}
+/*
+Начало стилей для навигации
+*/
+.nav-content {
+  padding: 5px 10px;
+  margin: 20px auto;
+  width: 1300px;
+  height: 70px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+  border: 2px solid black;
+  border-radius: 23px;
+  box-shadow: 5px 5px 0px black;
+}
+
+.nav-content p {
+  font-family: "Halvetica-Bold";
+  font-size: 60px;
+}
+.nav-list {
+  width: 80%;
+}
+.nav-content li {
+  float: left;
+  list-style-type: none;
+  margin-right: 40px;
+  font-family: "Halvetica-Roman";
+  font-size: 36px;
+}
+.nav-content a,
+.logo {
+  color: black;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-content .logo :hover {
+  color: #6637ee;
+}
+.nav-content .new :hover {
+  color: #74e900;
+}
+.nav-content .discount :hover {
+  color: #ff9900;
+}
+.nav-content .waiting :hover {
+  color: #ff55da;
+}
+
+.search {
+  width: 35px;
+  height: 37px;
+  cursor: pointer;
+  right: 100px;
+  padding-right: 10px;
+}
+.input {
+  border: 3px solid black;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  background-color: #e9e9e9;
+}
+
+#mySearch {
+  padding: 0px 10px;
+  line-height: 40px;
+  background: none;
+  border: none;
+  outline: none;
+  color: black;
+  font-size: 20px;
+  width: auto;
+  font-weight: bold;
+}
+
+.search.active {
+  width: 800px;
+}
+/*
+Конец стилей для навигации
+*/
+
+#slide {
+  margin-top: 35px;
+  background-color: #6637ee;
+  border: 3px solid black;
+  border-right: none;
+  border-left: none;
+  height: 500px;
+  position: relative;
+}
+.slides {
+  margin: 0px auto;
+  width: 1300px;
+  height: 100%;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+}
+#slide input {
+  display: none;
+}
+.overflow {
+  height: 100%;
+  overflow: hidden;
+}
+
+.images {
+  height: 100%;
+  position: relative;
+  left: 0px;
+  display: flex;
+  transition: 0s;
+}
+
+.images.return {
+  transition: 1s;
+}
+
+.images-block {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 67% 33%;
+  grid-template-areas:
+    "main-game second-game-top"
+    "main-game second-game-bot";
+}
+.images-block img {
+  width: 100%;
+  height: 100%;
+}
+.images-block div {
+  border: 3px solid black;
+  border-top: none;
+  border-bottom: none;
+}
+.images-block div:nth-child(1) {
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
+  grid-area: main-game;
+  position: relative;
+}
+.images-block div:nth-child(2) {
+  border-right: none;
+  grid-area: second-game-top;
+  position: relative;
+}
+.images-block div:nth-child(3) {
+  border-top: 3px solid black;
+  border-right: none;
+  grid-area: second-game-bot;
+  position: relative;
+  height: 99%;
+}
+button {
+  cursor: pointer;
+  background-color: inherit;
+  border: none;
+}
+#buttonNext,
+#buttonPrev {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  cursor: pointer;
+  z-index: 99;
+}
+#buttonNext :hover,
+#buttonPrev :hover {
+  opacity: 0.5;
+  transition: 0.2s;
+}
+#buttonNext {
+  right: 8%;
+}
+#buttonPrev {
+  left: 8%;
+}
+
+.images-block div {
+  height: 100%;
+  width: 100%;
+}
+.price {
+  position: absolute;
+  right: 0;
+  width: 115px;
+  height: 45px;
+  background-color: #ceff1a;
+  border: 2px solid black;
+  border-radius: 10px;
+  right: 20px;
+  bottom: 15px;
+  font-family: "Halvetica-Bold";
+  font-size: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.price img {
+  width: 25px;
+  height: 25px;
+}
+.images.shifting {
+  transition: left 0.2s ease-out;
+}
+
+/* .css1 {
+  background-color: #80ff00;
+  font-size: 50px;
+  font-family: georgia;
+  font-style: italic;
+  font-weight: bold;
+  color: #000000;
+} */
