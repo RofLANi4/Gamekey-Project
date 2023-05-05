@@ -11,7 +11,7 @@ class Customer(AbstractUser):
 class Game(models.Model):
     name = models.CharField(max_length=255, unique=True)
     price = models.IntegerField()
-    discount = models.IntegerField()
+    discount = models.IntegerField(null=True, blank=True)
     description = models.CharField(max_length=255)
     image = models.ImageField(upload_to="images/")
     genre = models.ManyToManyField("Genre", related_name="games")
