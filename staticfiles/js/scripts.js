@@ -1,12 +1,12 @@
-const search = document.querySelector(".search");
-const input = document.getElementById("mySearch");
-const next = document.getElementById("buttonNext");
-const prev = document.getElementById("buttonPrev");
-const slide = document.querySelector(".images");
-const slideAll = document.getElementsByClassName("images-block");
-const slideStyles = window.getComputedStyle(slide);
-const width = 1300;
-const slideLength = slideAll.length;
+const search = document.querySelector(".search"),
+  input = document.getElementById("mySearch"),
+  next = document.getElementById("buttonNext"),
+  prev = document.getElementById("buttonPrev"),
+  slide = document.querySelector(".images"),
+  slideAll = document.getElementsByClassName("images-block"),
+  slideStyles = window.getComputedStyle(slide),
+  width = 1300,
+  slideLength = slideAll.length;
 
 slide.style.width = width * (slideLength + 2) + "px"; // Расчет длины всех слайдов
 
@@ -18,6 +18,7 @@ search.onclick = () => (input.value = ""); //Очищает поисковую �
 
 createSlider();
 
+//Добавление слайдов в начало и в конец
 function createSlider() {
   slide.style.left = -width + "px";
   let cloneFirst = slideAll[0].cloneNode(true),
@@ -31,24 +32,24 @@ function createSlider() {
 
   // Функция для перелистывания вперед
   next.onclick = function nextSlide() {
-    prev.disabled = true;
-    next.disabled = true;
     offset = offset - width; // Расчет шага
-    slide.style.left = offset + "px"; // Ввод размера отступа
-    checkIndex();
-    whileSlide();
+    buttonClick(offset);
   };
 
   //Функция для перелистывания назад
-
   prev.onclick = function prevSlide() {
+    offset = offset + width; // Расчет шага
+    buttonClick(offset);
+  };
+
+  function buttonClick(offset) {
     prev.disabled = true;
     next.disabled = true;
-    offset = offset + width; // Расчет шага
-    slide.style.left = offset + "px"; // Ввод размера отступа
+    slide.style.left = offset + "px";
     checkIndex();
     whileSlide();
-  };
+  }
+
   function whileSlide() {
     setTimeout(function () {
       next.disabled = false;
@@ -56,6 +57,7 @@ function createSlider() {
     }, 1000);
   }
 
+  //Функция проверки на "первый" или "последний" слайд
   function checkIndex() {
     slide.classList.add("return");
 
@@ -75,3 +77,10 @@ function createSlider() {
     }
   }
 }
+
+// let mask = document.querySelector(".mask");
+
+// window.addEventListener("load", () => {
+//   mask.classList.add("hide");
+//   mask.remove();
+// });

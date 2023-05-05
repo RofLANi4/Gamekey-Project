@@ -7,12 +7,9 @@
     <title>Gamekey</title>
     <link rel="stylesheet" href="../static/css/style.css" />
     {% load static %}
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css%22%3E"
-    /> -->
   </head>
   <body>
+    <div class="mask"><img src="../static/Images/loader.gif" alt="" /></div>
     <!--Начало панели навигации-->
     <nav class="nav">
       <div class="nav-content">
@@ -40,37 +37,98 @@
       </div>
     </nav>
     <!--Конец панели навигации-->
-    <!-- <marquee class="css1" behavior="alternate" scrollamount="10">
-      НОВИНКИ <i style="font-size: 50px" class="fa">&#xf0a3;</i> НОВИНКИ
-      <i style="font-size: 50px" class="fa">&#xf0a3;</i> НОВИНКИ
-    </marquee> -->
+
     <div id="slide">
-    <div>
-      <button id="buttonNext"><img src="../static/Images/Next.svg" alt="" /></button>
-    </div>
-    <div>
-      <button id="buttonPrev"><img src="../static/Images/Prev.svg" alt="" /></button>
-    </div>
-    <div class="slides">
-      <div class="overflow">
+      <div>
+        <button id="buttonPrev">
+          <img src="../static/Images/Prev.svg" alt="" />
+        </button>
+      </div>
+      <div class="slides">
+        <div class="overflow">
           <div class="images">
-            {% for game in hot_games %}
-              {% if forloop.counter0|divisibleby:3 %}
-                <div class="images-block">
+            {% for game in hot_games %} {% if forloop.counter0|divisibleby:3 %}
+            <div class="images-block">
               {% endif %}
               <div>
                 <img src="{{ MEDIA_URL }}{{ game.image }}" alt="game image" />
-                <p class="price">{{ game.price }} <img src="{% static 'Images/UAH.svg' %}" alt="" /></p>
+                <p class="price">
+                  {{ game.price }}
+                  <img src="{% static 'Images/UAH.svg' %}" alt="" />
+                </p>
               </div>
 
               {% if forloop.counter|divisibleby:3 or forloop.last %}
-                </div> <!-- Close the game group div after every third game or if it's the last game -->
-              {% endif %}
-            {% endfor %}
+            </div>
+            <!-- Close the game group div after every third game or if it's the last game -->
+            {% endif %} {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div>
+        <button id="buttonNext">
+          <img src="../static/Images/Next.svg" alt="" />
+        </button>
+      </div>
+    </div>
+    <!--Конец слайдера-->
+
+    <!--Начало нижней панели с играми-->
+    <div id="gameList">
+      <div class="games-column">
+        <div class="games-row">
+          <div class="games">
+            <div class="info">
+              <img src="../static/Images/GOW4.jpg" alt="" />
+              <p class="game-name">God of War</p>
+              <p class="price">
+                1500 <img src="../static/Images/UAH.svg" alt="" />
+              </p>
+            </div>
+          </div>
+          <div class="games">
+            <div class="info">
+              <img src="../static/Images/GOW4.jpg" alt="" />
+              <p class="game-name">God of War</p>
+            </div>
+
+            <p class="price">
+              1500 <img src="../static/Images/UAH.svg" alt="" />
+            </p>
+          </div>
+          <div class="games">
+            <div class="info">
+              <img src="../static/Images/GOW4.jpg" alt="" />
+              <p class="game-name">God of War</p>
+              <p class="price">
+                1500 <img src="../static/Images/UAH.svg" alt="" />
+              </p>
+            </div>
+          </div>
+          <div class="games">
+            <div class="info">
+              <img src="../static/Images/GOW4.jpg" alt="" />
+              <p class="game-name">God of War</p>
+              <p class="price">
+                1500 <img src="../static/Images/UAH.svg" alt="" />
+              </p>
+            </div>
+          </div>
+          <div class="games">
+            <div class="info">
+              <img src="../static/Images/GOW4.jpg" alt="" />
+              <p class="game-name">God of War</p>
+              <p class="price">
+                1500 <img src="../static/Images/UAH.svg" alt="" />
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!--Конец нижней панели с играми-->
+
     <script src="../static/js/scripts.js"></script>
   </body>
 </html>
