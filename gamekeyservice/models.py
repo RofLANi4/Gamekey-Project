@@ -12,7 +12,7 @@ class Game(models.Model):
     name = models.CharField(max_length=255, unique=True)
     price = models.IntegerField()
     discount = models.IntegerField(null=True, blank=True)
-    description = models.CharField(max_length=255)
+    description = models.TextField()
     image = models.ImageField(upload_to="images/")
     genre = models.ManyToManyField("Genre", related_name="games")
     developer = models.ForeignKey("Developer", on_delete=models.CASCADE)
