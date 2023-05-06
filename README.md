@@ -77,6 +77,11 @@ https://drive.google.com/file/d/16K51s9QhbDvaVkI4XZG9H2iRFkXBEnZu/view?usp=shari
 https://drive.google.com/file/d/14sNKPqFrQ2xdgpnsaHceS59EzKJhSZmD/view?usp=sharing
 * link for access to folder:  
 https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG?usp=sharing
+
+### Admin Credentials
+* login: admin
+* password: admin
+
 ## Features
 
 * Main page with game lists from DB
