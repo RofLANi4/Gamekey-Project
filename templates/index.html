@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gamekey</title>
     {% load static %}
+    {% load discount_counter %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
   <body>
@@ -53,7 +54,7 @@
               {% endif %}
               <div>
                 <img src="{{ MEDIA_URL }}{{ game.image }}" alt="game image" />
-                <p class="price" text="{{ game.price }}₴"></p>
+                <p class="price" text="{{ game.price|discount:game.discount }}₴"></p>
               </div>
 
               {% if forloop.counter|divisibleby:3 or forloop.last %}
@@ -83,7 +84,7 @@
             <div class="info">
               <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
               <p class="game-name">{{ game.name }}</p>
-              <p class="price" text="{{ game.price }}₴"></p>
+              <p class="price" text="{{ game.price|discount:game.discount }}₴"></p>
             </div>
           </div>
           {% endfor %}
