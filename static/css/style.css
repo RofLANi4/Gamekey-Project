@@ -248,20 +248,24 @@ button {
   font-family: "Helvetica";
   font-weight: 600;
   font-size: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
 }
 
 .discount-percent {
   width: 90px;
   height: 45px;
-  background-color: #ff9900;
+  background-color: #e62031;
   position: absolute;
   border: 2px solid black;
-
+  font-family: "Helvetica";
+  font-weight: 600;
+  font-size: 32px;
+  color: white;
   bottom: 15px;
   right: 145px;
+  display: grid;
+  place-items: center;
 }
 
 .images.shifting {
