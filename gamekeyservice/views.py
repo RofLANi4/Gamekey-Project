@@ -1,3 +1,5 @@
+import random
+
 from django.views.generic import TemplateView
 from random import sample
 
@@ -16,8 +18,9 @@ class HomeView(TemplateView):
         )
         try:
             game_ids = Game.objects.filter().values_list('id', flat=True)
+            print(game_ids)
             random_ids = sample(list(game_ids), 15)
-            context["random_games"] = Game.objects.filter(id__in=random_ids).values(
+            context["random_games"] = Game.objects.order_by('-image').filter(id__in=random_ids).values(
                 "name",
                 "image",
                 "price",
