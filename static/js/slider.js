@@ -1,7 +1,5 @@
 /* eslint-disable no-undef */
-const search = document.querySelector(".search"),
-  input = document.getElementById("mySearch"),
-  next = document.getElementById("buttonNext"),
+const next = document.getElementById("buttonNext"),
   prev = document.getElementById("buttonPrev"),
   slide = document.querySelector(".images"),
   slideAll = document.getElementsByClassName("images-block"),
@@ -10,8 +8,6 @@ const search = document.querySelector(".search"),
   slideLength = slideAll.length;
 
 slide.style.width = width * (slideLength + 2) + "px"; // Расчет длины всех слайдов
-
-search.onclick = () => (input.value = ""); //Очищает поисковую строку
 
 //
 //
@@ -78,35 +74,3 @@ function createSlider() {
     }
   }
 }
-
-const mask = document.querySelector(".mask");
-
-window.addEventListener("load", () => {
-  mask.classList.add("hide");
-  mask.remove();
-});
-
-const colorPrice = {
-  400: "#3DD222",
-  600: "#5F9AFF",
-  900: "#FFB400",
-  1200: "#FF9600",
-  1500: "#DE466C",
-  1800: "#ED4CFF",
-};
-
-// for (key in colorPrice) {
-//   if (+price[keyInfo].getAttribute("text").replace("₴", "") < key) {
-//   }
-// }
-
-const info = document.querySelectorAll(".info");
-const price = document.querySelectorAll(".info .price");
-
-info.forEach((item, keyInfo) => {
-  for (keyPrice in colorPrice) {
-    if (+price[keyInfo].getAttribute("text").replace("₴", "") > +keyPrice) {
-      item.style.backgroundColor = colorPrice[keyPrice];
-    }
-  }
-});
