@@ -29,7 +29,7 @@ class HomeView(TemplateView):
 
 
 class NewGame(TemplateView):
-    template_name = "new_game.html"
+    template_name = "index.html"
 
 
 class Discounts(TemplateView):
