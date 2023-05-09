@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gamekey</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
-    <div class="mask"><img src="../static/Images/loader.gif" alt="" /></div>
+    <div class="mask">
+      <img src="../static/Images/loader.gif" alt="" />
+    </div>
     <!--Начало панели навигации-->
     <nav class="nav">
       <div class="nav-content">
@@ -18,7 +20,7 @@
         </div>
         <div class="nav-list">
           <ul>
-            <li class="new"><a href>Новинки</a></li>
+            <li class="new"><a href="new-game.html">Новинки</a></li>
             <li class="discount"><a href>Знижки</a></li>
             <li class="waiting"><a href>Очікуванні</a></li>
           </ul>
@@ -48,6 +50,7 @@
         <div class="overflow">
           <div class="images">
             {% if hot_games %}
+            <!-- Images -->
             {% for game in hot_games %} {% if forloop.counter0|divisibleby:3 %}
             <div class="images-block">
               {% endif %}
@@ -76,24 +79,69 @@
     <!--Начало нижней панели с играми-->
     {% if random_games %}
     <div id="gameList">
-      <div class="games-column">
-        <div class="games-row">
-          {% for game in random_games %}
-          <div class="games">
-            <div class="info">
-              <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
-              <p class="game-name">{{ game.name }}</p>
-              <p class="price" text="{{ game.price }}₴"></p>
-            </div>
+      <div class="games-row">
+        {% for game in random_games %}
+        <div class="games">
+          <div class="info">
+            <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
+            <p class="game-name">{{ game.name }}</p>
+            <p class="price" text="{{ game.price }}₴"></p>
           </div>
-          {% endfor %}
-
         </div>
+        {% endfor %}
       </div>
     </div>
     {% endif %}
 
     <!--Конец нижней панели с играми-->
+
+    <!--Начало футуера-->
+    <footer>
+      <div class="container">
+        <div class="info-footer">
+          <nav>
+            <h2>Нвігація</h2>
+            <ul>
+              <li><a href>Новинки</a></li>
+              <li><a href>Знижки</a></li>
+              <li><a href>Очікуванні</a></li>
+            </ul>
+          </nav>
+
+          <div class="team">
+            <h2>Круті хлопці</h2>
+            <ul>
+              <li>Жовтоватюк Артем</li>
+              <li>Журавльов Нікіта</li>
+              <li>Приходько Олександр</li>
+              <li>Кордунер Кевін</li>
+              <li>Федорчук Дмитро</li>
+              <li>Бокучава Олександр</li>
+            </ul>
+          </div>
+          <div class="links-footer">
+            <h2>Корисні посилання</h2>
+            <ul>
+              <li>
+                <a
+                  href="https://github.com/RofLANi4/Gamekey-Project"
+                  target="_blank"
+                  >GitHub</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG"
+                  target="_blank"
+                  >DB Files</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--Конец футуера-->
 
     <script src="{% static 'js/scripts.js' %}"></script>
   </body>

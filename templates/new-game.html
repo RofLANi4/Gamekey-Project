@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="mask">
+      <img src="../static/Images/loader.gif" alt="" />
+    </div>
+    <!--Начало панели навигации-->
+    <nav class="nav">
+      <div class="nav-content">
+        <div class="logo">
+          <p><a href>GAMEKEY</a></p>
+        </div>
+        <div class="nav-list">
+          <ul>
+            <li class="new"><a href="new-game.html">Новинки</a></li>
+            <li class="discount"><a href>Знижки</a></li>
+            <li class="waiting"><a href>Очікуванні</a></li>
+          </ul>
+        </div>
+        <div class="input">
+          <input type="text" placeholder="Знайти гру..." id="mySearch" />
+          <div class="search">
+            <div>
+              <img src="../static/Images/Search.svg" alt="Search Button" />
+            </div>
+          </div>
+        </div>
+        <div class="logo-basket">
+          <img src="../static/Images/Basket.svg" alt="Basket Button" />
+        </div>
+      </div>
+    </nav>
+    <!--Конец панели навигации-->
+  </body>
+</html>

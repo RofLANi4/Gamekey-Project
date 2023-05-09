@@ -61,11 +61,11 @@ body {
   box-shadow: 5px 5px 0px black;
 }
 
-.logo p {
+.nav-content p {
   font-family: "Helvetica-Bold";
   font-size: 60px;
 }
-ul {
+.nav-list ul {
   margin-left: 0px;
   padding-left: 0px;
 }
@@ -135,6 +135,8 @@ a,
 */
 #slide {
   margin-top: 35px;
+  background-color: #6637ee;
+  border: 3px solid black;
   border-right: none;
   border-left: none;
   height: 500px;
@@ -147,7 +149,8 @@ a,
   margin: 0px 50px;
   width: 1300px;
   height: 100%;
-  border: 3px solid black;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
 }
 #slide input {
   display: none;
@@ -180,18 +183,8 @@ a,
 }
 .images-block img {
   width: 100%;
-  height: 101%;
+  height: 100%;
 }
-.images-block div:hover {
-  filter: brightness(75%);
-  -webkit-filter: brightness(75%);
-  transition: filter 0.2s;
-  -webkit-transition: filter 0.2s;
-  -moz-transition: filter 0.2s;
-  -ms-transition: filter 0.2s;
-  -o-transition: filter 0.2s;
-}
-
 .images-block div {
   border: 3px solid black;
   border-top: none;
@@ -265,12 +258,18 @@ button {
   margin: 10px 0px;
 }
 
+.games-column {
+  display: flex;
+  flex-direction: column;
+}
+
 .games-row {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 1400px;
-  margin: 0px auto;
+  min-width: 500px;
+  align-items: center;
 }
 .games {
   width: 240px;
@@ -303,13 +302,8 @@ button {
   margin-left: 10px;
 }
 .games :hover {
-  filter: brightness(75%);
-  -webkit-filter: brightness(75%);
-  transition: filter 0.2s;
-  -webkit-transition: filter 0.2s;
-  -moz-transition: filter 0.2s;
-  -ms-transition: filter 0.2s;
-  -o-transition: filter 0.2s;
+  -webkit-filter: brightness(85%);
+  filter: brightness(85%);
 }
 .info :hover {
   -webkit-filter: brightness(100%);
@@ -326,79 +320,8 @@ button {
   top: 4px;
 }
 
-.container {
-  margin: 0px auto;
-  position: relative;
-}
-
-.info-footer {
-  width: 100%;
-  max-height: 500px;
-  display: flex;
-  margin: 0px auto;
-  justify-content: space-around;
-  position: absolute;
-  background-color: white;
-  border: 2px solid black;
-}
-
-footer nav {
-  width: 250px;
-}
-
-footer h2 {
-  text-align: center;
-  font-family: "Helvetica-Bold";
-  font-size: 30px;
-}
-
-footer li {
-  text-align: center;
-  list-style-type: none;
-  font-family: "Helvetica-Roman";
-  font-size: 19px;
-}
-
-footer .team {
-  max-width: 400px;
-}
-.team h2 {
-  width: 100%;
-}
-.team li {
-  float: left;
-  margin: 5px 10px;
-}
-footer nav li,
-footer .links-footer li,
-footer nav li a,
-footer .links-footer li a {
-  font-size: 24px;
-  margin: 5px 0px;
-  position: relative;
-}
-
-footer nav li a::after,
-footer .links-footer li a::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #000000;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
-  -webkit-transition: transform 0.25s ease-out;
-  -moz-transition: transform 0.25s ease-out;
-  -ms-transition: transform 0.25s ease-out;
-  -o-transition: transform 0.25s ease-out;
-}
-
-footer nav li a:hover::after,
-footer .links-footer li a:hover::after {
-  content: "";
-  transform: scaleX(1);
-  transform-origin: bottom left;
+#footer {
+  width: 200px;
+  height: 200px;
+  background-color: #6637ee;
 }
