@@ -26,3 +26,15 @@ class HomeView(TemplateView):
         except ValueError:
             pass
         return context
+
+
+class NewGame(TemplateView):
+    template_name = "new_game.html"
+
+
+class Discounts(TemplateView):
+    template_name = "discount.html"
+
+
+class ComingSoon(TemplateView):
+    template_name = "coming_soon.html"

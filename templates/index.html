@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gamekey</title>
-    {% load static %}
+    {% load static %} {% load discount_counter %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
@@ -56,7 +56,10 @@
               {% endif %}
               <div>
                 <img src="{{ MEDIA_URL }}{{ game.image }}" alt="game image" />
-                <p class="price" text="{{ game.price }}₴"></p>
+                <p
+                  class="price"
+                  text="{{ game.price|discount:game.discount }}₴"
+                ></p>
               </div>
 
               {% if forloop.counter|divisibleby:3 or forloop.last %}
@@ -79,16 +82,18 @@
     <!--Начало нижней панели с играми-->
     {% if random_games %}
     <div id="gameList">
-      <div class="games-row">
-        {% for game in random_games %}
-        <div class="games">
-          <div class="info">
-            <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
-            <p class="game-name">{{ game.name }}</p>
-            <p class="price" text="{{ game.price }}₴"></p>
+      <div class="games-column">
+        <div class="games-row">
+          {% for game in random_games %}
+          <div class="games">
+            <div class="info">
+              <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
+              <p class="game-name">{{ game.name }}</p>
+              <p class="price" text="{{ game.price }}₴"></p>
+            </div>
           </div>
+          {% endfor %}
         </div>
-        {% endfor %}
       </div>
     </div>
     {% endif %}
