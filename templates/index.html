@@ -5,21 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gamekey</title>
-    {% load static %}
-    {% load discount_counter %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% load static %} {% load discount_counter %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
-    <div class="mask"><img src="../static/Images/loader.gif" alt="" /></div>
+    <div class="mask">
+      <img src="{% static '/Images/loader.gif' %}" alt="" />
+    </div>
     <!--Начало панели навигации-->
     <nav class="nav">
       <div class="nav-content">
         <div class="logo">
-          <p><a href>GAMEKEY</a></p>
+          <p><a href="{% url 'game_keys:index' %}">GAMEKEY</a></p>
         </div>
         <div class="nav-list">
           <ul>
-            <li class="new"><a href>Новинки</a></li>
+            <li class="new">
+              <a href="{% url 'game_keys:new_games' %}">Новинки</a>
+            </li>
             <li class="discount"><a href>Знижки</a></li>
             <li class="waiting"><a href>Очікуванні</a></li>
           </ul>
@@ -28,12 +31,15 @@
           <input type="text" placeholder="Знайти гру..." id="mySearch" />
           <div class="search">
             <div>
-              <img src="../static/Images/Search.svg" alt="Search Button" />
+              <img
+                src="{% static '/Images/Search.svg' %}"
+                alt="Search Button"
+              />
             </div>
           </div>
         </div>
         <div class="logo-basket">
-          <img src="../static/Images/Basket.svg" alt="Basket Button" />
+          <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button" />
         </div>
       </div>
     </nav>
@@ -49,12 +55,16 @@
         <div class="overflow">
           <div class="images">
             {% if hot_games %}
+            <!-- Images -->
             {% for game in hot_games %} {% if forloop.counter0|divisibleby:3 %}
             <div class="images-block">
               {% endif %}
               <div>
                 <img src="{{ MEDIA_URL }}{{ game.image }}" alt="game image" />
-                <p class="price" text="{{ game.price|discount:game.discount }}₴"></p>
+                <p
+                  class="price"
+                  text="{{ game.price|discount:game.discount }}₴"
+                ></p>
               </div>
 
               {% if forloop.counter|divisibleby:3 or forloop.last %}
@@ -84,11 +94,14 @@
             <div class="info">
               <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
               <p class="game-name">{{ game.name }}</p>
-              <p class="price" text="{{ game.price|discount:game.discount }}₴"></p>
+              {% if game.discount %}<p class="discount-percent">-{{ game.discount }}%</p>{% endif %}
+              <p
+                class="price"
+                text="{{ game.price|discount:game.discount }}₴"
+              ></p>
             </div>
           </div>
           {% endfor %}
-
         </div>
       </div>
     </div>
@@ -96,6 +109,57 @@
 
     <!--Конец нижней панели с играми-->
 
-    <script src="{% static 'js/scripts.js' %}"></script>
+    <!--Начало футуера-->
+    <footer>
+      <div class="container">
+        <div class="info-footer">
+          <nav>
+            <h2>Навігація</h2>
+            <ul>
+              <li><a href>Новинки</a></li>
+              <li><a href>Знижки</a></li>
+              <li><a href>Очікуванні</a></li>
+            </ul>
+          </nav>
+
+          <div class="team">
+            <h2>Круті хлопці</h2>
+            <ul>
+              <li>Жовтоватюк Артем</li>
+              <li>Журавльов Нікіта</li>
+              <li>Приходько Олександр</li>
+              <li>Кордунер Кевін</li>
+              <li>Федорчук Дмитро</li>
+              <li>Бокучава Олександр</li>
+            </ul>
+          </div>
+          <div class="links-footer">
+            <h2>Корисні посилання</h2>
+            <ul>
+              <li>
+                <a
+                  href="https://github.com/RofLANi4/Gamekey-Project"
+                  target="_blank"
+                  >GitHub</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG"
+                  target="_blank"
+                  >DB Files</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--Конец футуера-->
+
+    <script src="{% static 'js/content.js' %}"></script>
+    <script src="{% static 'js/header.js' %}"></script>
+    <script src="{% static 'js/slider.js' %}"></script>
+    <script src="{% static 'js/loader.js' %}"></script>
   </body>
 </html>

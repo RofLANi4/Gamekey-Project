@@ -1,7 +1,5 @@
 /* eslint-disable no-undef */
-const search = document.querySelector(".search"),
-  input = document.getElementById("mySearch"),
-  next = document.getElementById("buttonNext"),
+const next = document.getElementById("buttonNext"),
   prev = document.getElementById("buttonPrev"),
   slide = document.querySelector(".images"),
   slideAll = document.getElementsByClassName("images-block"),
@@ -10,8 +8,6 @@ const search = document.querySelector(".search"),
   slideLength = slideAll.length;
 
 slide.style.width = width * (slideLength + 2) + "px"; // Расчет длины всех слайдов
-
-search.onclick = () => (input.value = ""); //Очищает поисковую строку
 
 //
 //
@@ -87,12 +83,12 @@ window.addEventListener("load", () => {
 });
 
 const colorPrice = {
-  700: "#3DD222",
-  1000: "#5F9AFF",
-  1300: "#FFB400",
-  1400: "#FF9600",
-  1700: "#DE466C",
-  2100: "#00FFFF",
+  400: "#3DD222",
+  600: "#5F9AFF",
+  900: "#FFB400",
+  1200: "#FF9600",
+  1500: "#DE466C",
+  1800: "#ED4CFF",
 };
 
 // for (key in colorPrice) {

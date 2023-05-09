@@ -16,7 +16,7 @@ class HomeView(TemplateView):
         )
         try:
             game_ids = Game.objects.filter().values_list('id', flat=True)
-            random_ids = sample(list(game_ids), 5)
+            random_ids = sample(list(game_ids), 15)
             context["random_games"] = Game.objects.filter(id__in=random_ids).values(
                 "name",
                 "image",
