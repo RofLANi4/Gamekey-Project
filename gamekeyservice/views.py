@@ -5,7 +5,7 @@ from django.utils import timezone
 from datetime import timedelta
 
 TODAY = timezone.now().date()
-SIX_MONTH_PAST = TODAY - timedelta(days=180)
+SIX_MONTH_PAST = TODAY - timedelta(days=365)
 
 
 class HomeView(TemplateView):
@@ -89,3 +89,23 @@ class Discounts(TemplateView):
 
 class ComingSoon(TemplateView):
     template_name = "coming_soon.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        amount_of_games = len(Game.objects.filter(release_date__gte=TODAY))
+
+        if amount_of_games < 10:
+            game_length = amount_of_games
+        else:
+            game_length = 10
+
+        context["coming_soon"] = Game.objects.filter(release_date__gte=TODAY).order_by("?")[:game_length].values(
+            "id",
+            "name",
+            "image",
+            "price",
+            "discount"
+        )
+        print(context["discount_games"])
+        return context

@@ -58,7 +58,9 @@
           <div class="images">
             {% if random_games %}
             <!-- Images -->
-            {% for game in random_games %} {% if forloop.counter0|divisibleby:3 %}
+            {% for game in random_games %}
+            <!-- fas -->
+            {% if forloop.counter0|divisibleby:3%}
             <div class="images-block">
               {% endif %}
               <div>

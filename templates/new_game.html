@@ -21,10 +21,16 @@
         <div class="nav-list">
           <ul>
             <li class="new">
-              <a href="{% url 'game_keys:new_games' %}">Новинки</a>
+              <a style="color: #74e900" href="{% url 'game_keys:new_games' %}"
+                >Новинки</a
+              >
             </li>
-            <li class="discount"><a href="{% url 'game_keys:discounts' %}">Знижки</a></li>
-            <li class="waiting"><a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a></li>
+            <li class="discount">
+              <a href="{% url 'game_keys:discounts' %}">Знижки</a>
+            </li>
+            <li class="waiting">
+              <a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a>
+            </li>
           </ul>
         </div>
         <div class="input">
@@ -69,6 +75,59 @@
     </div>
     {% endif %}
     <!-- dad -->
+
+    <!--Начало футуера-->
+    <footer>
+      <div class="container">
+        <div class="info-footer">
+          <nav>
+            <h2>Навігація</h2>
+            <ul>
+              <li><a href="{% url 'game_keys:new_games' %}">Новинки</a></li>
+              <li><a href>Знижки</a></li>
+              <li><a href>Очікуванні</a></li>
+            </ul>
+          </nav>
+
+          <div class="team">
+            <h2>Круті хлопці</h2>
+            <ul>
+              <li>Жовтоватюк Артем</li>
+              <li>Журавльов Нікіта</li>
+              <li>Приходько Олександр</li>
+              <li>Кордунер Кевін</li>
+              <li>Федорчук Дмитро</li>
+              <li>Бокучава Олександр</li>
+            </ul>
+          </div>
+          <div class="links-footer">
+            <h2>Корисні посилання</h2>
+            <ul>
+              <li>
+                <a
+                  href="https://github.com/RofLANi4/Gamekey-Project"
+                  target="_blank"
+                  >GitHub</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG"
+                  target="_blank"
+                  >DB Files</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="policy">
+          <p>&copy; GAMEKEY</p>
+          <p>University project</p>
+        </div>
+      </div>
+    </footer>
+    <!--Конец футуера-->
+
     <script src="{% static 'js/content.js' %}"></script>
     <script src="{% static 'js/header.js' %}"></script>
     <script src="{% static 'js/loader.js' %}"></script>
