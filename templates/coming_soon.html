@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
-    <div class="mask">
-      <img src="{% static '/Images/loader.gif' %}" alt="" />
-    </div>
     <!--Начало панели навигации-->
     <nav class="nav">
       <div class="nav-content">
@@ -21,15 +18,15 @@
         <div class="nav-list">
           <ul>
             <li class="new">
-              <a style="color: #74e900" href="{% url 'game_keys:new_games' %}"
-                >Новинки</a
-              >
+              <a href="{% url 'game_keys:new_games' %}">Новинки</a>
             </li>
             <li class="discount">
               <a href="{% url 'game_keys:discounts' %}">Знижки</a>
             </li>
             <li class="waiting">
-              <a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a>
+              <a style="color: #ff55da" href="{% url 'game_keys:coming_soon' %}"
+                >Очікуванні</a
+              >
             </li>
           </ul>
         </div>
@@ -50,33 +47,5 @@
       </div>
     </nav>
     <!--Конец панели навигации-->
-
-    {% if hot_games %}
-    <div id="gameList">
-      <div class="games-column">
-        <div class="games-row">
-          {% for game in hot_games %}
-          <div class="games">
-            <div class="info">
-              <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
-              <p class="game-name">{{ game.name }}</p>
-              {% if game.discount %}
-              <p class="discount-percent">-{{ game.discount }}%</p>
-              {% endif %}
-              <p
-                class="price"
-                text="{{ game.price|discount:game.discount }}₴"
-              ></p>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-    {% endif %}
-    <!-- dad -->
-    <script src="{% static 'js/content.js' %}"></script>
-    <script src="{% static 'js/header.js' %}"></script>
-    <script src="{% static 'js/loader.js' %}"></script>
   </body>
 </html>

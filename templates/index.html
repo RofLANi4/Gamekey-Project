@@ -26,7 +26,9 @@
             <li class="discount">
               <a href="{% url 'game_keys:discounts' %}">Знижки</a>
             </li>
-            <li class="waiting"><a href>Очікуванні</a></li>
+            <li class="waiting">
+              <a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a>
+            </li>
           </ul>
         </div>
         <div class="input">
@@ -56,9 +58,11 @@
       <div class="slides">
         <div class="overflow">
           <div class="images">
-            {% if hot_games %}
+            {% if random_games %}
             <!-- Images -->
-            {% for game in hot_games %} {% if forloop.counter0|divisibleby:3 %}
+            {% for game in random_games %}
+            <!-- fas -->
+            {% if forloop.counter0|divisibleby:3%}
             <div class="images-block">
               {% endif %}
               <div>

@@ -33,6 +33,15 @@ class HomeView(TemplateView):
 
 class NewGame(TemplateView):
     template_name = "new_game.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["hot_games"] = Game.objects.filter(discount__gt=0).values(
+            "name",
+            "image",
+            "price",
+            "discount"
+        )
+        return context
     
 
 

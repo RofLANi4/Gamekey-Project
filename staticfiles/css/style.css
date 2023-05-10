@@ -182,7 +182,7 @@ a,
 }
 .images-block img {
   width: 100%;
-  height: 101%;
+  height: 100%;
 }
 .images-block div:hover {
   filter: brightness(75%);
@@ -330,7 +330,7 @@ button {
   font-weight: 600;
   font-size: 24px;
   margin-left: 10px;
-  padding: 0px 2px;
+  padding: 0px 2px 0px 5px;
 }
 
 .games:hover {

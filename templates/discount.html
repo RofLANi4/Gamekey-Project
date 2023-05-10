@@ -23,8 +23,14 @@
             <li class="new">
               <a href="{% url 'game_keys:new_games' %}">Новинки</a>
             </li>
-            <li class="discount"><a href>Знижки</a></li>
-            <li class="waiting"><a href>Очікуванні</a></li>
+            <li class="discount">
+              <a style="color: #ff9900" href="{% url 'game_keys:discounts' %}"
+                >Знижки</a
+              >
+            </li>
+            <li class="waiting">
+              <a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a>
+            </li>
           </ul>
         </div>
         <div class="input">
