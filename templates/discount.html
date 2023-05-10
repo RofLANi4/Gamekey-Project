@@ -23,8 +23,8 @@
             <li class="new">
               <a href="{% url 'game_keys:new_games' %}">Новинки</a>
             </li>
-            <li class="discount"><a href>Знижки</a></li>
-            <li class="waiting"><a href>Очікуванні</a></li>
+            <li class="discount"><a href="{% url 'game_keys:discounts' %}">Знижки</a></li>
+            <li class="waiting"><a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a></li>
           </ul>
         </div>
         <div class="input">
@@ -45,11 +45,11 @@
     </nav>
     <!--Конец панели навигации-->
 
-    {% if hot_games %}
+    {% if discount_games %}
     <div id="gameList">
       <div class="games-column">
         <div class="games-row">
-          {% for game in hot_games %}
+          {% for game in discount_games %}
           <div class="games">
             <div class="info">
               <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />

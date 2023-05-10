@@ -13,35 +13,27 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        try:
-            game_ids = Game.objects.filter(release_date__lte=TODAY).values_list('id', flat=True)
-            if len(game_ids) < 15:
-                random_ids = sample(list(game_ids), len(game_ids))
-            else:
-                random_ids = sample(list(game_ids), 15)
-            context["random_games"] = Game.objects.order_by('image').filter(id__in=random_ids).values(
-                "name",
-                "image",
-                "price",
-                "discount"
-            )
-        except ValueError:
-            pass
-        try:
-            game_ids = Game.objects.filter(release_date__lte=TODAY).values_list('id', flat=True)
-            if len(game_ids) < 15:
-                random_ids = sample(list(game_ids), len(game_ids))
-            else:
-                random_ids = sample(list(game_ids), 15)
 
-            context["random1_games"] = Game.objects.order_by('-image').filter(id__in=random_ids).values(
-                "name",
-                "image",
-                "price",
-                "discount"
-            )
-        except ValueError:
-            pass
+        amount_of_games = len(Game.objects.filter(release_date__lte=TODAY))
+
+        if amount_of_games < 15:
+            game_length = amount_of_games
+        else:
+            game_length = 15
+
+        context["random_games"] = Game.objects.filter(release_date__lte=TODAY).order_by("?")[:game_length].values(
+            "name",
+            "image",
+            "price",
+            "discount"
+        )
+
+        context["random1_games"] = Game.objects.filter(release_date__lte=TODAY).order_by("?")[:game_length].values(
+            "name",
+            "image",
+            "price",
+            "discount"
+        )
         return context
 
 
@@ -50,22 +42,24 @@ class NewGame(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        try:
-            game_ids = Game.objects.filter(release_date__range=[SIX_MONTH_PAST, TODAY]).values_list('id', flat=True)
-            if len(game_ids) < 5:
-                random_ids = sample(list(game_ids), len(game_ids))
-            else:
-                random_ids = sample(list(game_ids), 5)
+        amount_of_games = len(Game.objects.filter(release_date__range=[
+            SIX_MONTH_PAST,
+            TODAY]))
 
-            context["new_games"] = Game.objects.order_by('-image').filter(id__in=random_ids).values(
-                "name",
-                "image",
-                "price",
-                "discount"
-            )
-            print(type(game_ids))
-        except ValueError:
-            pass
+        if amount_of_games < 5:
+            game_length = amount_of_games
+        else:
+            game_length = 5
+
+        context["new_games"] = Game.objects.filter(release_date__range=[
+            SIX_MONTH_PAST,
+            TODAY
+        ]).order_by("?")[:game_length].values(
+            "name",
+            "image",
+            "price",
+            "discount"
+        )
         return context
 
 
@@ -74,12 +68,22 @@ class Discounts(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["hot_games"] = Game.objects.filter(discount__gt=0).values(
+
+        amount_of_games = len(Game.objects.filter(discount__gt=0))
+
+        if amount_of_games < 10:
+            game_length = amount_of_games
+        else:
+            game_length = 10
+
+        context["discount_games"] = Game.objects.filter(discount__gt=0).order_by("?")[:game_length].values(
+            "id",
             "name",
             "image",
             "price",
             "discount"
         )
+        print(context["discount_games"])
         return context
 
 
