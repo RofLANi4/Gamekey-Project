@@ -1,16 +1,11 @@
 const colorPrice = {
   400: "#3DD222", //Зелений
   600: "#5F9AFF", //Синій
-  900: "#FFB400", //Золотий
-  1200: "#FF9600", //Помаранчевий
-  1500: "#DE466C", //Рожевий
-  1800: "#ED4CFF", //Фіолетовий
+  900: "#FFC800", //Золотий
+  1200: "#FF7A00", //Помаранчевий
+  1500: "#FF50A6", //Рожевий
+  1800: "#D035FF", //Фіолетовий
 };
-
-// for (key in colorPrice) {
-//   if (+price[keyInfo].getAttribute("text").replace("₴", "") < key) {
-//   }
-// }
 
 const info = document.querySelectorAll(".info");
 const price = document.querySelectorAll(".info .price");

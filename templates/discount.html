@@ -23,9 +23,7 @@
             <li class="new">
               <a href="{% url 'game_keys:new_games' %}">Новинки</a>
             </li>
-            <li class="discount">
-              <a href="{% url 'game_keys:discounts' %}">Знижки</a>
-            </li>
+            <li class="discount"><a href>Знижки</a></li>
             <li class="waiting"><a href>Очікуванні</a></li>
           </ul>
         </div>
@@ -47,51 +45,11 @@
     </nav>
     <!--Конец панели навигации-->
 
-    <div id="slide">
-      <div>
-        <button id="buttonPrev">
-          <img src="../static/Images/Prev.svg" alt="" />
-        </button>
-      </div>
-      <div class="slides">
-        <div class="overflow">
-          <div class="images">
-            {% if hot_games %}
-            <!-- Images -->
-            {% for game in hot_games %} {% if forloop.counter0|divisibleby:3 %}
-            <div class="images-block">
-              {% endif %}
-              <div>
-                <img src="{{ MEDIA_URL }}{{ game.image }}" alt="game image" />
-                <p
-                  class="price"
-                  text="{{ game.price|discount:game.discount }}₴"
-                ></p>
-              </div>
-
-              {% if forloop.counter|divisibleby:3 or forloop.last %}
-            </div>
-            <!-- Close the game group div after every third game or if it's the last game -->
-            {% endif %} {% endfor %}{% else %}
-            <h1 class="images-block">There are no games yet</h1>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      <div>
-        <button id="buttonNext">
-          <img src="../static/Images/Next.svg" alt="" />
-        </button>
-      </div>
-    </div>
-    <!--Конец слайдера-->
-
-    <!--Начало нижней панели с играми-->
-    {% if random_games %}
+    {% if hot_games %}
     <div id="gameList">
       <div class="games-column">
         <div class="games-row">
-          {% for game in random_games %}
+          {% for game in hot_games %}
           <div class="games">
             <div class="info">
               <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
@@ -110,8 +68,7 @@
       </div>
     </div>
     {% endif %}
-
-    <!--Конец нижней панели с играми-->
+    <!-- dad -->
 
     <!--Начало футуера-->
     <footer>
@@ -164,10 +121,8 @@
       </div>
     </footer>
     <!--Конец футуера-->
-
     <script src="{% static 'js/content.js' %}"></script>
     <script src="{% static 'js/header.js' %}"></script>
-    <script src="{% static 'js/slider.js' %}"></script>
     <script src="{% static 'js/loader.js' %}"></script>
   </body>
 </html>
