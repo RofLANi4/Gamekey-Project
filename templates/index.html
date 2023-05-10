@@ -56,9 +56,9 @@
       <div class="slides">
         <div class="overflow">
           <div class="images">
-            {% if hot_games %}
+            {% if random_games %}
             <!-- Images -->
-            {% for game in hot_games %} {% if forloop.counter0|divisibleby:3 %}
+            {% for game in random_games %} {% if forloop.counter0|divisibleby:3 %}
             <div class="images-block">
               {% endif %}
               <div>
@@ -87,11 +87,11 @@
     <!--Конец слайдера-->
 
     <!--Начало нижней панели с играми-->
-    {% if random_games %}
+    {% if random1_games %}
     <div id="gameList">
       <div class="games-column">
         <div class="games-row">
-          {% for game in random_games %}
+          {% for game in random1_games %}
           <div class="games">
             <div class="info">
               <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />

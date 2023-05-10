@@ -45,11 +45,11 @@
     </nav>
     <!--Конец панели навигации-->
 
-    {% if hot_games %}
+    {% if new_games %}
     <div id="gameList">
       <div class="games-column">
         <div class="games-row">
-          {% for game in hot_games %}
+          {% for game in new_games %}
           <div class="games">
             <div class="info">
               <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
