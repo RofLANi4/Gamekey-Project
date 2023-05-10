@@ -91,11 +91,11 @@
     <!--Конец слайдера-->
 
     <!--Начало нижней панели с играми-->
-    {% if random_games %}
+    {% if random1_games %}
     <div id="gameList">
       <div class="games-column">
         <div class="games-row">
-          {% for game in random_games %}
+          {% for game in random1_games %}
           <div class="games">
             <div class="info">
               <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />

@@ -329,8 +329,7 @@ button {
   font-family: "Helvetica-Bold";
   font-weight: 600;
   font-size: 24px;
-  margin-left: 10px;
-  padding: 0px 2px 0px 5px;
+  padding: 0px 10px 0px 11px;
 }
 
 .games:hover {
