@@ -46,10 +46,10 @@ class NewGame(TemplateView):
             SIX_MONTH_PAST,
             TODAY]))
 
-        if amount_of_games < 5:
+        if amount_of_games < 10:
             game_length = amount_of_games
         else:
-            game_length = 5
+            game_length = 10
 
         context["new_games"] = Game.objects.filter(release_date__range=[
             SIX_MONTH_PAST,
@@ -107,5 +107,5 @@ class ComingSoon(TemplateView):
             "price",
             "discount"
         )
-        print(context["discount_games"])
+        
         return context

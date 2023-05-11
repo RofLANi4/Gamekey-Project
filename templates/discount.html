@@ -23,8 +23,12 @@
             <li class="new">
               <a href="{% url 'game_keys:new_games' %}">Новинки</a>
             </li>
-            <li class="discount"><a href="{% url 'game_keys:discounts' %}">Знижки</a></li>
-            <li class="waiting"><a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a></li>
+            <li class="discount">
+              <a href="{% url 'game_keys:discounts' %}">Знижки</a>
+            </li>
+            <li class="waiting">
+              <a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a>
+            </li>
           </ul>
         </div>
         <div class="input">
@@ -45,6 +49,7 @@
     </nav>
     <!--Конец панели навигации-->
 
+    <!-- Начало контента -->
     {% if discount_games %}
     <div id="gameList">
       <div class="games-column">
@@ -68,7 +73,7 @@
       </div>
     </div>
     {% endif %}
-    <!-- dad -->
+    <!-- Конец контента -->
 
     <!--Начало футуера-->
     <footer>
