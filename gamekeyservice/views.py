@@ -14,12 +14,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        amount_of_games = len(Game.objects.filter(release_date__lte=TODAY))
-
-        if amount_of_games < 15:
-            game_length = amount_of_games
-        else:
-            game_length = 15
+        game_length = 15
 
         context["random_games"] = Game.objects.filter(release_date__lte=TODAY).order_by("?")[:game_length].values(
             "name",
@@ -42,14 +37,8 @@ class NewGame(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        amount_of_games = len(Game.objects.filter(release_date__range=[
-            SIX_MONTH_PAST,
-            TODAY]))
 
-        if amount_of_games < 10:
-            game_length = amount_of_games
-        else:
-            game_length = 10
+        game_length = 5
 
         context["new_games"] = Game.objects.filter(release_date__range=[
             SIX_MONTH_PAST,
@@ -69,15 +58,9 @@ class Discounts(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        amount_of_games = len(Game.objects.filter(discount__gt=0))
-
-        if amount_of_games < 10:
-            game_length = amount_of_games
-        else:
-            game_length = 10
+        game_length = 10
 
         context["discount_games"] = Game.objects.filter(discount__gt=0).order_by("?")[:game_length].values(
-            "id",
             "name",
             "image",
             "price",
@@ -93,12 +76,7 @@ class ComingSoon(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        amount_of_games = len(Game.objects.filter(release_date__gte=TODAY))
-
-        if amount_of_games < 10:
-            game_length = amount_of_games
-        else:
-            game_length = 10
+        game_length = 10
 
         context["coming_soon"] = Game.objects.filter(release_date__gte=TODAY).order_by("?")[:game_length].values(
             "id",
