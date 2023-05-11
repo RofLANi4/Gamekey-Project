@@ -1,5 +1,4 @@
 from django.views.generic import TemplateView
-from random import sample
 from .models import Game
 from django.utils import timezone
 from datetime import timedelta
