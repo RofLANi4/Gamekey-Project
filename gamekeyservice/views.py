@@ -84,5 +84,5 @@ class ComingSoon(TemplateView):
             "price",
             "discount"
         )
-        print(context["discount_games"])
+        
         return context
