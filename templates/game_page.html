@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
-    <div class="mask">
-      <img src="{% static '/Images/loader.gif' %}" alt="" />
-    </div>
     <!--Начало панели навигации-->
     <nav class="nav">
       <div class="nav-content">
@@ -21,9 +18,7 @@
         <div class="nav-list">
           <ul>
             <li class="new">
-              <a style="color: #74e900" href="{% url 'game_keys:new_games' %}"
-                >Новинки</a
-              >
+              <a href="{% url 'game_keys:new_games' %}">Новинки</a>
             </li>
             <li class="discount">
               <a href="{% url 'game_keys:discounts' %}">Знижки</a>
@@ -51,34 +46,58 @@
     </nav>
     <!--Конец панели навигации-->
 
-    <!-- Начало контента -->
-    {% if new_games %}
-    <div id="gameList">
-      <div class="games-column">
-        <div class="games-row">
-          {% for game in new_games %}
-          <div class="games">
-            <div class="info">
-              <a href="{% url 'game_keys:game_page' pk=game.id %}">
-                <img src="{{ MEDIA_URL }}{{ game.image }}" alt=""
-              /></a>
-              <p class="game-name">{{ game.name }}</p>
-              {% if game.discount %}
-              <p class="discount-percent">-{{ game.discount }}%</p>
-              {% endif %}
-              <p
-                class="price"
-                text="{{ game.price|discount:game.discount }}₴"
-              ></p>
+    <div class="game-describe">
+      <div class="game-describe-top">
+        <div class="orange-square"></div>
+        <div class="game-photo">
+          <img src="{{ MEDIA_URL }}{{ object.image }}" alt="StrayGame" />
+        </div>
+        <div class="game-info">
+          <div class="game-page-name" style="padding: 29px">
+            <p>{{ object.name }}</p>
+          </div>
+          <div class="game-price-cart">
+            <div>
+              <button class="button-cart">До кошика</button>
+            </div>
+
+            <div class="game-price">
+              <p>{{ object.price }}₴</p>
             </div>
           </div>
-          {% endfor %}
+          <div class="game-type">
+            <table
+              style="
+                width: 100%;
+                text-align: left;
+                align-items: start;
+                margin-left: 29px;
+              "
+            >
+              <tr>
+                <th>Жанр</th>
+                <td>{{ object.genre.name }}</td>
+              </tr>
+              <tr>
+                <th>Дата виходу</th>
+                <td>{{ object.release_date }}</td>
+              </tr>
+              <tr>
+                <th>Розробник</th>
+                <td>{{ object.developer }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="game-describe-bottom">
+        <div style="width: 300px; height: 450px"></div>
+        <div class="description">
+          <p class="about">Про цю гру</p>
+          <p class="definition">{{ object.description }}</p>
         </div>
       </div>
     </div>
-    {% endif %}
-    <!-- Конец контента -->
-
     <!--Начало футуера-->
     <footer>
       <div class="container">
@@ -98,7 +117,13 @@
               <li>Жовтоватюк Артем</li>
               <li>Журавльов Нікіта</li>
               <li>Приходько Олександр</li>
-              <li>Кордунер Кевін</li>
+              <li>
+                <a
+                  href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjmh8nwv-v-AhWrDRAIHZuDAiQQwqsBegQICRAF&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DdQw4w9WgXcQ&usg=AOvVaw0aHtehaphMhOCAkCydRLZU"
+                  style="color: fff"
+                  >Кордунер Кевін</a
+                >
+              </li>
               <li>Федорчук Дмитро</li>
               <li>Бокучава Олександр</li>
             </ul>
@@ -130,9 +155,6 @@
       </div>
     </footer>
     <!--Конец футуера-->
-
-    <script src="{% static 'js/content.js' %}"></script>
-    <script src="{% static 'js/header.js' %}"></script>
-    <script src="{% static 'js/loader.js' %}"></script>
   </body>
+  <script src="js/scripts.js"></script>
 </html>

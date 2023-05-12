@@ -24,7 +24,10 @@
               <a href="{% url 'game_keys:discounts' %}">Знижки</a>
             </li>
             <li class="waiting">
-              <a style="color: #ff55da" href="{% url 'game_keys:coming_soon' %}">
+              <a
+                style="color: #ff55da"
+                href="{% url 'game_keys:coming_soon' %}"
+              >
                 Очікуванні
               </a>
             </li>
@@ -55,7 +58,10 @@
           {% for game in coming_soon %}
           <div class="games">
             <div class="info">
-              <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
+              <a href="{% url 'game_keys:game_page' pk=game.id %}"
+                ><img src="{{ MEDIA_URL }}{{ game.image }}" alt=""
+              /></a>
+
               <p class="game-name">{{ game.name }}</p>
               {% if game.discount %}
               <p class="discount-percent">-{{ game.discount }}%</p>

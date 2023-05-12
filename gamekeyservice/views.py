@@ -18,17 +18,21 @@ class HomeView(TemplateView):
         game_length = 15
 
         context["random_games"] = Game.objects.filter(release_date__lte=TODAY).order_by("?")[:game_length].values(
+            "id",
             "name",
+            "genre",
             "image",
             "price",
-            "discount"
+            "discount","developer","description"
         )
 
         context["random1_games"] = Game.objects.filter(release_date__lte=TODAY).order_by("?")[:game_length].values(
+             "id",
             "name",
+            "genre",
             "image",
             "price",
-            "discount"
+            "discount","developer","description"
         )
         return context
 
@@ -45,10 +49,12 @@ class NewGame(TemplateView):
             SIX_MONTH_PAST,
             TODAY
         ]).order_by("?")[:game_length].values(
+            "id",
             "name",
+            "genre",
             "image",
             "price",
-            "discount"
+            "discount","developer","description"
         )
         return context
 
@@ -62,10 +68,12 @@ class Discounts(TemplateView):
         game_length = 10
 
         context["discount_games"] = Game.objects.filter(discount__gt=0).order_by("?")[:game_length].values(
+            "id",
             "name",
+            "genre",
             "image",
             "price",
-            "discount"
+            "discount","developer","description"
         )
         return context
 
@@ -81,9 +89,10 @@ class ComingSoon(TemplateView):
         context["coming_soon"] = Game.objects.filter(release_date__gte=TODAY).order_by("?")[:game_length].values(
             "id",
             "name",
+            "genre",
             "image",
             "price",
-            "discount"
+            "discount","developer","description"
         )
 
         return context
@@ -103,3 +112,9 @@ class SearchView(View):
             results = []
         return JsonResponse({"results": list(results)})
 
+
+class GamePage(DetailView):
+    template_name = "game_page.html"
+    model = Game
+
+    

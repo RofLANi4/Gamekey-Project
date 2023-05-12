@@ -52,6 +52,7 @@
     </nav>
     <!--Конец панели навигации-->
 
+    <!--Начало слайдера-->
     <div id="slide">
       <div>
         <button id="buttonPrev">
@@ -69,7 +70,9 @@
             <div class="images-block">
               {% endif %}
               <div>
-                <img src="{{ MEDIA_URL }}{{ game.image }}" alt="game image" />
+                <a href="{% url 'game_keys:game_page' pk=game.id %}"
+                  ><img src="{{ MEDIA_URL }}{{ game.image }}" alt="game image"
+                /></a>
                 <p
                   class="price"
                   text="{{ game.price|discount:game.discount }}₴"
@@ -101,7 +104,10 @@
           {% for game in random1_games %}
           <div class="games">
             <div class="info">
-              <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
+              <a href="{% url 'game_keys:game_page' pk=game.id %}">
+                <img src="{{ MEDIA_URL }}{{ game.image }}" alt=""
+              /></a>
+
               <p class="game-name">{{ game.name }}</p>
               {% if game.discount %}
               <p class="discount-percent">-{{ game.discount }}%</p>
