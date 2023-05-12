@@ -37,7 +37,7 @@ class NewGame(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        game_length = 5
+        game_length = 10
 
         context["new_games"] = Game.objects.filter(release_date__range=[
             SIX_MONTH_PAST,
@@ -65,7 +65,6 @@ class Discounts(TemplateView):
             "price",
             "discount"
         )
-        print(context["discount_games"])
         return context
 
 
