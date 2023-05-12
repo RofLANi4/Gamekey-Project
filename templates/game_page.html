@@ -76,11 +76,11 @@
             >
               <tr>
                 <th>Жанр</th>
-                <td>{{ object.genre.name }}</td>
+                <td>{% for genre in genres %} {{ genre }}{% endfor %}</td>
               </tr>
               <tr>
                 <th>Дата виходу</th>
-                <td>{{ object.release_date }}</td>
+                <td>{{ release_date }}</td>
               </tr>
               <tr>
                 <th>Розробник</th>

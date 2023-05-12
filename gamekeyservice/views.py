@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from django.utils.dateformat import DateFormat
 from django.views import View
 from django.views.generic import TemplateView, DetailView
 from .models import Game
@@ -20,19 +21,17 @@ class HomeView(TemplateView):
         context["random_games"] = Game.objects.filter(release_date__lte=TODAY).order_by("?")[:game_length].values(
             "id",
             "name",
-            "genre",
             "image",
             "price",
-            "discount","developer","description"
+            "discount"
         )
 
         context["random1_games"] = Game.objects.filter(release_date__lte=TODAY).order_by("?")[:game_length].values(
-             "id",
+            "id",
             "name",
-            "genre",
             "image",
             "price",
-            "discount","developer","description"
+            "discount"
         )
         return context
 
@@ -51,10 +50,9 @@ class NewGame(TemplateView):
         ]).order_by("?")[:game_length].values(
             "id",
             "name",
-            "genre",
             "image",
             "price",
-            "discount","developer","description"
+            "discount"
         )
         return context
 
@@ -70,10 +68,9 @@ class Discounts(TemplateView):
         context["discount_games"] = Game.objects.filter(discount__gt=0).order_by("?")[:game_length].values(
             "id",
             "name",
-            "genre",
             "image",
             "price",
-            "discount","developer","description"
+            "discount"
         )
         return context
 
@@ -89,10 +86,9 @@ class ComingSoon(TemplateView):
         context["coming_soon"] = Game.objects.filter(release_date__gte=TODAY).order_by("?")[:game_length].values(
             "id",
             "name",
-            "genre",
             "image",
             "price",
-            "discount","developer","description"
+            "discount"
         )
 
         return context
@@ -117,4 +113,10 @@ class GamePage(DetailView):
     template_name = "game_page.html"
     model = Game
 
-    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['genres'] = self.object.genre.all()
+        release_date = DateFormat(self.object.release_date).format("Y-m-d")
+        context['release_date'] = release_date
+
+        return context
