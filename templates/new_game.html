@@ -59,7 +59,9 @@
           {% for game in new_games %}
           <div class="games">
             <div class="info">
-              <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
+              <a href="{% url 'game_keys:game_page' pk=game.id %}">
+                <img src="{{ MEDIA_URL }}{{ game.image }}" alt=""
+              /></a>
               <p class="game-name">{{ game.name }}</p>
               {% if game.discount %}
               <p class="discount-percent">-{{ game.discount }}%</p>
