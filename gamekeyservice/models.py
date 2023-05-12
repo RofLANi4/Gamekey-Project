@@ -31,7 +31,7 @@ class Key(models.Model):
 
 
 class Order(models.Model):
-    key = models.ForeignKey(Key, on_delete=models.DO_NOTHING    )
+    key = models.ForeignKey(Key, on_delete=models.PROTECT)
     user = models.ForeignKey(Customer, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
     
