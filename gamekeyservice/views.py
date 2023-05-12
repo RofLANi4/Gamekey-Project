@@ -1,4 +1,6 @@
-from django.views.generic import TemplateView
+from django.http import JsonResponse
+from django.views import View
+from django.views.generic import TemplateView, DetailView
 from .models import Game
 from django.utils import timezone
 from datetime import timedelta
@@ -83,5 +85,21 @@ class ComingSoon(TemplateView):
             "price",
             "discount"
         )
-        
+
         return context
+
+
+class SearchView(View):
+    def get(self, request):
+        query = request.GET.get("q")
+        if query:
+            results = Game.objects.filter(name__contains=query).values(
+                "id",
+                "name",
+                "image",
+            )
+            print(results)
+        else:
+            results = []
+        return JsonResponse({"results": list(results)})
+
