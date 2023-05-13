@@ -101,8 +101,17 @@ a,
   height: 37px;
   cursor: pointer;
   right: 100px;
-  padding-right: 10px;
+  margin-right: 16px;
 }
+
+#search {
+  width: 35px;
+  height: 37px;
+  cursor: pointer;
+  right: 100px;
+  margin-right: 16px;
+}
+
 .input {
   border: 3px solid black;
   border-radius: 15px;
@@ -143,8 +152,9 @@ a,
   position: absolute;
   z-index: 999;
   background-color: white;
-  width: 330px;
-  height: 225px;
+  width: 100%;
+
+  max-height: 225px;
   border: 3px solid black;
   border-top: none;
   border-radius: 0px 0px 15px 15px;
@@ -152,6 +162,14 @@ a,
   -moz-border-radius: 0px 0px 15px 15px;
   -ms-border-radius: 0px 0px 15px 15px;
   -o-border-radius: 0px 0px 15px 15px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.search-request-active a {
+  font-family: "Helvetica-Roman";
+  font-size: 18px;
+  display: block;
 }
 
 /*

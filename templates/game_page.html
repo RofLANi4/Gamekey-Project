@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gamekey</title>
-    {% load static %} {% load discount_counter %}
+    {% load static %} {% load discount_counter %} {% load genres_display %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
@@ -28,17 +28,29 @@
             </li>
           </ul>
         </div>
-        <div class="input">
-          <input type="text" placeholder="Знайти гру..." id="mySearch" />
-          <div class="search">
-            <div>
-              <img
-                src="{% static '/Images/Search.svg' %}"
-                alt="Search Button"
-              />
+        <form id="search-form" action="{% url 'game_keys:game_list' %}" method="get">
+          <div class="input">
+            <input
+              autocomplete="off"
+              type="text"
+              placeholder="Знайти гру..."
+              id="mySearch"
+              name="q"
+            />
+            <button type="submit" id="search">
+                <img
+                  src="{% static '/Images/Search.svg' %}"
+                  alt="Search Button"
+                  id="input_img"
+                />
+              </button>
+            <div class="search">
+              <div id="input_container">
+              </div>
             </div>
           </div>
-        </div>
+          <div class="search-request"></div>
+        </form>
         <div class="logo-basket">
           <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button" />
         </div>
@@ -75,8 +87,8 @@
               "
             >
               <tr>
-                <th>Жанр</th>
-                <td>{% for genre in genres %} {{ genre }}{% endfor %}</td>
+                <th>Жанри</th>
+                <td>{% genres genres %}</td>
               </tr>
               <tr>
                 <th>Дата виходу</th>

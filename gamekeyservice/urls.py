@@ -9,7 +9,7 @@ urlpatterns = [
     path("discounts/", Discounts.as_view(), name="discounts"),
     path("coming-soon/", ComingSoon.as_view(), name="coming_soon"),
     path('search/', SearchView.as_view(), name='search'),
-    path("game-page/<int:pk>", GamePage.as_view(), name="game_page"),
+    path("game-page/<int:pk>/", GamePage.as_view(), name="game_page"),
     path("game-list/", GameListView.as_view(), name="game_list"),
     path('__debug__/', include('debug_toolbar.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
