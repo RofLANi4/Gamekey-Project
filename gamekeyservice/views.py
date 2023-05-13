@@ -98,10 +98,10 @@ class SearchView(View):
     def get(self, request):
         query = request.GET.get("q")
         if query:
-            results = Game.objects.filter(name__icontains=query).values(
+            results = Game.objects.filter(name__contains=query)[:10].values(
                 "id",
                 "name",
-                "image",
+                "image", 
             )
             print(results)
         else:

@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
-    <div class="mask">
-      <img src="{% static '/Images/loader.gif' %}" alt="" />
-    </div>
     <!--Начало панели навигации-->
     <nav class="nav">
       <div class="nav-content">
@@ -27,30 +24,26 @@
               <a href="{% url 'game_keys:discounts' %}">Знижки</a>
             </li>
             <li class="waiting">
-              <a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a>
+              <a
+                style="color: #ff55da"
+                href="{% url 'game_keys:coming_soon' %}"
+              >
+                Очікуванні
+              </a>
             </li>
           </ul>
         </div>
-        <form id="search-form">
-          <div class="input">
-            <input
-              autocomplete="off"
-              type="text"
-              placeholder="Знайти гру..."
-              id="mySearch"
-              name="mySearch"
-            />
-            <div class="search">
-              <div>
-                <img
-                  src="{% static '/Images/Search.svg' %}"
-                  alt="Search Button"
-                />
-              </div>
+        <div class="input">
+          <input type="text" placeholder="Знайти гру..." id="mySearch" />
+          <div class="search">
+            <div>
+              <img
+                src="{% static '/Images/Search.svg' %}"
+                alt="Search Button"
+              />
             </div>
           </div>
-          <div class="search-request"></div>
-        </form>
+        </div>
         <div class="logo-basket">
           <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button" />
         </div>
@@ -58,60 +51,15 @@
     </nav>
     <!--Конец панели навигации-->
 
-    <!--Начало слайдера-->
-    <div id="slide">
-      <div>
-        <button id="buttonPrev">
-          <img src="../static/Images/Prev.svg" alt="" />
-        </button>
-      </div>
-      <div class="slides">
-        <div class="overflow">
-          <div class="images">
-            {% if random_games %}
-            <!-- Images -->
-            {% for game in random_games %}
-            <!-- Images -->
-            {% if forloop.counter0|divisibleby:3%}
-            <div class="images-block">
-              {% endif %}
-              <div>
-                <a href="{% url 'game_keys:game_page' pk=game.id %}"
-                  ><img src="{{ MEDIA_URL }}{{ game.image }}" alt="game image"
-                /></a>
-                <p
-                  class="price"
-                  text="{{ game.price|discount:game.discount }}₴"
-                ></p>
-              </div>
-
-              {% if forloop.counter|divisibleby:3 or forloop.last %}
-            </div>
-            <!-- Close the game group div after every third game or if it's the last game -->
-            {% endif %} {% endfor %}{% else %}
-            <h1 class="images-block">There are no games yet</h1>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      <div>
-        <button id="buttonNext">
-          <img src="../static/Images/Next.svg" alt="" />
-        </button>
-      </div>
-    </div>
-    <!--Конец слайдера-->
-
-    <!--Начало нижней панели с играми-->
-    {% if random1_games %}
+    {% if games %}
     <div id="gameList">
       <div class="games-column">
         <div class="games-row">
-          {% for game in random1_games %}
+          {% for game in games %}
           <div class="games">
             <div class="info">
-              <a href="{% url 'game_keys:game_page' pk=game.id %}">
-                <img src="{{ MEDIA_URL }}{{ game.image }}" alt=""
+              <a href="{% url 'game_keys:game_page' pk=game.id %}"
+                ><img src="{{ MEDIA_URL }}/{{ game.image }}" alt=""
               /></a>
 
               <p class="game-name">{{ game.name }}</p>
@@ -129,8 +77,6 @@
       </div>
     </div>
     {% endif %}
-
-    <!--Конец нижней панели с играми-->
 
     <!--Начало футуера-->
     <footer>
@@ -151,13 +97,7 @@
               <li>Жовтоватюк Артем</li>
               <li>Журавльов Нікіта</li>
               <li>Приходько Олександр</li>
-              <li>
-                <a
-                  href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjmh8nwv-v-AhWrDRAIHZuDAiQQwqsBegQICRAF&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DdQw4w9WgXcQ&usg=AOvVaw0aHtehaphMhOCAkCydRLZU"
-                  style="color: fff"
-                  >Кордунер Кевін</a
-                >
-              </li>
+              <li>Кордунер Кевін</li>
               <li>Федорчук Дмитро</li>
               <li>Бокучава Олександр</li>
             </ul>
@@ -189,10 +129,8 @@
       </div>
     </footer>
     <!--Конец футуера-->
-
     <script src="{% static 'js/content.js' %}"></script>
     <script src="{% static 'js/header.js' %}"></script>
     <script src="{% static 'js/loader.js' %}"></script>
-    <script src="{% static 'js/slider.js' %}"></script>
   </body>
 </html>
