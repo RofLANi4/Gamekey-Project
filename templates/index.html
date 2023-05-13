@@ -33,7 +33,13 @@
         </div>
         <form id="search-form">
           <div class="input">
-            <input type="text" placeholder="Знайти гру..." id="mySearch" name="mySearch" />
+            <input
+              autocomplete="off"
+              type="text"
+              placeholder="Знайти гру..."
+              id="mySearch"
+              name="mySearch"
+            />
             <div class="search">
               <div>
                 <img
@@ -41,9 +47,9 @@
                   alt="Search Button"
                 />
               </div>
-              <div id="search-results"></div>
             </div>
           </div>
+          <div class="search-request"></div>
         </form>
         <div class="logo-basket">
           <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button" />
@@ -188,23 +194,5 @@
     <script src="{% static 'js/header.js' %}"></script>
     <script src="{% static 'js/loader.js' %}"></script>
     <script src="{% static 'js/slider.js' %}"></script>
-    <script>
-      function sendSearchRequest() {
-        let searchTerm = document.getElementById("mySearch").value;
-        let url = "/gamekey/search/?q=" + searchTerm;
-
-        let xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            let results = JSON.parse(xhr.responseText);
-            console.log(results); // handle the results here
-          }
-        };
-        xhr.open("GET", url, true);
-        xhr.send();
-      }
-
-      document.getElementById("mySearch").addEventListener("input", sendSearchRequest);
-    </script>
   </body>
 </html>

@@ -111,6 +111,13 @@ a,
   margin: 0px;
   background-color: #e9e9e9;
 }
+.input-active {
+  border-radius: 15px 15px 0px 0px;
+  -webkit-border-radius: 15px 15px 0px 0px;
+  -moz-border-radius: 15px 15px 0px 0px;
+  -ms-border-radius: 15px 15px 0px 0px;
+  -o-border-radius: 15px 15px 0px 0px;
+}
 
 #mySearch {
   padding: 0px 10px;
@@ -127,6 +134,35 @@ a,
 .search.active {
   width: 800px;
 }
+
+#search-form {
+  position: relative;
+}
+
+.search-request-active {
+  position: absolute;
+  z-index: 999;
+  background-color: white;
+  width: 100%;
+
+  max-height: 225px;
+  border: 3px solid black;
+  border-top: none;
+  border-radius: 0px 0px 15px 15px;
+  -webkit-border-radius: 0px 0px 15px 15px;
+  -moz-border-radius: 0px 0px 15px 15px;
+  -ms-border-radius: 0px 0px 15px 15px;
+  -o-border-radius: 0px 0px 15px 15px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.search-request-active a {
+  font-family: "Helvetica-Roman";
+  font-size: 18px;
+  display: block;
+}
+
 /*
 Конец стилей для навигации
 */
