@@ -85,7 +85,7 @@ function fill(input, json) {
       searchRequestActive.innerHTML += `
             <div class="hover">
               <a href="/gamekey/game-page/${json[key].id}">
-                <img data-src="/media/${json[key].image}" src="/media/${json[key].image}" loading="lazy" alt="game image"/>
+                <img src="/media/${json[key].image}" alt="game image"/>
                 <p>${json[key].name}</p>
               </a>
             </div>
