@@ -1,19 +1,111 @@
-const colorPrice = {
-  400: "#3DD222", //Зелений
-  600: "#5F9AFF", //Синій
-  900: "#FFC800", //Золотий
-  1200: "#FF7A00", //Помаранчевий
-  1500: "#FF50A6", //Рожевий
-  1800: "#D035FF", //Фіолетовий
-};
+const info = document.querySelectorAll(".info"),
+  price = document.querySelectorAll(".info .price"),
+  searchRequestActive = document.querySelector(".search-request"),
+  inputActive = document.querySelector(".input"),
+  searchForm = document.querySelector("#search-form");
 
-const info = document.querySelectorAll(".info");
-const price = document.querySelectorAll(".info .price");
+colorizeGame(info, price);
 
-info.forEach((item, keyInfo) => {
-  for (keyPrice in colorPrice) {
-    if (+price[keyInfo].getAttribute("text").replace("₴", "") > +keyPrice) {
-      item.style.backgroundColor = colorPrice[keyPrice];
+document.addEventListener("input", sendSearchRequest);
+function sendSearchRequest() {
+  let searchTerm = document.getElementById("mySearch").value;
+  let url = "/gamekey/search/?q=" + searchTerm;
+
+  fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (jsonResponse) {
+      searchLineIsNotEmpty(
+        fill,
+        searchRequestActive,
+        inputActive,
+        jsonResponse.results
+      );
+    });
+}
+
+//
+function colorizeGame(game, gamePrice) {
+  const colorPrice = {
+    0: "#4ADBC8",
+    400: "#3DD222",
+    600: "#5F9AFF",
+    900: "#FFC800",
+    1200: "#FF7A00",
+    1500: "#FF50A6",
+    1800: "#D035FF",
+  };
+
+  //
+  game.forEach((item, keyInfo) => {
+    for (let keyPrice in colorPrice) {
+      //
+      try {
+        if (
+          +gamePrice[keyInfo].getAttribute("text").replace("₴", "") > +keyPrice
+        ) {
+          item.style.backgroundColor = colorPrice[keyPrice];
+        }
+      } catch {
+        if (+gamePrice[keyInfo].price > +keyPrice) {
+          item.addEventListener("mouseover", () => {
+            item.style.backgroundColor = colorPrice[keyPrice];
+          });
+          item.addEventListener("mouseout", () => {
+            item.style.backgroundColor = "#FFFFFF";
+          });
+        }
+      }
     }
+  });
+}
+
+//
+function searchLineIsEmpty(search, input) {
+  search.innerHTML = "";
+  search.classList.remove("search-request-active");
+  input.classList.remove("input-active");
+}
+
+//
+function searchLineIsNotEmpty(callback, search, input, json) {
+  search.classList.add("search-request-active");
+  input.classList.add("input-active");
+  search.innerHTML = "";
+  callback(input, json);
+}
+
+//
+function fill(input, json) {
+  //
+
+  if (json.length != 0) {
+    for (let key in json) {
+      searchRequestActive.innerHTML += `
+            <div class="hover">
+              <a href="/gamekey/game-page/${json[key].id}">
+                <img data-src="/media/${json[key].image}" src="/media/${json[key].image}" loading="lazy" alt="game image"/>
+                <p>${json[key].name}</p>
+              </a>
+            </div>
+          `;
+    }
+    const divHover = document.querySelectorAll(".hover");
+    colorizeGame(divHover, json);
+  } else if (json.length == 0) {
+    searchLineIsEmpty(searchRequestActive, input);
+  }
+}
+
+//
+searchForm.addEventListener("focusin", () => {
+  sendSearchRequest();
+});
+
+//
+document.addEventListener("click", (event) => {
+  if (!searchForm.contains(event.target)) {
+    searchLineIsEmpty(searchRequestActive, inputActive);
   }
 });

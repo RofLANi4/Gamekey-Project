@@ -143,15 +143,42 @@ a,
   position: absolute;
   z-index: 999;
   background-color: white;
-  width: 330px;
-  height: 225px;
+  width: 100%;
+  max-height: 255px;
   border: 3px solid black;
   border-top: none;
-  border-radius: 0px 0px 15px 15px;
-  -webkit-border-radius: 0px 0px 15px 15px;
-  -moz-border-radius: 0px 0px 15px 15px;
-  -ms-border-radius: 0px 0px 15px 15px;
-  -o-border-radius: 0px 0px 15px 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.search-request-active a {
+  display: flex;
+  align-items: center;
+  margin: 0px 10px;
+  height: 100%;
+}
+
+.search-request-active .hover {
+  font-family: "Helvetica-Roman";
+  font-size: 22px;
+  height: 63px;
+  background-color: #ffffff;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+.search-request-active :nth-child(1) a {
+  margin-top: 0px;
+}
+
+.search-request-active .hover img {
+  width: 96px;
+  height: 54px;
+}
+.search-request-active .hover p {
+  margin-left: 5px;
 }
 
 /*

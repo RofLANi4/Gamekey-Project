@@ -98,10 +98,12 @@ class SearchView(View):
     def get(self, request):
         query = request.GET.get("q")
         if query:
-            results = Game.objects.filter(name__contains=query)[:10].values(
+            results = Game.objects.filter(name__contains=query)[:4].values(
                 "id",
                 "name",
-                "image", 
+                "image",
+                "price",
+                "discount"
             )
             print(results)
         else:
@@ -116,7 +118,7 @@ class GamePage(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['genres'] = self.object.genre.all()
-        release_date = DateFormat(self.object.release_date).format("Y-m-d")
+        release_date = DateFormat(self.object.release_date).format("d-m-Y")
         context['release_date'] = release_date
 
         return context
