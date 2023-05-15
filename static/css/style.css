@@ -101,8 +101,17 @@ a,
   height: 37px;
   cursor: pointer;
   right: 100px;
-  padding-right: 10px;
+  margin-right: 16px;
 }
+
+#search {
+  width: 35px;
+  height: 37px;
+  cursor: pointer;
+  right: 100px;
+  margin-right: 16px;
+}
+
 .input {
   border: 3px solid black;
   border-radius: 15px;

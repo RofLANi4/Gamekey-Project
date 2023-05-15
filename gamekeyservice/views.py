@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.utils.dateformat import DateFormat
 from django.views import View
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import TemplateView, DetailView, ListView
 from .models import Game
 from django.utils import timezone
 from datetime import timedelta
@@ -122,3 +122,16 @@ class GamePage(DetailView):
         context['release_date'] = release_date
 
         return context
+
+
+class GameListView(ListView):
+    template_name = "list_view.html"
+    model = Game
+    context_object_name = "games"
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+        if query:
+            return Game.objects.filter(name__icontains=query)
+        else:
+            return Game.objects.all()

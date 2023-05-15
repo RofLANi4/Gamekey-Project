@@ -31,21 +31,24 @@
             </li>
           </ul>
         </div>
-        <form id="search-form">
+        <form id="search-form" action="{% url 'game_keys:game_list' %}" method="get">
           <div class="input">
             <input
               autocomplete="off"
               type="text"
               placeholder="Знайти гру..."
               id="mySearch"
-              name="mySearch"
+              name="q"
             />
-            <div class="search">
-              <div>
+            <button type="submit" id="search">
                 <img
                   src="{% static '/Images/Search.svg' %}"
                   alt="Search Button"
+                  id="input_img"
                 />
+              </button>
+            <div class="search">
+              <div id="input_container">
               </div>
             </div>
           </div>

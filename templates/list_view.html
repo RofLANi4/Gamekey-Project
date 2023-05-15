@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
-    <div class="mask">
-      <img src="{% static '/Images/loader.gif' %}" alt="" />
-    </div>
     <!--Начало панели навигации-->
     <nav class="nav">
       <div class="nav-content">
@@ -24,12 +21,15 @@
               <a href="{% url 'game_keys:new_games' %}">Новинки</a>
             </li>
             <li class="discount">
-              <a style="color: #ff9900" href="{% url 'game_keys:discounts' %}"
-                >Знижки</a
-              >
+              <a href="{% url 'game_keys:discounts' %}">Знижки</a>
             </li>
             <li class="waiting">
-              <a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a>
+              <a
+                style="color: #ff55da"
+                href="{% url 'game_keys:coming_soon' %}"
+              >
+                Очікуванні
+              </a>
             </li>
           </ul>
         </div>
@@ -63,16 +63,15 @@
     </nav>
     <!--Конец панели навигации-->
 
-    <!-- Начало контента -->
-    {% if discount_games %}
+    {% if games %}
     <div id="gameList">
       <div class="games-column">
         <div class="games-row">
-          {% for game in discount_games %}
+          {% for game in games %}
           <div class="games">
             <div class="info">
               <a href="{% url 'game_keys:game_page' pk=game.id %}"
-                ><img src="{{ MEDIA_URL }}{{ game.image }}" alt=""
+                ><img src="{{ MEDIA_URL }}/{{ game.image }}" alt=""
               /></a>
 
               <p class="game-name">{{ game.name }}</p>
@@ -90,7 +89,6 @@
       </div>
     </div>
     {% endif %}
-    <!-- Конец контента -->
 
     <!--Начало футуера-->
     <footer>
