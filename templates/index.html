@@ -61,8 +61,10 @@
           </div>
         </form>
         <div class="logo-basket"  style="color:red">
-          <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button" />
-          <b>{% if shop_cart %}{{ shop_cart }}{% endif %}</b>
+          <a href="{% url 'game_keys:shop_cart' %}">
+            <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button" />
+            <b id="game_quantity">{% if shop_cart %}{{ shop_cart }}{% endif %}</b>
+          </a>
         </div>
       </div>
     </nav>
@@ -228,11 +230,26 @@
 
           // Store the cart data in the cookie
           document.cookie = 'cart=' + JSON.stringify(cart) + ';path=/;';
+          let quantitiesCount = countQuantitiesInCart();
+          document.getElementById("game_quantity").innerText=quantitiesCount;
       }
       function getCookie(name) {
           let value = '; ' + document.cookie;
           let parts = value.split('; ' + name + '=');
           if (parts.length == 2) return parts.pop().split(';').shift();
+      }
+      function countQuantitiesInCart() {
+        let cart = JSON.parse(getCookie('cart') || '{}');
+        let totalQuantity = 0;
+
+        for (var productId in cart) {
+          if (cart.hasOwnProperty(productId)) {
+            let quantity = cart[productId].quantity;
+            totalQuantity += quantity;
+          }
+        }
+
+        return totalQuantity;
       }
     </script>
   </body>

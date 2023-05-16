@@ -242,6 +242,7 @@ class ShopCart(TemplateView):
         quantities = [quantity['quantity'] for quantity in context['cart'].values()]
         context['shop_cart'] = Game.objects.filter(id__in=ids)
         context['quantities'] = quantities
+        context['quantities_sum'] = sum(context['quantities'])
         context['games'] = zip(context['shop_cart'], context['quantities'])
 
         return context

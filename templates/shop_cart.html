@@ -61,7 +61,12 @@
           <div class="search-request"></div>
         </form>
         <div class="logo-basket">
-          <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button" />
+          <a href="{% url 'game_keys:shop_cart' %}">
+          <a href="{% url 'game_keys:shop_cart' %}">
+            <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button" />
+            <b id="game_quantity">{% if quantities_sum %}{{ quantities_sum }}{% endif %}</b>
+          </a>
+          </a>
         </div>
       </div>
     </nav>
