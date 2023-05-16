@@ -1,3 +1,5 @@
+import json
+
 from django.http import JsonResponse
 from django.utils.dateformat import DateFormat
 from django.views import View
@@ -17,6 +19,17 @@ class HomeView(TemplateView):
         context = super().get_context_data(**kwargs)
 
         game_length = 15
+
+        # Get the cart data from the cookie
+        cart = self.request.COOKIES.get('cart')
+
+        # Add the cart data to the context dictionary
+        context['cart'] = json.loads(cart) if cart else {}
+        games_in_cart = sum(quantity['quantity'] for quantity in context['cart'].values())
+        if games_in_cart == 0:
+            games_in_cart = None
+
+        context["shop_cart"] = games_in_cart
 
         context["random_games"] = Game.objects.filter(release_date__lte=TODAY).order_by("?")[:game_length].values(
             "id",
@@ -42,6 +55,17 @@ class NewGame(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        # Get the cart data from the cookie
+        cart = self.request.COOKIES.get('cart')
+
+        # Add the cart data to the context dictionary
+        context['cart'] = json.loads(cart) if cart else {}
+        games_in_cart = sum(quantity['quantity'] for quantity in context['cart'].values())
+        if games_in_cart == 0:
+            games_in_cart = None
+
+        context["shop_cart"] = games_in_cart
+
         game_length = 10
 
         context["new_games"] = Game.objects.filter(release_date__range=[
@@ -63,6 +87,17 @@ class Discounts(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        # Get the cart data from the cookie
+        cart = self.request.COOKIES.get('cart')
+
+        # Add the cart data to the context dictionary
+        context['cart'] = json.loads(cart) if cart else {}
+        games_in_cart = sum(quantity['quantity'] for quantity in context['cart'].values())
+        if games_in_cart == 0:
+            games_in_cart = None
+
+        context["shop_cart"] = games_in_cart
+
         game_length = 10
 
         context["discount_games"] = Game.objects.filter(discount__gt=0).order_by("?")[:game_length].values(
@@ -80,6 +115,17 @@ class ComingSoon(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        # Get the cart data from the cookie
+        cart = self.request.COOKIES.get('cart')
+
+        # Add the cart data to the context dictionary
+        context['cart'] = json.loads(cart) if cart else {}
+        games_in_cart = sum(quantity['quantity'] for quantity in context['cart'].values())
+        if games_in_cart == 0:
+            games_in_cart = None
+
+        context["shop_cart"] = games_in_cart
 
         game_length = 10
 
@@ -111,12 +157,40 @@ class SearchView(View):
         return JsonResponse({"results": list(results)})
 
 
+# class Order(View):
+#     def get(self, request):
+#         query = request.GET.COOKIES.get('cart')
+#         if query:
+#             results = Game.objects.filter(name__contains=query)[:4].values(
+#                 "id",
+#                 "name",
+#                 "image",
+#                 "price",
+#                 "discount"
+#             )
+#         else:
+#             results = []
+#         return JsonResponse({"results": list(results)})
+
+
 class GamePage(DetailView):
     template_name = "game_page.html"
     model = Game
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        # Get the cart data from the cookie
+        cart = self.request.COOKIES.get('cart')
+
+        # Add the cart data to the context dictionary
+        context['cart'] = json.loads(cart) if cart else {}
+        games_in_cart = sum(quantity['quantity'] for quantity in context['cart'].values())
+        if games_in_cart == 0:
+            games_in_cart = None
+
+        context["shop_cart"] = games_in_cart
+
         context['genres'] = self.object.genre.all()
         release_date = DateFormat(self.object.release_date).format("d-m-Y")
         context['release_date'] = release_date
@@ -135,3 +209,39 @@ class GameListView(ListView):
             return Game.objects.filter(name__icontains=query)
         else:
             return Game.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Get the cart data from the cookie
+        cart = self.request.COOKIES.get('cart')
+
+        # Add the cart data to the context dictionary
+        context['cart'] = json.loads(cart) if cart else {}
+        games_in_cart = sum(quantity['quantity'] for quantity in context['cart'].values())
+        if games_in_cart == 0:
+            games_in_cart = None
+
+        context["shop_cart"] = games_in_cart
+
+        return context
+
+
+class ShopCart(TemplateView):
+    template_name = 'shop_cart.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Get the cart data from the cookie
+        cart = self.request.COOKIES.get('cart')
+
+        # Add the cart data to the context dictionary
+        context['cart'] = json.loads(cart) if cart else {}
+        ids = [game_id for game_id in context['cart'].keys()]
+        quantities = [quantity['quantity'] for quantity in context['cart'].values()]
+        context['shop_cart'] = Game.objects.filter(id__in=ids)
+        context['quantities'] = quantities
+        context['games'] = zip(context['shop_cart'], context['quantities'])
+
+        return context
