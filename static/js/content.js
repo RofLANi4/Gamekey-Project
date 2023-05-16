@@ -17,7 +17,6 @@ function sendSearchRequest() {
     })
     .then(function (jsonResponse) {
       searchLineIsNotEmpty(
-        fill,
         searchRequestActive,
         inputActive,
         jsonResponse.results
@@ -69,15 +68,15 @@ function searchLineIsEmpty(search, input) {
 }
 
 //
-function searchLineIsNotEmpty(callback, search, input, json) {
+function searchLineIsNotEmpty(search, input, json) {
   search.classList.add("search-request-active");
   input.classList.add("input-active");
   search.innerHTML = "";
-  callback(input, json);
+  fill(search, input, json);
 }
 
 //
-function fill(input, json) {
+function fill(search, input, json) {
   //
 
   if (json.length != 0) {
@@ -85,27 +84,40 @@ function fill(input, json) {
       searchRequestActive.innerHTML += `
             <div class="hover">
               <a href="/gamekey/game-page/${json[key].id}">
-                <img src="/media/${json[key].image}" alt="game image"/>
+                <img src="/media/${json[key].image}" loading="lazy" alt="game image"/>
                 <p>${json[key].name}</p>
               </a>
             </div>
           `;
     }
     const divHover = document.querySelectorAll(".hover");
+
+    searchForm.addEventListener("focusin", searchLineIsFocus);
+    searchLineIsFocus();
+    document.addEventListener("click", (event) => {
+      if (!searchForm.contains(event.target)) {
+        searchLineIsEmptyOrUnfocus();
+      }
+    });
+
     colorizeGame(divHover, json);
   } else if (json.length == 0) {
-    searchLineIsEmpty(searchRequestActive, input);
+    searchForm.removeEventListener("focusin", searchLineIsFocus);
+    searchLineIsEmpty(searchRequestActive, inputActive);
+    input.style.borderRadius = "15px";
+    searchRequestActive.style.display = "none";
   }
 }
 
 //
-searchForm.addEventListener("focusin", () => {
-  sendSearchRequest();
-});
 
+function searchLineIsFocus() {
+  searchRequestActive.style.display = "block";
+  inputActive.style.borderRadius = "15px 15px 0px 0px";
+}
 //
-document.addEventListener("click", (event) => {
-  if (!searchForm.contains(event.target)) {
-    searchLineIsEmpty(searchRequestActive, inputActive);
-  }
-});
+
+function searchLineIsEmptyOrUnfocus() {
+  inputActive.style.borderRadius = "15px";
+  searchRequestActive.style.display = "none";
+}

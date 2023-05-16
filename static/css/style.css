@@ -166,6 +166,11 @@ a,
   margin: 0px 10px;
   height: 100%;
 }
+/* .search-request {
+  max-height: 0px;
+  max-width: 0px;
+  overflow: hidden;
+} */
 
 .search-request-active .hover {
   font-family: "Helvetica-Roman";
