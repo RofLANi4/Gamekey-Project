@@ -151,7 +151,6 @@ class SearchView(View):
                 "price",
                 "discount"
             )
-            print(results)
         else:
             results = []
         return JsonResponse({"results": list(results)})
@@ -244,5 +243,6 @@ class ShopCart(TemplateView):
         context['quantities'] = quantities
         context['quantities_sum'] = sum(context['quantities'])
         context['games'] = zip(context['shop_cart'], context['quantities'])
+        context['cart_price'] = sum(price.price for price in context['shop_cart'])
 
         return context

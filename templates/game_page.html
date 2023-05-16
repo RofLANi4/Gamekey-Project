@@ -60,7 +60,7 @@
         <div class="logo-basket"  style="color:red">
           <a href="{% url 'game_keys:shop_cart' %}">
             <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button" />
-            <b>id="game_quantity"{% if shop_cart %}{{ shop_cart }}{% endif %}</b>
+            <b id="game_quantity">{% if shop_cart %}{{ shop_cart }}{% endif %}</b>
           </a>
         </div>
       </div>
