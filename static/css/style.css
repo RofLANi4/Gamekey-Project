@@ -46,11 +46,14 @@ body {
 /*
 Начало стилей для навигации
 */
+
+.nav {
+  margin: 20px auto;
+  max-width: 1300px;
+  height: 70px;
+}
 .nav-content {
   padding: 5px 10px;
-  margin: 20px auto;
-  width: 1300px;
-  height: 70px;
   background-color: white;
   display: flex;
   align-items: center;
@@ -166,14 +169,9 @@ a,
   margin: 0px 10px;
   height: 100%;
 }
-/* .search-request {
-  max-height: 0px;
-  max-width: 0px;
-  overflow: hidden;
-} */
 
 .search-request-active .hover {
-  font-family: "Helvetica-Roman";
+  font-family: "Helvetica";
   font-size: 22px;
   height: 63px;
   background-color: #ffffff;
@@ -183,13 +181,16 @@ a,
   -ms-transition: 0.3s;
   -o-transition: 0.3s;
 }
-.search-request-active :nth-child(1) a {
-  margin-top: 0px;
-}
 
 .search-request-active .hover img {
   width: 96px;
   height: 54px;
+}
+.search-request-active a :nth-child(2) {
+  flex-basis: 70%;
+}
+.search-request-active a :nth-child(3) {
+  text-align: right;
 }
 .search-request-active .hover p {
   margin-left: 5px;
@@ -352,20 +353,20 @@ button {
 Конец стилей для слайдера
 */
 
-#gameList {
-  margin: 10px 0px;
+main {
+  max-width: 1300px;
+  min-height: 757px;
+  margin: 10px auto;
 }
 
 .games-row {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 1400px;
-  margin: 0px auto;
 }
 .games {
-  width: 240px;
-  height: 360px;
+  max-width: 235px;
+  height: 355px;
   margin: 10px 10px;
   box-shadow: 5px 5px 0px black;
   border: 2px solid black;
@@ -397,7 +398,7 @@ button {
 .game-name {
   font-family: "Helvetica-Bold";
   font-weight: 600;
-  font-size: 24px;
+  font-size: 23px;
   padding: 0px 10px 0px 11px;
 }
 
@@ -424,9 +425,11 @@ button {
 .price:hover::before {
   content: url("../Images/Basket.svg");
   position: relative;
+  cursor: pointer;
   top: 3px;
 }
 
+/* Начало стилей для футера */
 footer {
   margin: 20px auto;
   max-width: 1300px;
@@ -434,7 +437,6 @@ footer {
 }
 
 .container {
-  margin: 0px auto;
   width: 100%;
   height: 100%;
 }
@@ -540,6 +542,8 @@ footer .links-footer li a:hover::after {
 .policy :nth-child(2) {
   text-align: end;
 }
+
+/* Конец стилей для футера */
 
 /* Начало стилей для персональной страници */
 
@@ -653,4 +657,95 @@ td {
   flex-direction: row;
 }
 
-/* Начало стилей для персональной страници */
+/*Конец стилей для персональной страници */
+
+/*Начало стилей для корзины */
+#cart {
+  display: flex;
+
+  /* margin-top: 40px; */
+  font-family: "Helvetica";
+  padding: 20px 20px 0px 20px;
+}
+
+.games-cart-list {
+  width: 100%;
+  display: flex;
+
+  flex-direction: column;
+
+  /* justify-content: space-between; */
+}
+.games-cart {
+  display: flex;
+  margin-bottom: 15px;
+  background-color: red;
+  align-items: center;
+  border: 2px solid black;
+  width: 100%;
+  padding: 15px;
+  position: relative;
+  box-sizing: border-box;
+
+  /* overflow: hidden; */
+}
+.games-cart p {
+  color: white;
+  font-size: 36px;
+  margin-left: 20px;
+  /* position: absolute;
+  top: 0; */
+}
+.games-cart :nth-child(2) {
+  flex-basis: 70%;
+}
+.games-cart :nth-child(3) {
+  text-align: right;
+  flex-basis: 10%;
+}
+.games-cart img {
+  width: calc(1920px / 8);
+  height: calc(1080px / 8);
+}
+.games-cart svg {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  cursor: pointer;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
+}
+.games-cart svg:hover {
+  fill: white;
+}
+.total {
+  margin-left: 20px;
+
+  height: 145px;
+  background-color: white;
+  flex-basis: 20%;
+  border: 2px solid black;
+  padding: 10px;
+  box-shadow: 5px 5px 0px black;
+  position: sticky;
+  top: 40px;
+  text-align: center;
+}
+
+.total p {
+  margin-top: 21px;
+}
+#totalPrice {
+  font-size: 23px;
+}
+#buyGame {
+  border: 2px solid black;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  background-color: #c8ff00;
+}
+/*Конец стилей для корзины */

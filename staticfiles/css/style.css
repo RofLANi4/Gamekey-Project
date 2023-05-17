@@ -46,11 +46,14 @@ body {
 /*
 Начало стилей для навигации
 */
+
+.nav {
+  margin: 20px auto;
+  max-width: 1300px;
+  height: 70px;
+}
 .nav-content {
   padding: 5px 10px;
-  margin: 20px auto;
-  width: 1300px;
-  height: 70px;
   background-color: white;
   display: flex;
   align-items: center;
@@ -347,20 +350,19 @@ button {
 Конец стилей для слайдера
 */
 
-#gameList {
-  margin: 10px 0px;
+main {
+  max-width: 1300px;
+  margin: 10px auto;
 }
 
 .games-row {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 1400px;
-  margin: 0px auto;
 }
 .games {
-  width: 240px;
-  height: 360px;
+  max-width: 235px;
+  height: 355px;
   margin: 10px 10px;
   box-shadow: 5px 5px 0px black;
   border: 2px solid black;
@@ -429,7 +431,6 @@ footer {
 }
 
 .container {
-  margin: 0px auto;
   width: 100%;
   height: 100%;
 }
@@ -648,4 +649,55 @@ td {
   flex-direction: row;
 }
 
-/* Начало стилей для персональной страници */
+/*Конец стилей для персональной страници */
+
+/*Начало стилей для корзины */
+#cart {
+  display: flex;
+
+  margin-top: 40px;
+  font-family: "Helvetica-Roman";
+  /* padding: 20px 20px 20px 20px; */
+}
+
+.games-cart-list {
+  width: 100%;
+  display: flex;
+
+  flex-direction: column;
+
+  /* justify-content: space-between; */
+}
+.games-cart {
+  /* display: flex; */
+  margin-bottom: 20px;
+  background-color: red;
+  /* justify-content: space-around; */
+  width: 100%;
+  padding: 15px;
+  position: relative;
+  box-sizing: border-box;
+  /* overflow: hidden; */
+}
+.games-cart p {
+  font-size: 26px;
+  position: absolute;
+  top: 0;
+}
+.games-cart img {
+  width: 288px;
+  height: 156px;
+}
+.total {
+  margin-left: 20px;
+  width: 335px;
+  height: 156px;
+  background-color: pink;
+  flex-basis: 20%;
+  padding: 15px;
+  position: sticky;
+  top: 20px;
+  text-align: center;
+}
+
+/*Конец стилей для корзины */

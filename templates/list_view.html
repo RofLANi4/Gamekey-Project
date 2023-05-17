@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
+    <div class="mask">
+      <img src="{% static '/Images/loader.gif' %}" alt="" />
+    </div>
     <!--Начало панели навигации-->
     <nav class="nav">
       <div class="nav-content">
@@ -56,7 +59,10 @@
           <div class="search-request"></div>
         </form>
         <div class="logo-basket">
-          <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button" />
+          <a href="{% url 'game_keys:shop_cart' %}">
+            <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button"
+          /></a>
+          <b>{% if shop_cart %}{{ shop_cart }}{% endif %}</b>
         </div>
       </div>
     </nav>
@@ -64,27 +70,25 @@
 
     {% if games %}
     <div id="gameList">
-      <div class="games-column">
-        <div class="games-row">
-          {% for game in games %}
-          <div class="games">
-            <div class="info">
-              <a href="{% url 'game_keys:game_page' pk=game.id %}"
-                ><img src="{{ MEDIA_URL }}/{{ game.image }}" alt=""
-              /></a>
+      <div class="games-row">
+        {% for game in games %}
+        <div class="games">
+          <div class="info">
+            <a href="{% url 'game_keys:game_page' pk=game.id %}"
+              ><img src="{{ MEDIA_URL }}/{{ game.image }}" alt=""
+            /></a>
 
-              <p class="game-name">{{ game.name }}</p>
-              {% if game.discount %}
-              <p class="discount-percent">-{{ game.discount }}%</p>
-              {% endif %}
-              <p
-                class="price"
-                text="{{ game.price|discount:game.discount }}₴"
-              ></p>
-            </div>
+            <p class="game-name">{{ game.name }}</p>
+            {% if game.discount %}
+            <p class="discount-percent">-{{ game.discount }}%</p>
+            {% endif %}
+            <p
+              class="price"
+              text="{{ game.price|discount:game.discount }}₴"
+            ></p>
           </div>
-          {% endfor %}
         </div>
+        {% endfor %}
       </div>
     </div>
     {% endif %}
@@ -140,8 +144,8 @@
       </div>
     </footer>
     <!--Конец футуера-->
-    <script src="{% static 'js/content.js' %}"></script>
-    <script src="{% static 'js/header.js' %}"></script>
+    <script src="{% static 'js/content.js ' %}"></script>
     <script src="{% static 'js/loader.js' %}"></script>
+    <script src="{% static 'js/addToCart.js' %}"></script>
   </body>
 </html>

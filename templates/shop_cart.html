@@ -27,7 +27,7 @@
               <a href="{% url 'game_keys:discounts' %}">Знижки</a>
             </li>
             <li class="waiting">
-              <a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a>
+              <a href="{% url 'game_keys:coming_soon' %}"> Очікуванні </a>
             </li>
           </ul>
         </div>
@@ -51,96 +51,80 @@
                 id="input_img"
               />
             </button>
+            <!-- <div class="search">
+              <div id="input_container">
+              </div>
+            </div> -->
           </div>
-          <div class="search-request">
-            <div class="hover"><p></p></div>
-          </div>
+          <div class="search-request"></div>
         </form>
-        <div class="logo-basket" style="color: red">
+        <div class="logo-basket">
           <a href="{% url 'game_keys:shop_cart' %}">
             <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button"
           /></a>
-          <b>{% if shop_cart %}{{ shop_cart }}{% endif %}</b>
         </div>
       </div>
     </nav>
     <!--Конец панели навигации-->
 
-    <!--Начало слайдера-->
-    <div id="slide">
-      <div>
-        <button id="buttonPrev">
-          <img src="../static/Images/Prev.svg" alt="" />
-        </button>
-      </div>
-      <div class="slides">
-        <div class="overflow">
-          <div class="images">
-            {% if random_games %}
-            <!-- Images -->
-            {% for game in random_games %}
-            <!-- Images -->
-            {% if forloop.counter0|divisibleby:3%}
-            <div class="images-block">
-              {% endif %}
-              <div>
-                <a href="{% url 'game_keys:game_page' pk=game.id %}"
-                  ><img src="{{ MEDIA_URL }}{{ game.image }}" alt="game image"
-                /></a>
-                <p
-                  class="price"
-                  text="{{ game.price|discount:game.discount }}₴"
-                  id="game-id-{{ game.id }}"
-                ></p>
-              </div>
-
-              {% if forloop.counter|divisibleby:3 or forloop.last %}
-            </div>
-            <!-- Close the game group div after every third game or if it's the last game -->
-            {% endif %} {% endfor %}{% else %}
-            <h1 class="images-block">There are no games yet</h1>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      <div>
-        <button id="buttonNext">
-          <img src="../static/Images/Next.svg" alt="" />
-        </button>
-      </div>
-    </div>
-    <!--Конец слайдера-->
-
-    <!--Начало нижней панели с играми-->
     <main>
-      {% if random1_games %}
-      <div id="gameList">
-        <div class="games-row">
-          {% for game in random1_games %}
-          <div class="games">
-            <div class="info">
-              <a href="{% url 'game_keys:game_page' pk=game.id %}">
-                <img src="{{ MEDIA_URL }}{{ game.image }}" alt=""
-              /></a>
-
-              <p class="game-name">{{ game.name }}</p>
-              {% if game.discount %}
-              <p class="discount-percent">-{{ game.discount }}%</p>
-              {% endif %}
-              <p
-                class="price"
-                text="{{ game.price|discount:game.discount }}₴"
-                id="game-id-{{ game.id }}"
-              ></p>
-            </div>
+      {% if shop_cart %}
+      <div id="cart">
+        <div class="games-cart-list">
+          {% for game in games %}
+          <div class="games-cart">
+            <a href="{% url 'game_keys:game_page' pk=game.0.id %}"
+              ><img src="{{ MEDIA_URL }}{{ game.0.image }}" alt=""
+            /></a>
+            <p>{{ game.0.name }} <b style="color: white"> x{{ game.1 }}</b></p>
+            <p>{{ game.0.price|discount:game.0.discount }}₴</p>
+            <svg
+              width="32px"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 50 50"
+              enable-background="new 0 0 50 50"
+            >
+              <path d="M37.304 11.282l1.414 1.414-26.022 26.02-1.414-1.413z" />
+              <path d="M12.696 11.282l26.022 26.02-1.414 1.415-26.022-26.02z" />
+            </svg>
           </div>
           {% endfor %}
+        </div>
+        <div class="total">
+          <h2>Разом</h2>
+          <p id="totalPrice">До сплати: 11800₴</p>
+          <p id="buyGame">Оформити замовлення</p>
         </div>
       </div>
       {% endif %}
     </main>
 
-    <!--Конец нижней панели с играми-->
+    <!-- {% if shop_cart %}
+    <div id="gameList">
+      <div class="games-row">
+        {% for game in games %}
+        <div class="games">
+          <div class="info">
+            <a href="{% url 'game_keys:game_page' pk=game.0.id %}"
+              ><img src="{{ MEDIA_URL }}{{ game.0.image }}" alt=""
+            /></a>
+
+            <p class="game-name">
+              {{ game.0.name }} <b style="color: white"> x{{ game.1 }}</b>
+            </p>
+            {% if game.0.discount %}
+            <p class="discount-percent">-{{ game.0.discount }}%</p>
+            {% endif %}
+            <p
+              class="price"
+              text="{{ game.0.price|discount:game.0.discount }}₴"
+            ></p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %} -->
 
     <!--Начало футуера-->
     <footer>
@@ -161,13 +145,7 @@
               <li>Жовтоватюк Артем</li>
               <li>Журавльов Нікіта</li>
               <li>Приходько Олександр</li>
-              <li>
-                <a
-                  href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjmh8nwv-v-AhWrDRAIHZuDAiQQwqsBegQICRAF&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DdQw4w9WgXcQ&usg=AOvVaw0aHtehaphMhOCAkCydRLZU"
-                  style="color: fff"
-                  >Кордунер Кевін</a
-                >
-              </li>
+              <li>Кордунер Кевін</li>
               <li>Федорчук Дмитро</li>
               <li>Бокучава Олександр</li>
             </ul>
@@ -199,10 +177,8 @@
       </div>
     </footer>
     <!--Конец футуера-->
+    <script src="{% static 'js/content.js' %}"></script>
 
-    <script src="{% static 'js/content.js ' %}"></script>
     <script src="{% static 'js/loader.js' %}"></script>
-    <script src="{% static 'js/slider.js' %}"></script>
-    <script src="{% static 'js/addToCart.js' %}"></script>
   </body>
 </html>

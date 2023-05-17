@@ -1,8 +1,22 @@
-const info = document.querySelectorAll(".info"),
-  price = document.querySelectorAll(".info .price"),
+const info = document.querySelectorAll(".info"), // price = document.querySelectorAll(".info .price"),
   searchRequestActive = document.querySelector(".search-request"),
   inputActive = document.querySelector(".input"),
   searchForm = document.querySelector("#search-form");
+
+const price = [];
+
+const colorPrice = {
+  0: "#4ADBC8",
+  400: "#3DD222",
+  600: "#5F9AFF",
+  900: "#FFC800",
+  1200: "#FF7A00",
+  1500: "#FF50A6",
+  1800: "#D035FF",
+};
+document.querySelectorAll(".info .price").forEach((elem, num) => {
+  price[num] = elem.getAttribute("text").replace("₴", "");
+});
 
 colorizeGame(info, price);
 
@@ -26,35 +40,12 @@ function sendSearchRequest() {
 
 //
 function colorizeGame(game, gamePrice) {
-  const colorPrice = {
-    0: "#4ADBC8",
-    400: "#3DD222",
-    600: "#5F9AFF",
-    900: "#FFC800",
-    1200: "#FF7A00",
-    1500: "#FF50A6",
-    1800: "#D035FF",
-  };
-
   //
   game.forEach((item, keyInfo) => {
     for (let keyPrice in colorPrice) {
       //
-      try {
-        if (
-          +gamePrice[keyInfo].getAttribute("text").replace("₴", "") > +keyPrice
-        ) {
-          item.style.backgroundColor = colorPrice[keyPrice];
-        }
-      } catch {
-        if (+gamePrice[keyInfo].price > +keyPrice) {
-          item.addEventListener("mouseover", () => {
-            item.style.backgroundColor = colorPrice[keyPrice];
-          });
-          item.addEventListener("mouseout", () => {
-            item.style.backgroundColor = "#FFFFFF";
-          });
-        }
+      if (+gamePrice[keyInfo] > +keyPrice) {
+        item.style.backgroundColor = colorPrice[keyPrice];
       }
     }
   });
@@ -78,7 +69,6 @@ function searchLineIsNotEmpty(search, input, json) {
 //
 function fill(search, input, json) {
   //
-
   if (json.length != 0) {
     for (let key in json) {
       searchRequestActive.innerHTML += `
@@ -86,11 +76,28 @@ function fill(search, input, json) {
               <a href="/gamekey/game-page/${json[key].id}">
                 <img src="/media/${json[key].image}" loading="lazy" alt="game image"/>
                 <p>${json[key].name}</p>
+                <p class="request-price">${json[key].price}₴</p>
               </a>
             </div>
           `;
     }
+
     const divHover = document.querySelectorAll(".hover");
+    const requestPrice = document.querySelectorAll(".request-price");
+
+    divHover.forEach((hover, key) => {
+      for (let keyPrice in colorPrice) {
+        console.log(requestPrice[key].innerHTML);
+        if (+requestPrice[key].innerHTML.replace("₴", "") > +keyPrice) {
+          hover.addEventListener("mouseover", () => {
+            hover.style.backgroundColor = colorPrice[keyPrice];
+          });
+          hover.addEventListener("mouseout", () => {
+            hover.style.backgroundColor = "white";
+          });
+        }
+      }
+    });
 
     searchForm.addEventListener("focusin", searchLineIsFocus);
     searchLineIsFocus();
@@ -100,23 +107,21 @@ function fill(search, input, json) {
       }
     });
 
-    colorizeGame(divHover, json);
+    // colorizeJsonPrice(divHover, json);
   } else if (json.length == 0) {
     searchForm.removeEventListener("focusin", searchLineIsFocus);
+    searchLineIsEmptyOrUnfocus();
     searchLineIsEmpty(searchRequestActive, inputActive);
-    input.style.borderRadius = "15px";
-    searchRequestActive.style.display = "none";
   }
 }
 
 //
-
 function searchLineIsFocus() {
   searchRequestActive.style.display = "block";
   inputActive.style.borderRadius = "15px 15px 0px 0px";
 }
-//
 
+//
 function searchLineIsEmptyOrUnfocus() {
   inputActive.style.borderRadius = "15px";
   searchRequestActive.style.display = "none";

@@ -61,15 +61,17 @@
           <div class="search-request"></div>
         </form>
         <div class="logo-basket">
-          <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button" />
+          <a href="{% url 'game_keys:shop_cart' %}">
+            <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button"
+          /></a>
+          <b>{% if shop_cart %}{{ shop_cart }}{% endif %}</b>
         </div>
       </div>
     </nav>
     <!--Конец панели навигации-->
-
-    {% if coming_soon %}
-    <div id="gameList">
-      <div class="games-column">
+    <main>
+      {% if coming_soon %}
+      <div id="gameList">
         <div class="games-row">
           {% for game in coming_soon %}
           <div class="games">
@@ -91,9 +93,8 @@
           {% endfor %}
         </div>
       </div>
-    </div>
-    {% endif %}
-
+      {% endif %}
+    </main>
     <!--Начало футуера-->
     <footer>
       <div class="container">
@@ -145,8 +146,8 @@
       </div>
     </footer>
     <!--Конец футуера-->
-    <script src="{% static 'js/content.js' %}"></script>
-    <script src="{% static 'js/header.js' %}"></script>
+    <script src="{% static 'js/content.js ' %}"></script>
     <script src="{% static 'js/loader.js' %}"></script>
+    <script src="{% static 'js/addToCart.js' %}"></script>
   </body>
 </html>

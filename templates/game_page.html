@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
+    <div class="mask">
+      <img src="{% static '/Images/loader.gif' %}" alt="" />
+    </div>
     <!--Начало панели навигации-->
     <nav class="nav">
       <div class="nav-content">
@@ -53,10 +56,15 @@
               </div>
             </div> -->
           </div>
-          <div class="search-request"></div>
+          <div class="search-request">
+            <div class="hover"><p></p></div>
+          </div>
         </form>
-        <div class="logo-basket">
-          <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button" />
+        <div class="logo-basket" style="color: red">
+          <a href="{% url 'game_keys:shop_cart' %}">
+            <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button"
+          /></a>
+          <b>{% if shop_cart %}{{ shop_cart }}{% endif %}</b>
         </div>
       </div>
     </nav>
@@ -74,11 +82,17 @@
           </div>
           <div class="game-price-cart">
             <div>
-              <button class="button-cart">До кошика</button>
+              <p
+                class="button-cart"
+                id="game-id-{{ object.id }}"
+                style="cursor: pointer"
+              >
+                До кошика
+              </p>
             </div>
 
             <div class="game-price">
-              <p>{{ object.price }}₴</p>
+              <p>{{ object.price|discount:game.discount }}₴</p>
             </div>
           </div>
           <div class="game-type">
@@ -172,6 +186,37 @@
     </footer>
     <!--Конец футуера-->
   </body>
-  <script src="js/scripts.js"></script>
-  <script src="{% static 'js/header.js' %}"></script>
+  <script src="{% static 'js/content.js ' %}"></script>
+  <script src="{% static 'js/loader.js' %}"></script>
+  <!-- <script src="{% static 'js/addToCart.js' %}"></script> -->
+
+  <script>
+    const priceElements = document.querySelectorAll("p.button-cart");
+    priceElements.forEach((priceElement) => {
+      priceElement.addEventListener("click", function () {
+        const productId = priceElement.id.replace("game-id-", "");
+        addToCart(productId);
+      });
+    });
+
+    function addToCart(product_id) {
+      // Get the cart data from the cookie
+      let cart = JSON.parse(getCookie("cart") || "{}");
+
+      // Add the product to the cart or increment its quantity
+      if (product_id in cart) {
+        cart[product_id].quantity += 1;
+      } else {
+        cart[product_id] = { quantity: 1 };
+      }
+
+      // Store the cart data in the cookie
+      document.cookie = "cart=" + JSON.stringify(cart) + ";path=/;";
+    }
+    function getCookie(name) {
+      let value = "; " + document.cookie;
+      let parts = value.split("; " + name + "=");
+      if (parts.length == 2) return parts.pop().split(";").shift();
+    }
+  </script>
 </html>
