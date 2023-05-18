@@ -70,10 +70,8 @@
                 </a>
                 <p class="price" text="{{ game.price|discount:game.discount }}₴" id="game-id-{{ game.id }}"></p>
               </div>
-
               {% if forloop.counter|divisibleby:3 or forloop.last %}
             </div>
-            <!-- Close the game group div after every third game or if it's the last game -->
             {% endif %} {% endfor %}{% else %}
             <h1 class="images-block">There are no games yet</h1>
             {% endif %}
