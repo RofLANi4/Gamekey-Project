@@ -30,11 +30,7 @@ function sendSearchRequest() {
       return response.json();
     })
     .then(function (jsonResponse) {
-      searchLineIsNotEmpty(
-        searchRequestActive,
-        inputActive,
-        jsonResponse.results
-      );
+      searchLineIsNotEmpty(searchRequestActive, inputActive, jsonResponse.results);
     });
 }
 
@@ -87,7 +83,6 @@ function fill(search, input, json) {
 
     divHover.forEach((hover, key) => {
       for (let keyPrice in colorPrice) {
-        console.log(requestPrice[key].innerHTML);
         if (+requestPrice[key].innerHTML.replace("₴", "") > +keyPrice) {
           hover.addEventListener("mouseover", () => {
             hover.style.backgroundColor = colorPrice[keyPrice];

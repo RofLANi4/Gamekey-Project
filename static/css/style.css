@@ -196,6 +196,25 @@ a,
   margin-left: 5px;
 }
 
+.logo-cart a {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  background-image: url("../Images/Game Cart.svg");
+  background-position: center;
+  background-size: 90px;
+  background-repeat: no-repeat; /* Отключение повторения изображения */
+}
+.logo-cart p {
+  /* position: absolute;
+  top: 18px;
+  left: 25px; */
+  font-family: "Helvetica-Bold";
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
 /*
 Конец стилей для навигации
 */
@@ -662,7 +681,6 @@ td {
 /*Начало стилей для корзины */
 #cart {
   display: flex;
-
   /* margin-top: 40px; */
   font-family: "Helvetica";
   padding: 20px 20px 0px 20px;
@@ -679,18 +697,18 @@ td {
 .games-cart {
   display: flex;
   margin-bottom: 15px;
-  background-color: red;
+  background-color: white;
   align-items: center;
   border: 2px solid black;
   width: 100%;
-  padding: 15px;
+  /* padding: 15px; */
   position: relative;
   box-sizing: border-box;
-
+  box-shadow: 5px 5px 0px black;
   /* overflow: hidden; */
 }
 .games-cart p {
-  color: white;
+  color: black;
   font-size: 36px;
   margin-left: 20px;
   /* position: absolute;
@@ -702,10 +720,12 @@ td {
 .games-cart :nth-child(3) {
   text-align: right;
   flex-basis: 10%;
+  margin-right: 25px;
 }
+
 .games-cart img {
-  width: calc(1920px / 8);
-  height: calc(1080px / 8);
+  width: calc(1920px / 6);
+  display: block;
 }
 .games-cart svg {
   position: absolute;
@@ -719,33 +739,64 @@ td {
   -o-transition: 0.2s;
 }
 .games-cart svg:hover {
-  fill: white;
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
 }
 .total {
   margin-left: 20px;
-
-  height: 145px;
+  border-radius: 15px;
+  height: 160px;
   background-color: white;
-  flex-basis: 20%;
+  flex-basis: 25%;
   border: 2px solid black;
   padding: 10px;
   box-shadow: 5px 5px 0px black;
   position: sticky;
   top: 40px;
   text-align: center;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
 }
 
 .total p {
-  margin-top: 21px;
+  margin: 23px 5px 0px 5px;
+  border-radius: 10px;
+  font-size: 20px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.total h2 {
+  font-size: 32px;
 }
 #totalPrice {
-  font-size: 23px;
+  font-size: 25px;
 }
 #buyGame {
+  cursor: pointer;
   border: 2px solid black;
   height: 40px;
   display: grid;
   place-items: center;
   background-color: #c8ff00;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
+}
+#buyGame:hover {
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
 }
 /*Конец стилей для корзины */

@@ -31,25 +31,11 @@
             </li>
           </ul>
         </div>
-        <form
-          id="search-form"
-          action="{% url 'game_keys:game_list' %}"
-          method="get"
-        >
+        <form id="search-form" action="{% url 'game_keys:game_list' %}" method="get">
           <div class="input">
-            <input
-              autocomplete="off"
-              type="text"
-              placeholder="Знайти гру..."
-              id="mySearch"
-              name="q"
-            />
+            <input autocomplete="off" type="text" placeholder="Знайти гру..." id="mySearch" name="q" />
             <button type="submit" id="search">
-              <img
-                src="{% static '/Images/Search.svg' %}"
-                alt="Search Button"
-                id="input_img"
-              />
+              <img src="{% static '/Images/Search.svg' %}" alt="Search Button" id="input_img" />
             </button>
             <!-- <div class="search">
               <div id="input_container">
@@ -60,11 +46,10 @@
             <div class="hover"><p></p></div>
           </div>
         </form>
-        <div class="logo-basket" style="color: red">
+        <div class="logo-cart">
           <a href="{% url 'game_keys:shop_cart' %}">
-            <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button"
-          /></a>
-          <b>{% if shop_cart %}{{ shop_cart }}{% endif %}</b>
+            <p id="game_quantity">{% if shop_cart %}{{ shop_cart }}{% endif %}</p>
+          </a>
         </div>
       </div>
     </nav>
@@ -82,13 +67,7 @@
           </div>
           <div class="game-price-cart">
             <div>
-              <p
-                class="button-cart"
-                id="game-id-{{ object.id }}"
-                style="cursor: pointer"
-              >
-                До кошика
-              </p>
+              <p class="button-cart" id="game-id-{{ object.id }}" style="cursor: pointer">До кошика</p>
             </div>
 
             <div class="game-price">
@@ -96,14 +75,7 @@
             </div>
           </div>
           <div class="game-type">
-            <table
-              style="
-                width: 100%;
-                text-align: left;
-                align-items: start;
-                margin-left: 29px;
-              "
-            >
+            <table style="width: 100%; text-align: left; align-items: start; margin-left: 29px">
               <tr>
                 <th>Жанри</th>
                 <td>{% genres genres %}</td>
@@ -136,8 +108,10 @@
             <h2>Навігація</h2>
             <ul>
               <li><a href="{% url 'game_keys:new_games' %}">Новинки</a></li>
-              <li><a href>Знижки</a></li>
-              <li><a href>Очікуванні</a></li>
+              <li><a href="{% url 'game_keys:discounts' %}">Знижки</a></li>
+              <li>
+                <a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a>
+              </li>
             </ul>
           </nav>
 
@@ -151,8 +125,9 @@
                 <a
                   href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjmh8nwv-v-AhWrDRAIHZuDAiQQwqsBegQICRAF&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DdQw4w9WgXcQ&usg=AOvVaw0aHtehaphMhOCAkCydRLZU"
                   style="color: fff"
-                  >Кордунер Кевін</a
                 >
+                  Кордунер Кевін
+                </a>
               </li>
               <li>Федорчук Дмитро</li>
               <li>Бокучава Олександр</li>
@@ -162,18 +137,12 @@
             <h2>Корисні посилання</h2>
             <ul>
               <li>
-                <a
-                  href="https://github.com/RofLANi4/Gamekey-Project"
-                  target="_blank"
-                  >GitHub</a
-                >
+                <a href="https://github.com/RofLANi4/Gamekey-Project" target="_blank">GitHub</a>
               </li>
               <li>
-                <a
-                  href="https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG"
-                  target="_blank"
-                  >DB Files</a
-                >
+                <a href="https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG" target="_blank">
+                  DB Files
+                </a>
               </li>
             </ul>
           </div>
@@ -188,35 +157,5 @@
   </body>
   <script src="{% static 'js/content.js ' %}"></script>
   <script src="{% static 'js/loader.js' %}"></script>
-  <!-- <script src="{% static 'js/addToCart.js' %}"></script> -->
-
-  <script>
-    const priceElements = document.querySelectorAll("p.button-cart");
-    priceElements.forEach((priceElement) => {
-      priceElement.addEventListener("click", function () {
-        const productId = priceElement.id.replace("game-id-", "");
-        addToCart(productId);
-      });
-    });
-
-    function addToCart(product_id) {
-      // Get the cart data from the cookie
-      let cart = JSON.parse(getCookie("cart") || "{}");
-
-      // Add the product to the cart or increment its quantity
-      if (product_id in cart) {
-        cart[product_id].quantity += 1;
-      } else {
-        cart[product_id] = { quantity: 1 };
-      }
-
-      // Store the cart data in the cookie
-      document.cookie = "cart=" + JSON.stringify(cart) + ";path=/;";
-    }
-    function getCookie(name) {
-      let value = "; " + document.cookie;
-      let parts = value.split("; " + name + "=");
-      if (parts.length == 2) return parts.pop().split(";").shift();
-    }
-  </script>
+  <script src="{% static 'js/addToCart.js' %}"></script>
 </html>
