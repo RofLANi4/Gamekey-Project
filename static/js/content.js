@@ -1,7 +1,9 @@
-const info = document.querySelectorAll(".info"), // price = document.querySelectorAll(".info .price"),
+const info = document.querySelectorAll(".info"),
   searchRequestActive = document.querySelector(".search-request"),
   inputActive = document.querySelector(".input"),
-  searchForm = document.querySelector("#search-form");
+  searchForm = document.querySelector("#search-form"),
+  personalPagePrice = document.querySelector(".game-price"),
+  description = document.querySelector(".description");
 
 const price = [];
 
@@ -17,6 +19,14 @@ const colorPrice = {
 document.querySelectorAll(".info .price").forEach((elem, num) => {
   price[num] = elem.getAttribute("text").replace("₴", "");
 });
+if (description) {
+  colorizeDescription(description, personalPagePrice);
+}
+
+// const data = new Date();
+// const gameData = new Date("26-10-2023".split("-").reverse().join("-"));
+
+// console.log(data < gameData);
 
 colorizeGame(info, price);
 
@@ -35,6 +45,14 @@ function sendSearchRequest() {
 }
 
 //
+function colorizeDescription(description, price) {
+  for (let key in colorPrice) {
+    if (+price.innerHTML.replace("₴", "") > +key) {
+      description.style.backgroundColor = colorPrice[key];
+    }
+  }
+}
+
 function colorizeGame(game, gamePrice) {
   //
   game.forEach((item, keyInfo) => {

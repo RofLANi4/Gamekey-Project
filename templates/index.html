@@ -68,7 +68,11 @@
                 <a href="{% url 'game_keys:game_page' pk=game.id %}">
                   <img src="{{ MEDIA_URL }}{{ game.image }}" alt="game image" />
                 </a>
-                <p class="price" text="{{ game.price|discount:game.discount }}₴" id="game-id-{{ game.id }}"></p>
+                <p
+                  class="price"
+                  text="{{ game.price|discount:game.discount }}₴"
+                  id="game-id-{{ game.id }}"
+                ></p>
               </div>
               {% if forloop.counter|divisibleby:3 or forloop.last %}
             </div>
@@ -97,7 +101,6 @@
               <a href="{% url 'game_keys:game_page' pk=game.id %}">
                 <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
               </a>
-
               <p class="game-name">{{ game.name }}</p>
               {% if game.discount %}
               <p class="discount-percent">-{{ game.discount }}%</p>
@@ -153,7 +156,10 @@
                 <a href="https://github.com/RofLANi4/Gamekey-Project" target="_blank">GitHub</a>
               </li>
               <li>
-                <a href="https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG" target="_blank">
+                <a
+                  href="https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG"
+                  target="_blank"
+                >
                   DB Files
                 </a>
               </li>

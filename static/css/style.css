@@ -340,6 +340,7 @@ button {
   font-weight: 600;
   font-size: 32px;
   display: grid;
+  cursor: pointer;
   place-items: center;
 }
 
@@ -390,6 +391,11 @@ main {
   box-shadow: 5px 5px 0px black;
   border: 2px solid black;
   position: relative;
+  transition: filter 0.2s;
+  -webkit-transition: transform 0.2s;
+  -moz-transition: transform 0.2s;
+  -ms-transition: transform 0.2s;
+  -o-transition: transform 0.2s;
 }
 
 .info a img {
@@ -430,11 +436,6 @@ main {
   -ms-transform: scale(1.05);
   -o-transform: scale(1.05);
   -webkit-transform: scale(1.05);
-  transition: filter 0.2s;
-  -webkit-transition: transform 0.2s;
-  -moz-transition: transform 0.2s;
-  -ms-transition: transform 0.2s;
-  -o-transition: transform 0.2s;
 }
 
 .price::before {
@@ -565,69 +566,79 @@ footer .links-footer li a:hover::after {
 /* Конец стилей для футера */
 
 /* Начало стилей для персональной страници */
-
+#gamePage {
+  margin: 40px auto 30px auto;
+  max-width: 99%;
+}
 .game-describe {
-  margin-top: 59px;
+  background-color: white;
+  padding: 30px;
+  box-sizing: border-box;
+  box-shadow: 5px 5px 0px black;
+  border: 2px solid black;
+  /* border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px; */
 }
-.orange-square {
-  width: 300px;
-  height: 470px;
-  background-color: #ff3f3f;
-}
+
 .game-describe-top {
   display: flex;
-  flex-direction: row;
-  border-top: solid 2px;
-  border-bottom: solid 2px;
+
+  align-items: center;
 }
-.game-decribe-bottom {
-  width: 320px;
+.game-describe-bottom {
+  width: 100%;
 }
 
 .game-photo {
   width: 472px;
   height: 470px;
-  border-right: 2px solid black;
+  margin-right: 30px;
 }
 .game-photo img {
   max-width: 472px;
   height: 470px;
   object-fit: cover;
 }
+.game-page-info {
+  flex-basis: 100%;
+}
+.game-page-info .price {
+  position: static;
+  width: 180px;
+  height: 50px;
+}
+.game-page-info .price:hover::before {
+  content: attr(text);
+  top: 0px;
+}
+.game-type {
+  display: flex;
+  margin-top: 30px;
+}
 
-th {
-  padding-right: 20px;
-  font-family: "HelveticaNeueCyr";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 21px;
+.game-type .left,
+.right {
+  font-size: 23px;
 }
-td {
-  font-style: normal;
-  font-family: "HelveticaNeueCyr";
-  font-weight: 400;
-  font-size: 21px;
+.game-type .left {
+  font-family: "Helvetica-Bold";
+  flex-basis: 25%;
 }
+
+.game-type .right {
+  font-family: "Helvetica-Roman";
+  flex-basis: 70%;
+}
+
 .game-page-name {
   font-family: "Helvetica-Roman";
-  font-style: normal;
-  font-weight: 400;
   font-size: 64px;
+  margin-bottom: 30px;
 }
-.button-cart {
-  border-radius: 10px;
-  background-color: #ceff1a;
-  margin-left: 29px;
-  border: 2px solid black;
-  width: 210px;
-  height: 50px;
-  font-family: "Helvetica";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 41px;
-  text-align: center;
-}
+
 .game-price-cart {
   align-items: center;
   display: flex;
@@ -641,32 +652,37 @@ td {
 .game-price {
   margin-left: 20px;
 }
-.game-type {
-  margin-top: 70px;
+
+.recommendation {
+  height: 400px;
+  width: 100%;
 }
+
 .description {
-  width: 470px;
-  border: 2px solid black;
-  border-top: none;
+  background-color: black;
+  max-width: 100%;
+  margin-top: 20px;
+  padding: 25px;
+  box-sizing: border-box;
+  /* border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px; */
 }
 .about {
   font-family: "Helvetica-Bold";
   font-style: normal;
   font-weight: 700;
   font-size: 48px;
-  padding-left: 10px;
-  padding-top: 21px;
+  padding-bottom: 25px;
 }
 .definition {
   font-family: "Helvetica-Roman";
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 25px;
   text-align: justify;
-  padding-left: 16px;
-  padding-right: 14px;
-  padding-top: 21px;
-  letter-spacing: -0.025em;
   line-height: 28px;
   word-wrap: break-word;
 }
@@ -675,13 +691,12 @@ td {
   display: flex;
   flex-direction: row;
 }
-
 /*Конец стилей для персональной страници */
 
 /*Начало стилей для корзины */
 #cart {
   display: flex;
-  /* margin-top: 40px; */
+
   font-family: "Helvetica";
   padding: 20px 20px 0px 20px;
 }
@@ -689,10 +704,7 @@ td {
 .games-cart-list {
   width: 100%;
   display: flex;
-
   flex-direction: column;
-
-  /* justify-content: space-between; */
 }
 .games-cart {
   display: flex;
@@ -701,18 +713,14 @@ td {
   align-items: center;
   border: 2px solid black;
   width: 100%;
-  /* padding: 15px; */
   position: relative;
   box-sizing: border-box;
   box-shadow: 5px 5px 0px black;
-  /* overflow: hidden; */
 }
 .games-cart p {
   color: black;
   font-size: 36px;
   margin-left: 20px;
-  /* position: absolute;
-  top: 0; */
 }
 .games-cart :nth-child(2) {
   flex-basis: 70%;
@@ -745,7 +753,7 @@ td {
   -ms-transform: scale(1.2);
   -o-transform: scale(1.2);
 }
-.total {
+#total {
   margin-left: 20px;
   border-radius: 15px;
   height: 160px;
@@ -763,23 +771,24 @@ td {
   -o-border-radius: 15px;
 }
 
-.total p {
+#total p {
   margin: 23px 5px 0px 5px;
+}
+#total :nth-child(2) {
+  font-size: 25px;
+}
+
+#total h2 {
+  font-size: 32px;
+}
+
+#buyGame {
   border-radius: 10px;
-  font-size: 20px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-}
-
-.total h2 {
-  font-size: 32px;
-}
-#totalPrice {
-  font-size: 25px;
-}
-#buyGame {
+  font-size: 20px;
   cursor: pointer;
   border: 2px solid black;
   height: 40px;
