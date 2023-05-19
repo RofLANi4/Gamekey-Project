@@ -1,8 +1,22 @@
-const info = document.querySelectorAll(".info"),
-  price = document.querySelectorAll(".info .price"),
+const info = document.querySelectorAll(".info"), // price = document.querySelectorAll(".info .price"),
   searchRequestActive = document.querySelector(".search-request"),
   inputActive = document.querySelector(".input"),
   searchForm = document.querySelector("#search-form");
+
+const price = [];
+
+const colorPrice = {
+  0: "#4ADBC8",
+  400: "#3DD222",
+  600: "#5F9AFF",
+  900: "#FFC800",
+  1200: "#FF7A00",
+  1500: "#FF50A6",
+  1800: "#D035FF",
+};
+document.querySelectorAll(".info .price").forEach((elem, num) => {
+  price[num] = elem.getAttribute("text").replace("₴", "");
+});
 
 colorizeGame(info, price);
 
@@ -16,46 +30,18 @@ function sendSearchRequest() {
       return response.json();
     })
     .then(function (jsonResponse) {
-      searchLineIsNotEmpty(
-        fill,
-        searchRequestActive,
-        inputActive,
-        jsonResponse.results
-      );
+      searchLineIsNotEmpty(searchRequestActive, inputActive, jsonResponse.results);
     });
 }
 
 //
 function colorizeGame(game, gamePrice) {
-  const colorPrice = {
-    0: "#4ADBC8",
-    400: "#3DD222",
-    600: "#5F9AFF",
-    900: "#FFC800",
-    1200: "#FF7A00",
-    1500: "#FF50A6",
-    1800: "#D035FF",
-  };
-
   //
   game.forEach((item, keyInfo) => {
     for (let keyPrice in colorPrice) {
       //
-      try {
-        if (
-          +gamePrice[keyInfo].getAttribute("text").replace("₴", "") > +keyPrice
-        ) {
-          item.style.backgroundColor = colorPrice[keyPrice];
-        }
-      } catch {
-        if (+gamePrice[keyInfo].price > +keyPrice) {
-          item.addEventListener("mouseover", () => {
-            item.style.backgroundColor = colorPrice[keyPrice];
-          });
-          item.addEventListener("mouseout", () => {
-            item.style.backgroundColor = "#FFFFFF";
-          });
-        }
+      if (+gamePrice[keyInfo] > +keyPrice) {
+        item.style.backgroundColor = colorPrice[keyPrice];
       }
     }
   });
@@ -69,43 +55,69 @@ function searchLineIsEmpty(search, input) {
 }
 
 //
-function searchLineIsNotEmpty(callback, search, input, json) {
+function searchLineIsNotEmpty(search, input, json) {
   search.classList.add("search-request-active");
   input.classList.add("input-active");
   search.innerHTML = "";
-  callback(input, json);
+  fill(search, input, json);
 }
 
 //
-function fill(input, json) {
+function fill(search, input, json) {
   //
-
   if (json.length != 0) {
     for (let key in json) {
       searchRequestActive.innerHTML += `
             <div class="hover">
               <a href="/gamekey/game-page/${json[key].id}">
-                <img src="/media/${json[key].image}" alt="game image"/>
+                <img src="/media/${json[key].image}" loading="lazy" alt="game image"/>
                 <p>${json[key].name}</p>
+                <p class="request-price">${json[key].price}₴</p>
               </a>
             </div>
           `;
     }
+
     const divHover = document.querySelectorAll(".hover");
-    colorizeGame(divHover, json);
+    const requestPrice = document.querySelectorAll(".request-price");
+
+    divHover.forEach((hover, key) => {
+      for (let keyPrice in colorPrice) {
+        if (+requestPrice[key].innerHTML.replace("₴", "") > +keyPrice) {
+          hover.addEventListener("mouseover", () => {
+            hover.style.backgroundColor = colorPrice[keyPrice];
+          });
+          hover.addEventListener("mouseout", () => {
+            hover.style.backgroundColor = "white";
+          });
+        }
+      }
+    });
+
+    searchForm.addEventListener("focusin", searchLineIsFocus);
+    searchLineIsFocus();
+    document.addEventListener("click", (event) => {
+      if (!searchForm.contains(event.target)) {
+        searchLineIsEmptyOrUnfocus();
+      }
+    });
+
+    // colorizeJsonPrice(divHover, json);
   } else if (json.length == 0) {
-    searchLineIsEmpty(searchRequestActive, input);
+    searchForm.removeEventListener("focusin", searchLineIsFocus);
+    searchLineIsEmptyOrUnfocus();
+    searchLineIsEmpty(searchRequestActive, inputActive);
   }
 }
 
 //
-searchForm.addEventListener("focusin", () => {
-  sendSearchRequest();
-});
+function searchLineIsFocus() {
+  searchRequestActive.style.display = "block";
+  inputActive.style.borderRadius = "15px 15px 0px 0px";
+}
 
 //
-document.addEventListener("click", (event) => {
-  if (!searchForm.contains(event.target)) {
-    searchLineIsEmpty(searchRequestActive, inputActive);
-  }
-});
+function searchLineIsEmptyOrUnfocus() {
+  inputActive.style.borderRadius = "15px";
+  searchRequestActive.style.display = "none";
+}

@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
   <body>
+    <div class="mask">
+      <img src="{% static '/Images/loader.gif' %}" alt="" />
+    </div>
     <!--Начало панели навигации-->
     <nav class="nav">
       <div class="nav-content">
@@ -24,84 +27,59 @@
               <a href="{% url 'game_keys:discounts' %}">Знижки</a>
             </li>
             <li class="waiting">
-              <a
-                style="color: #ff55da"
-                href="{% url 'game_keys:coming_soon' %}"
-              >
-                Очікуванні
-              </a>
+              <a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a>
             </li>
           </ul>
         </div>
-        <form
-          id="search-form"
-          action="{% url 'game_keys:game_list' %}"
-          method="get"
-        >
+        <form id="search-form" action="{% url 'game_keys:game_list' %}" method="get">
           <div class="input">
-            <input
-              autocomplete="off"
-              type="text"
-              placeholder="Знайти гру..."
-              id="mySearch"
-              name="q"
-            />
+            <input autocomplete="off" type="text" placeholder="Знайти гру..." id="mySearch" name="q" />
             <button type="submit" id="search">
-              <img
-                src="{% static '/Images/Search.svg' %}"
-                alt="Search Button"
-                id="input_img"
-              />
+              <img src="{% static '/Images/Search.svg' %}" alt="Search Button" id="input_img" />
             </button>
-            <!-- <div class="search">
-              <div id="input_container">
-              </div>
-            </div> -->
           </div>
           <div class="search-request"></div>
         </form>
-        <div class="logo-basket">
+        <div class="logo-cart">
           <a href="{% url 'game_keys:shop_cart' %}">
-          <a href="{% url 'game_keys:shop_cart' %}">
-            <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button" />
-            <b id="game_quantity">{% if quantities_sum %}{{ quantities_sum }}{% endif %}</b>
-          </a>
+            <p id="game_quantity">{% if quantities_sum %}{{ quantities_sum }}{% endif %}</p>
           </a>
         </div>
       </div>
     </nav>
     <!--Конец панели навигации-->
 
-    {% if shop_cart %}
-    <div id="gameList">
-      <div class="games-column">
-        <div class="games-row">
+    <main>
+      {% if shop_cart %}
+      <div id="cart">
+        <div class="games-cart-list">
           {% for game in games %}
-          <div class="games">
-            <div class="info">
-              <a href="{% url 'game_keys:game_page' pk=game.0.id %}"
-                ><img src="{{ MEDIA_URL }}{{ game.0.image }}" alt=""
-              /></a>
-
-              <p class="game-name">{{ game.0.name }} <b style="color: white"> x{{ game.1 }}</b></p>
-              {% if game.0.discount %}
-              <p class="discount-percent">-{{ game.0.discount }}%</p>
-              {% endif %}
-              <p
-                class="price"
-                text="{{ game.0.price|discount:game.0.discount }}₴"
-              ></p>
-            </div>
+          <div class="games-cart">
+            <a href="{% url 'game_keys:game_page' pk=game.0.id %}">
+              <img src="{{ MEDIA_URL }}{{ game.0.image }}" alt="" />
+            </a>
+            <p>
+              {{ game.0.name }}
+              <b>x{{ game.1 }}</b>
+            </p>
+            <p class="cart-price">{{ game.0.price|discount:game.0.discount }}₴</p>
+            <svg width="32px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" enable-background="new 0 0 50 50">
+              <path d="M37.304 11.282l1.414 1.414-26.022 26.02-1.414-1.413z" />
+              <path d="M12.696 11.282l26.022 26.02-1.414 1.415-26.022-26.02z" />
+            </svg>
           </div>
           {% endfor %}
-          <h1>{{ cart_price }}</h1>
+        </div>
+        <div class="total">
+          <h2>Разом</h2>
+          <p id="totalPrice">До сплати: {{ cart_price }}₴</p>
+          <p id="buyGame">Оформити замовлення</p>
         </div>
       </div>
-    </div>
     {% else %}
       <h1>ігр нема</h1>
     {% endif %}
-
+    </main>
     <!--Начало футуера-->
     <footer>
       <div class="container">
@@ -110,8 +88,10 @@
             <h2>Навігація</h2>
             <ul>
               <li><a href="{% url 'game_keys:new_games' %}">Новинки</a></li>
-              <li><a href>Знижки</a></li>
-              <li><a href>Очікуванні</a></li>
+              <li><a href="{% url 'game_keys:discounts' %}">Знижки</a></li>
+              <li>
+                <a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a>
+              </li>
             </ul>
           </nav>
 
@@ -130,18 +110,12 @@
             <h2>Корисні посилання</h2>
             <ul>
               <li>
-                <a
-                  href="https://github.com/RofLANi4/Gamekey-Project"
-                  target="_blank"
-                  >GitHub</a
-                >
+                <a href="https://github.com/RofLANi4/Gamekey-Project" target="_blank">GitHub</a>
               </li>
               <li>
-                <a
-                  href="https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG"
-                  target="_blank"
-                  >DB Files</a
-                >
+                <a href="https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG" target="_blank">
+                  DB Files
+                </a>
               </li>
             </ul>
           </div>
@@ -154,7 +128,7 @@
     </footer>
     <!--Конец футуера-->
     <script src="{% static 'js/content.js' %}"></script>
-    <script src="{% static 'js/header.js' %}"></script>
+    <!-- <script src="{% static 'js/cartContent.js' %}"></script> -->
     <script src="{% static 'js/loader.js' %}"></script>
   </body>
 </html>

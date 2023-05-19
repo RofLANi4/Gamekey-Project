@@ -21,9 +21,7 @@
         <div class="nav-list">
           <ul>
             <li class="new">
-              <a style="color: #74e900" href="{% url 'game_keys:new_games' %}"
-                >Новинки</a
-              >
+              <a style="color: #74e900" href="{% url 'game_keys:new_games' %}">Новинки</a>
             </li>
             <li class="discount">
               <a href="{% url 'game_keys:discounts' %}">Знижки</a>
@@ -33,25 +31,11 @@
             </li>
           </ul>
         </div>
-        <form
-          id="search-form"
-          action="{% url 'game_keys:game_list' %}"
-          method="get"
-        >
+        <form id="search-form" action="{% url 'game_keys:game_list' %}" method="get">
           <div class="input">
-            <input
-              autocomplete="off"
-              type="text"
-              placeholder="Знайти гру..."
-              id="mySearch"
-              name="q"
-            />
+            <input autocomplete="off" type="text" placeholder="Знайти гру..." id="mySearch" name="q" />
             <button type="submit" id="search">
-              <img
-                src="{% static '/Images/Search.svg' %}"
-                alt="Search Button"
-                id="input_img"
-              />
+              <img src="{% static '/Images/Search.svg' %}" alt="Search Button" id="input_img" />
             </button>
             <!-- <div class="search">
               <div id="input_container">
@@ -60,10 +44,9 @@
           </div>
           <div class="search-request"></div>
         </form>
-        <div class="logo-basket">
+        <div class="logo-cart">
           <a href="{% url 'game_keys:shop_cart' %}">
-            <img src="{% static '/Images/Basket.svg' %}" alt="Basket Button" />
-            <b id="game_quantity">{% if shop_cart %}{{ shop_cart }}{% endif %}</b>
+            <p id="game_quantity">{% if shop_cart %}{{ shop_cart }}{% endif %}</p>
           </a>
         </div>
       </div>
@@ -71,32 +54,28 @@
     <!--Конец панели навигации-->
 
     <!-- Начало контента -->
-    {% if new_games %}
-    <div id="gameList">
-      <div class="games-column">
+    <main>
+      {% if new_games %}
+      <div id="gameList">
         <div class="games-row">
           {% for game in new_games %}
           <div class="games">
             <div class="info">
               <a href="{% url 'game_keys:game_page' pk=game.id %}">
-                <img src="{{ MEDIA_URL }}{{ game.image }}" alt=""
-              /></a>
+                <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
+              </a>
               <p class="game-name">{{ game.name }}</p>
               {% if game.discount %}
               <p class="discount-percent">-{{ game.discount }}%</p>
               {% endif %}
-              <p
-                class="price"
-                text="{{ game.price|discount:game.discount }}₴"
-                id="game-id-{{ game.id }}"
-              ></p>
+              <p class="price" text="{{ game.price|discount:game.discount }}₴" id="game-id-{{ game.id }}"></p>
             </div>
           </div>
           {% endfor %}
         </div>
       </div>
-    </div>
-    {% endif %}
+      {% endif %}
+    </main>
     <!-- Конец контента -->
 
     <!--Начало футуера-->
@@ -107,8 +86,10 @@
             <h2>Навігація</h2>
             <ul>
               <li><a href="{% url 'game_keys:new_games' %}">Новинки</a></li>
-              <li><a href>Знижки</a></li>
-              <li><a href>Очікуванні</a></li>
+              <li><a href="{% url 'game_keys:discounts' %}">Знижки</a></li>
+              <li>
+                <a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a>
+              </li>
             </ul>
           </nav>
 
@@ -127,18 +108,12 @@
             <h2>Корисні посилання</h2>
             <ul>
               <li>
-                <a
-                  href="https://github.com/RofLANi4/Gamekey-Project"
-                  target="_blank"
-                  >GitHub</a
-                >
+                <a href="https://github.com/RofLANi4/Gamekey-Project" target="_blank">GitHub</a>
               </li>
               <li>
-                <a
-                  href="https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG"
-                  target="_blank"
-                  >DB Files</a
-                >
+                <a href="https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG" target="_blank">
+                  DB Files
+                </a>
               </li>
             </ul>
           </div>
@@ -151,52 +126,8 @@
     </footer>
     <!--Конец футуера-->
 
-    <script src="{% static 'js/content.js' %}"></script>
-    <script src="{% static 'js/header.js' %}"></script>
+    <script src="{% static 'js/content.js ' %}"></script>
     <script src="{% static 'js/loader.js' %}"></script>
-    <script>
-      const priceElements = document.querySelectorAll('p.price');
-      priceElements.forEach(priceElement => {
-        priceElement.addEventListener('click', function() {
-          const productId = priceElement.id.replace('game-id-', '');
-          addToCart(productId);
-        });
-      });
-
-      function addToCart(product_id) {
-          // Get the cart data from the cookie
-          let cart = JSON.parse(getCookie('cart') || '{}');
-
-          // Add the product to the cart or increment its quantity
-          if (product_id in cart) {
-              cart[product_id].quantity += 1;
-          } else {
-              cart[product_id] = {'quantity': 1};
-          }
-
-          // Store the cart data in the cookie
-          document.cookie = 'cart=' + JSON.stringify(cart) + ';path=/;';
-          let quantitiesCount = countQuantitiesInCart();
-          document.getElementById("game_quantity").innerText=quantitiesCount;
-      }
-      function getCookie(name) {
-          let value = '; ' + document.cookie;
-          let parts = value.split('; ' + name + '=');
-          if (parts.length == 2) return parts.pop().split(';').shift();
-      }
-      function countQuantitiesInCart() {
-        let cart = JSON.parse(getCookie('cart') || '{}');
-        let totalQuantity = 0;
-
-        for (var productId in cart) {
-          if (cart.hasOwnProperty(productId)) {
-            let quantity = cart[productId].quantity;
-            totalQuantity += quantity;
-          }
-        }
-
-        return totalQuantity;
-      }
-    </script>
+    <script src="{% static 'js/addToCart.js' %}"></script>
   </body>
 </html>

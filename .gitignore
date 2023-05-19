@@ -381,3 +381,5 @@ package.json
 package-lock.json
 
 .vscode
+
+.prettierrc

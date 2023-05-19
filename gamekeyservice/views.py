@@ -246,10 +246,13 @@ class ShopCart(TemplateView):
         context["quantities"] = quantities
         context["quantities_sum"] = sum(context["quantities"])
         context["games"] = zip(context["shop_cart"], context["quantities"])
-        games_in_cart = {
-                            game.id: round(game.price - game.price * (game.discount / 100))
-                            for game in context["shop_cart"]
-                         }
+        games_in_cart = {}
+        for game in context["shop_cart"]:
+            game_price = game.price
+            if game.discount:
+                game_price = round(game.price - (game_price * (game.discount / 100)))
+            games_in_cart[game.id] = game_price
+
         cart_price = 0
         for id_, price in games_in_cart.items():
             cart_price += cart[str(id_)]["quantity"] * price
