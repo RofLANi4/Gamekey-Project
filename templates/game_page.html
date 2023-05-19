@@ -51,55 +51,52 @@
     </nav>
     <!--Конец панели навигации-->
 
-    <div class="game-describe">
-      <div class="game-describe-top">
-        <div class="orange-square"></div>
-        <div class="game-photo">
-          <img src="{{ MEDIA_URL }}{{ object.image }}" alt="StrayGame" />
-        </div>
-        <div class="game-info">
-          <div class="game-page-name" style="padding: 29px">
-            <p>{{ object.name }}</p>
-          </div>
-          <div class="game-price-cart">
-            <div>
-              <p class="button-cart" id="game-id-{{ object.id }}" style="cursor: pointer">До кошика</p>
+    <!--Начало страници игры-->
+    <main>
+      <div id="gamePage">
+        <div class="game-describe">
+          <div class="game-describe-top">
+            <!-- <div class="orange-square"></div> -->
+            <div class="game-photo">
+              <img src="{{ MEDIA_URL }}{{ object.image }}" alt="" />
             </div>
+            <div class="game-page-info">
+              <p class="game-page-name">{{ object.name }}</p>
+              <div class="game-price-cart">
+                <p class="price" text="До кошика" id="game-id-{{ object.id }}"></p>
+                <p class="game-price">{{ object.price|discount:game.discount }}₴</p>
+              </div>
+              <div class="game-type">
+                <p class="left">Жанри</p>
+                <p class="right">{% genres genres %}</p>
+              </div>
+              <div class="game-type">
+                <p class="left">Дата виходу</p>
+                <p class="right">{{ release_date }}</p>
+              </div>
+              <div class="game-type">
+                <p class="left">Розробник</p>
+                <p class="right">{{ object.developer }}</p>
+              </div>
+              <div class="game-type">
+                <p class="left">Платформа</p>
+                <p class="right">PC</p>
+              </div>
+            </div>
+          </div>
+          <div class="recommendation"></div>
+          <div class="game-describe-bottom">
+            <div class="description">
+              <p class="about">Про цю гру</p>
+              <p class="definition">{{ object.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 
-            <div class="game-price">
-              <p>{{ object.price|discount:game.discount }}₴</p>
-            </div>
-          </div>
-          <div class="game-type">
-            <table style="width: 100%; text-align: left; align-items: start; margin-left: 29px">
-              <tr>
-                <th>Жанри</th>
-                <td>{% genres genres %}</td>
-              </tr>
-              <tr>
-                <th>Дата виходу</th>
-                <td>{{ release_date }}</td>
-              </tr>
-              <tr>
-                <th>Розробник</th>
-                <td>{{ object.developer }}</td>
-              </tr>
-              <tr>
-                <th>вам може сподобатись</th>
-                <td>{% for game in recommend_games %} {{ game.name }} {% endfor %}</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="game-describe-bottom">
-        <div style="width: 300px; height: 450px"></div>
-        <div class="description">
-          <p class="about">Про цю гру</p>
-          <p class="definition">{{ object.description }}</p>
-        </div>
-      </div>
-    </div>
+    <!--Конец страници игры-->
+
     <!--Начало футуера-->
     <footer>
       <div class="container">
@@ -140,7 +137,10 @@
                 <a href="https://github.com/RofLANi4/Gamekey-Project" target="_blank">GitHub</a>
               </li>
               <li>
-                <a href="https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG" target="_blank">
+                <a
+                  href="https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG"
+                  target="_blank"
+                >
                   DB Files
                 </a>
               </li>
