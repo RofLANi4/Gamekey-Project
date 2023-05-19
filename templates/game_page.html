@@ -107,6 +107,10 @@
                 <th>Розробник</th>
                 <td>{{ object.developer }}</td>
               </tr>
+              <tr>
+                <th>вам може сподобатись</th>
+                <td>{% for game in recommend_games %} {{ game.name }} {% endfor %}</td>
+              </tr>
             </table>
           </div>
         </div>

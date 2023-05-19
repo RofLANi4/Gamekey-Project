@@ -94,9 +94,12 @@
             </div>
           </div>
           {% endfor %}
+          <h1>{{ cart_price }}</h1>
         </div>
       </div>
     </div>
+    {% else %}
+      <h1>ігр нема</h1>
     {% endif %}
 
     <!--Начало футуера-->
