@@ -12,7 +12,7 @@ urlpatterns = [
     path("game-page/<int:pk>/", GamePage.as_view(), name="game_page"),
     path("game-list/", GameListView.as_view(), name="game_list"),
     path("shop-cart/", ShopCart.as_view(), name="shop_cart"),
-    path('__debug__/', include('debug_toolbar.urls'))
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 app_name = "game_keys"

@@ -25,6 +25,10 @@ SECRET_KEY = "django-insecure-r!^4l+^p#ruzb(t66#8gm=s8q5e^6%53(=unkr_ylglo-h+r&^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+if DEBUG:
+    import mimetypes
+    mimetypes.add_type("application/javascript", ".js", True)
+
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
