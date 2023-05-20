@@ -616,21 +616,21 @@ footer .links-footer li a:hover::after {
 }
 .game-type {
   display: flex;
+  margin-top: 30px;
 }
-.game-type .left {
-  flex-basis: 23%;
-}
-.game-type .left p,
-.right p {
+
+.game-type .left,
+.right {
   font-size: 23px;
-  margin: 20px 0px;
 }
 .game-type .left {
   font-family: "Helvetica-Bold";
+  flex-basis: 25%;
 }
 
 .game-type .right {
   font-family: "Helvetica-Roman";
+  flex-basis: 70%;
 }
 
 .game-page-name {
@@ -651,9 +651,6 @@ footer .links-footer li a:hover::after {
 }
 .game-price {
   margin-left: 20px;
-}
-.game-type {
-  margin-top: 70px;
 }
 
 .recommendation {

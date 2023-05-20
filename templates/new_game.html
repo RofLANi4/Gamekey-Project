@@ -46,7 +46,7 @@
         </form>
         <div class="logo-cart">
           <a href="{% url 'game_keys:shop_cart' %}">
-            <p id="game_quantity">{% if shop_cart %}{{ shop_cart }}{% endif %}</p>
+            <p id="game_quantity">{% if shop_cart %}{{ shop_cart }}{% else %}0{% endif %}</p>
           </a>
         </div>
       </div>
@@ -111,7 +111,10 @@
                 <a href="https://github.com/RofLANi4/Gamekey-Project" target="_blank">GitHub</a>
               </li>
               <li>
-                <a href="https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG" target="_blank">
+                <a
+                  href="https://drive.google.com/drive/folders/1yVpAAh5TZGNJV9cSZcerqVP6zl9KvYjG"
+                  target="_blank"
+                >
                   DB Files
                 </a>
               </li>

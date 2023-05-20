@@ -42,7 +42,7 @@
         </form>
         <div class="logo-cart">
           <a href="{% url 'game_keys:shop_cart' %}">
-            <p id="gameInCartQuantity">{% if quantities_sum %}{{ quantities_sum }}{% endif %}</p>
+            <p id="gameInCartQuantity">{% if quantities_sum %}{{ quantities_sum }}{% else %}0{% endif %}</p>
           </a>
         </div>
       </div>
@@ -86,7 +86,9 @@
         </div>
       </div>
       {% else %}
-      <h1>ігр нема</h1>
+      <div id="cartIsEmpty">
+        <h1>Кошик порожній</h1>
+      </div>
       {% endif %}
     </main>
 

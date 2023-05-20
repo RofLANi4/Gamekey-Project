@@ -44,7 +44,7 @@
         </form>
         <div class="logo-cart">
           <a href="{% url 'game_keys:shop_cart' %}">
-            <p id="game_quantity">{% if shop_cart %}{{ shop_cart }}{% endif %}</p>
+            <p id="game_quantity">{% if shop_cart %}{{ shop_cart }}{% else %}0{% endif %}</p>
           </a>
         </div>
       </div>
@@ -84,18 +84,41 @@
               </div>
             </div>
           </div>
-          <div class="recommendation"></div>
+
           <div class="game-describe-bottom">
             <div class="description">
               <p class="about">Про цю гру</p>
               <p class="definition">{{ object.description }}</p>
             </div>
           </div>
+          <div class="recommendation">
+            <p>Вам може сподобатись</p>
+            <div class="recommendation-games">
+              {% for game in recommend_games %}
+              <div class="games">
+                <div class="info">
+                  <a href="{% url 'game_keys:game_page' pk=game.id %}">
+                    <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
+                  </a>
+                  <p class="game-name">{{ game.name }}</p>
+                  {% if game.discount %}
+                  <p class="discount-percent">-{{ game.discount }}%</p>
+                  {% endif %}
+                  <p
+                    class="price"
+                    text="{{ game.price|discount:game.discount }}₴"
+                    id="game-id-{{ game.id }}"
+                  ></p>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
         </div>
       </div>
     </main>
 
-    <!--Конец страници игры-->
+    <!--Конец страници игры -->
 
     <!--Начало футуера-->
     <footer>

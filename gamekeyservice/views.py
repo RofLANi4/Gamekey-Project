@@ -186,10 +186,10 @@ class GamePage(DetailView):
         context["release_date"] = release_date
 
         new_games = (Game.objects.filter(release_date__range=[SIX_MONTH_PAST, TODAY])
-            .order_by("?")[:3]
+            .order_by("?")[:4]
             .values("id", "name", "image", "price", "discount"))
         discount_games = (Game.objects.filter(discount__gt=0)
-            .order_by("?")[:3]
+            .order_by("?")[:4]
             .values("id", "name", "image", "price", "discount"))
 
         context["recommend_games"] = new_games | discount_games

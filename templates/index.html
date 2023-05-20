@@ -44,7 +44,7 @@
         </form>
         <div class="logo-cart">
           <a href="{% url 'game_keys:shop_cart' %}">
-            <p id="game_quantity">{% if shop_cart %}{{ shop_cart }}{% endif %}</p>
+            <p id="game_quantity">{% if shop_cart %}{{ shop_cart }}{% else %}0{% endif %}</p>
           </a>
         </div>
       </div>

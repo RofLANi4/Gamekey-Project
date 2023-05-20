@@ -23,6 +23,11 @@ if (description) {
   colorizeDescription(description, personalPagePrice);
 }
 
+// const data = new Date();
+// const gameData = new Date("26-10-2023".split("-").reverse().join("-"));
+
+// console.log(data < gameData);
+
 colorizeGame(info, price);
 
 document.addEventListener("input", sendSearchRequest);
