@@ -4,6 +4,8 @@ from django.http import JsonResponse
 from django.utils.dateformat import DateFormat
 from django.views import View
 from django.views.generic import TemplateView, DetailView, ListView
+
+from gamekey.settings import MEDIA_URL
 from .models import Game
 from django.utils import timezone
 from datetime import timedelta
@@ -256,4 +258,25 @@ class Profile(TemplateView):
        
 
         return context
+
+
+class OrderedGamesInfo(View):
+    def post(self, request, *args, **kwargs):
+        try:
+            data = json.loads(request.body)
+            field = kwargs.get('field')  # Retrieve the field parameter from URL kwargs
+            games_info = {}
+            for game_id, keys in data.items():
+                name, image = Game.objects.get(pk=game_id).values("name", "image")
+                games_info[game_id] = {
+                    "name": name,
+                    "image": MEDIA_URL + image,
+                    "keys": keys
+                }
+
+                return JsonResponse(games_info)
+            else:
+                return JsonResponse({'success': False, 'error': f'Field "{field}" not found in the JSON data'})
+        except json.JSONDecodeError:
+            return JsonResponse({'success': False, 'error': 'Invalid JSON data'})
     
