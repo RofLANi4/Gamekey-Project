@@ -246,3 +246,14 @@ class ShopCart(TemplateView):
         context["cart_price"] = cart_price
 
         return context
+
+
+class Profile(TemplateView):
+    template_name = "profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+       
+
+        return context
+    

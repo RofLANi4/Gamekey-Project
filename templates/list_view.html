@@ -48,27 +48,28 @@
       </div>
     </nav>
     <!--Конец панели навигации-->
-
-    {% if games %}
-    <div id="gameList">
-      <div class="games-row">
-        {% for game in games %}
-        <div class="games">
-          <div class="info">
-            <a href="{% url 'game_keys:game_page' pk=game.id %}">
-              <img src="{{ MEDIA_URL }}/{{ game.image }}" alt="" />
-            </a>
-            <p class="game-name">{{ game.name }}</p>
-            {% if game.discount %}
-            <p class="discount-percent">-{{ game.discount }}%</p>
-            {% endif %}
-            <p class="price" text="{{ game.price|discount:game.discount }}₴" id="game-id-{{ game.id }}"></p>
+    <main>
+      {% if games %}
+      <div id="gameList">
+        <div class="games-row">
+          {% for game in games %}
+          <div class="games">
+            <div class="info">
+              <a href="{% url 'game_keys:game_page' pk=game.id %}">
+                <img src="{{ MEDIA_URL }}/{{ game.image }}" alt="" />
+              </a>
+              <p class="game-name">{{ game.name }}</p>
+              {% if game.discount %}
+              <p class="discount-percent">-{{ game.discount }}%</p>
+              {% endif %}
+              <p class="price" text="{{ game.price|discount:game.discount }}₴" id="game-id-{{ game.id }}"></p>
+            </div>
           </div>
+          {% endfor %}
         </div>
-        {% endfor %}
       </div>
-    </div>
-    {% endif %}
+      {% endif %}
+    </main>
 
     <!--Начало футуера-->
     <footer>

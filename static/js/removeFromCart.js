@@ -1,5 +1,6 @@
 const getGame = document.querySelectorAll(".games-cart"),
-  getRemoveButton = document.querySelectorAll(".remove-game");
+  getRemoveButton = document.querySelectorAll(".remove-game"),
+  main = document.querySelector("main");
 
 let cart = JSON.parse(getCookie("cart") || "{}");
 
@@ -44,7 +45,7 @@ function updateTotalPrice(id) {
 
   if (totalPrice.innerHTML.replace("₴", "") <= 0) {
     const cart = document.querySelector("#cart");
-
+    main.innerHTML = "<div id='cartIsEmpty'><h1>Кошик порожній</h1> </div>";
     cart.remove();
   }
 }

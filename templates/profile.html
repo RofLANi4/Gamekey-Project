@@ -27,7 +27,7 @@
               <a href="{% url 'game_keys:discounts' %}">Знижки</a>
             </li>
             <li class="waiting">
-              <a style="color: #ff55da" href="{% url 'game_keys:coming_soon' %}">Очікуванні</a>
+              <a href="{% url 'game_keys:coming_soon' %}">Очікуванні</a>
             </li>
           </ul>
         </div>
@@ -38,8 +38,29 @@
               <img src="{% static '/Images/Search.svg' %}" alt="Search Button" id="input_img" />
             </button>
           </div>
-          <div class="search-request"></div>
+          <div class="search-request">
+            <div class="hover"><p></p></div>
+          </div>
         </form>
+        <div class="logo-profile">
+          <a href="{% url 'game_keys:profile' %}">
+            <svg
+              width="60"
+              height="60"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.2"
+              viewBox="0 0 21 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path>
+              <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
+              <path d="M6.168 18.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"></path>
+            </svg>
+          </a>
+        </div>
         <div class="logo-cart">
           <a href="{% url 'game_keys:shop_cart' %}">
             <p id="game_quantity">{% if shop_cart %}{{ shop_cart }}{% else %}0{% endif %}</p>
@@ -48,29 +69,7 @@
       </div>
     </nav>
     <!--Конец панели навигации-->
-    <main>
-      {% if coming_soon %}
-      <div id="gameList">
-        <div class="games-row">
-          {% for game in coming_soon %}
-          <div class="games">
-            <div class="info">
-              <a href="{% url 'game_keys:game_page' pk=game.id %}">
-                <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
-              </a>
-
-              <p class="game-name">{{ game.name }}</p>
-              {% if game.discount %}
-              <p class="discount-percent">-{{ game.discount }}%</p>
-              {% endif %}
-              <p class="price" text="{{ game.price|discount:game.discount }}₴" id="game-id-{{ game.id }}"></p>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-      {% endif %}
-    </main>
+    <main></main>
     <!--Начало футуера-->
     <footer>
       <div class="container">
@@ -123,6 +122,5 @@
     <!--Конец футуера-->
     <script src="{% static 'js/content.js ' %}"></script>
     <script src="{% static 'js/loader.js' %}"></script>
-    <script src="{% static 'js/addToCart.js' %}"></script>
   </body>
 </html>

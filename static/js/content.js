@@ -58,15 +58,15 @@ function searchLineIsNotEmpty(search, input, json) {
   search.classList.add("search-request-active");
   input.classList.add("input-active");
   search.innerHTML = "";
-  fill(search, input, json);
+  fill(search, json);
 }
 
 //
-function fill(search, input, json) {
+function fill(search, json) {
   //
   if (json.length != 0) {
     for (let key in json) {
-      searchRequestActive.innerHTML += `
+      search.innerHTML += `
             <div class="hover">
               <a href="/gamekey/game-page/${json[key].id}">
                 <img src="/media/${json[key].image}" loading="lazy" alt="game image"/>
@@ -100,8 +100,6 @@ function fill(search, input, json) {
         searchLineIsEmptyOrUnfocus();
       }
     });
-
-    // colorizeJsonPrice(divHover, json);
   } else if (json.length == 0) {
     searchForm.removeEventListener("focusin", searchLineIsFocus);
     searchLineIsEmptyOrUnfocus();

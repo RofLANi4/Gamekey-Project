@@ -90,7 +90,7 @@ a,
   color: #6637ee;
 }
 .nav-content .new :hover {
-  color: #74e900;
+  color: #6ad500;
 }
 .nav-content .discount :hover {
   color: #ff9900;
@@ -139,7 +139,7 @@ a,
   outline: none;
   color: black;
   font-size: 20px;
-  width: auto;
+  max-width: 250px;
   font-weight: bold;
 }
 
@@ -196,6 +196,15 @@ a,
   margin-left: 5px;
 }
 
+.logo-profile a {
+  display: grid;
+  place-items: center;
+  margin-left: 3px;
+}
+.logo-profile svg {
+  stroke: #88a8ff;
+}
+
 .logo-cart a {
   width: 64px;
   height: 64px;
@@ -204,7 +213,7 @@ a,
   background-image: url("../Images/Game Cart.svg");
   background-position: center;
   background-size: 90px;
-  background-repeat: no-repeat; /* Отключение повторения изображения */
+  background-repeat: no-repeat;
 }
 .logo-cart p {
   /* position: absolute;
@@ -342,6 +351,7 @@ button {
   display: grid;
   cursor: pointer;
   place-items: center;
+  user-select: none;
 }
 
 .discount-percent {
@@ -682,6 +692,7 @@ footer .links-footer li a:hover::after {
   margin-top: 20px;
   padding: 25px;
   box-sizing: border-box;
+  border: 2px solid black;
   /* border-radius: 15px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
@@ -781,6 +792,7 @@ main > #cartIsEmpty {
   -o-transform: scale(1.2);
 }
 #total {
+  min-width: 230px;
   margin-left: 20px;
   border-radius: 15px;
   height: 160px;
@@ -827,6 +839,7 @@ main > #cartIsEmpty {
   -moz-transition: 0.2s;
   -ms-transition: 0.2s;
   -o-transition: 0.2s;
+  user-select: none;
 }
 #buyGame:hover {
   transform: scale(1.05);

@@ -90,7 +90,7 @@ a,
   color: #6637ee;
 }
 .nav-content .new :hover {
-  color: #74e900;
+  color: #6ad500;
 }
 .nav-content .discount :hover {
   color: #ff9900;
@@ -139,7 +139,7 @@ a,
   outline: none;
   color: black;
   font-size: 20px;
-  width: auto;
+  max-width: 250px;
   font-weight: bold;
 }
 
@@ -196,6 +196,15 @@ a,
   margin-left: 5px;
 }
 
+.logo-profile a {
+  display: grid;
+  place-items: center;
+  margin-left: 3px;
+}
+/* .logo-profile svg {
+  stroke: red;
+} */
+
 .logo-cart a {
   width: 64px;
   height: 64px;
@@ -204,7 +213,7 @@ a,
   background-image: url("../Images/Game Cart.svg");
   background-position: center;
   background-size: 90px;
-  background-repeat: no-repeat; /* Отключение повторения изображения */
+  background-repeat: no-repeat;
 }
 .logo-cart p {
   /* position: absolute;
@@ -342,6 +351,7 @@ button {
   display: grid;
   cursor: pointer;
   place-items: center;
+  user-select: none;
 }
 
 .discount-percent {
@@ -576,16 +586,10 @@ footer .links-footer li a:hover::after {
   box-sizing: border-box;
   box-shadow: 5px 5px 0px black;
   border: 2px solid black;
-  /* border-radius: 15px;
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px; */
 }
 
 .game-describe-top {
   display: flex;
-
   align-items: center;
 }
 .game-describe-bottom {
@@ -609,6 +613,19 @@ footer .links-footer li a:hover::after {
   position: static;
   width: 180px;
   height: 50px;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
+}
+
+.game-page-info .price:hover {
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
 }
 .game-page-info .price:hover::before {
   content: attr(text);
@@ -654,16 +671,28 @@ footer .links-footer li a:hover::after {
 }
 
 .recommendation {
-  height: 400px;
   width: 100%;
+  margin-top: 10px;
+}
+.recommendation > p {
+  font-family: "Helvetica-Roman";
+  font-size: 64px;
+  text-align: center;
+}
+.recommendation-games {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .description {
-  background-color: black;
+  background-color: #4adbc8;
   max-width: 100%;
   margin-top: 20px;
   padding: 25px;
   box-sizing: border-box;
+  border: 2px solid black;
   /* border-radius: 15px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
@@ -677,6 +706,7 @@ footer .links-footer li a:hover::after {
   font-size: 48px;
   padding-bottom: 25px;
 }
+
 .definition {
   font-family: "Helvetica-Roman";
   font-style: normal;
@@ -696,9 +726,17 @@ footer .links-footer li a:hover::after {
 /*Начало стилей для корзины */
 #cart {
   display: flex;
-
   font-family: "Helvetica";
   padding: 20px 20px 0px 20px;
+}
+
+main > #cartIsEmpty {
+  display: grid;
+  place-items: center;
+  height: 757px;
+  font-family: "Helvetica-Roman";
+  font-size: 25px;
+  color: #535353;
 }
 
 .games-cart-list {
@@ -754,6 +792,7 @@ footer .links-footer li a:hover::after {
   -o-transform: scale(1.2);
 }
 #total {
+  min-width: 230px;
   margin-left: 20px;
   border-radius: 15px;
   height: 160px;
@@ -800,6 +839,7 @@ footer .links-footer li a:hover::after {
   -moz-transition: 0.2s;
   -ms-transition: 0.2s;
   -o-transition: 0.2s;
+  user-select: none;
 }
 #buyGame:hover {
   transform: scale(1.05);
