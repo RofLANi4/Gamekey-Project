@@ -40,6 +40,25 @@
           </div>
           <div class="search-request"></div>
         </form>
+        <div class="logo-profile">
+          <a href="{% url 'game_keys:profile' %}">
+            <svg
+              width="60"
+              height="60"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.2"
+              viewBox="0 0 21 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path>
+              <path d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
+              <path d="M6.168 18.849A4 4 0 0 1 10 16h4a4 4 0 0 1 3.834 2.855"></path>
+            </svg>
+          </a>
+        </div>
         <div class="logo-cart">
           <a href="{% url 'game_keys:shop_cart' %}">
             <p id="gameInCartQuantity">{% if quantities_sum %}{{ quantities_sum }}{% else %}0{% endif %}</p>

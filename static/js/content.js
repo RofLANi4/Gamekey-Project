@@ -14,6 +14,7 @@ const colorPrice = {
   1500: "#FF50A6",
   1800: "#D035FF",
 };
+
 document.querySelectorAll(".info .price").forEach((elem, num) => {
   price[num] = elem.getAttribute("text").replace("₴", "");
 });
@@ -21,6 +22,7 @@ document.querySelectorAll(".info .price").forEach((elem, num) => {
 colorizeGame(info, price);
 
 document.addEventListener("input", sendSearchRequest);
+
 function sendSearchRequest() {
   let searchTerm = document.getElementById("mySearch").value;
   let url = "/gamekey/search/?q=" + searchTerm;

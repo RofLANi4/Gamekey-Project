@@ -267,7 +267,15 @@ class Profile(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-       
+        cart = self.request.COOKIES.get("cart")
+        context["cart"] = json.loads(cart) if cart else {}
+        games_in_cart = sum(
+            quantity["quantity"] for quantity in context["cart"].values()
+        )
+        if games_in_cart == 0:
+            games_in_cart = None
 
+        context["shop_cart"] = games_in_cart
+        
         return context
     
