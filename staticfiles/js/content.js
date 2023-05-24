@@ -1,9 +1,7 @@
 const info = document.querySelectorAll(".info"),
   searchRequestActive = document.querySelector(".search-request"),
   inputActive = document.querySelector(".input"),
-  searchForm = document.querySelector("#search-form"),
-  personalPagePrice = document.querySelector(".game-price"),
-  description = document.querySelector(".description");
+  searchForm = document.querySelector("#search-form");
 
 const price = [];
 
@@ -19,14 +17,6 @@ const colorPrice = {
 document.querySelectorAll(".info .price").forEach((elem, num) => {
   price[num] = elem.getAttribute("text").replace("₴", "");
 });
-if (description) {
-  colorizeDescription(description, personalPagePrice);
-}
-
-// const data = new Date();
-// const gameData = new Date("26-10-2023".split("-").reverse().join("-"));
-
-// console.log(data < gameData);
 
 colorizeGame(info, price);
 
@@ -42,15 +32,6 @@ function sendSearchRequest() {
     .then(function (jsonResponse) {
       searchLineIsNotEmpty(searchRequestActive, inputActive, jsonResponse.results);
     });
-}
-
-//
-function colorizeDescription(description, price) {
-  for (let key in colorPrice) {
-    if (+price.innerHTML.replace("₴", "") > +key) {
-      description.style.backgroundColor = colorPrice[key];
-    }
-  }
 }
 
 function colorizeGame(game, gamePrice) {
@@ -77,15 +58,15 @@ function searchLineIsNotEmpty(search, input, json) {
   search.classList.add("search-request-active");
   input.classList.add("input-active");
   search.innerHTML = "";
-  fill(search, input, json);
+  fill(search, json);
 }
 
 //
-function fill(search, input, json) {
+function fill(search, json) {
   //
   if (json.length != 0) {
     for (let key in json) {
-      searchRequestActive.innerHTML += `
+      search.innerHTML += `
             <div class="hover">
               <a href="/gamekey/game-page/${json[key].id}">
                 <img src="/media/${json[key].image}" loading="lazy" alt="game image"/>
@@ -119,8 +100,6 @@ function fill(search, input, json) {
         searchLineIsEmptyOrUnfocus();
       }
     });
-
-    // colorizeJsonPrice(divHover, json);
   } else if (json.length == 0) {
     searchForm.removeEventListener("focusin", searchLineIsFocus);
     searchLineIsEmptyOrUnfocus();
