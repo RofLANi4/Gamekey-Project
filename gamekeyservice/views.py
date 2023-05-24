@@ -270,21 +270,25 @@ class Profile(TemplateView):
 
 class OrderedGamesInfo(View):
     def post(self, request, *args, **kwargs):
+        data = request.POST
+        print(data.get("data"))
         try:
-            data = json.loads(request.body)
-            field = kwargs.get('field')  # Retrieve the field parameter from URL kwargs
+            data = json.loads(data.get("data"))
             games_info = {}
-            for game_id, keys in data.items():
-                name, image = Game.objects.get(pk=game_id).values("name", "image")
-                games_info[game_id] = {
-                    "name": name,
-                    "image": MEDIA_URL + image,
-                    "keys": keys
-                }
-
-                return JsonResponse(games_info)
+            if data:
+                for game_id, keys in data.items():
+                    print(game_id, keys)
+                    game = Game.objects.get(id=game_id)
+                    games_info[game_id] = {
+                        "name": game.name,
+                        "image": MEDIA_URL + str(game.image),
+                        "keys": keys
+                    }
+                print(games_info)
             else:
-                return JsonResponse({'success': False, 'error': f'Field "{field}" not found in the JSON data'})
+                return JsonResponse({'success': False, 'error': 'empty JSON'})
+            return JsonResponse(games_info)
         except json.JSONDecodeError:
+            print("I wasn't used")
             return JsonResponse({'success': False, 'error': 'Invalid JSON data'})
     

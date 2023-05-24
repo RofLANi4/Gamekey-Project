@@ -21,27 +21,58 @@ function confirmPurchase() {
   // console.log(localStorage);
 }
 
+//function sendLocalStorageData() {
+//  const data = localStorage;
+//  const formData = new FormData();
+//  formData.append("data", data);
+//
+//  const requestOptions = {
+//    method: "POST",
+//    body: formData,
+//  };
+//  fetch("/gamekey/keysStorage/", requestOptions).then((response) => {
+//    console.log(response);
+//  });
+////   let data = localStorage;
+////   let xhr = new XMLHttpRequest();
+////   xhr.open("POST", "/gamekey/keysStorage/", true);
+////   xhr.setRequestHeader("Content-Type", "application/json");
+////   xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+////   xhr.send(JSON.stringify(data));
+////   console.log(JSON.stringify(data));
+//}
+
+
+
+function getCookie(name) {
+  const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return cookieValue ? cookieValue.pop() : '';
+}
+
 function sendLocalStorageData() {
-  const data = localStorage;
+  const data = JSON.stringify(localStorage);
   const formData = new FormData();
-  formData.append("data", data);
+  formData.append('data', data);
+
+  const csrftoken = getCookie('csrftoken'); // Get the CSRF token from the cookie
 
   const requestOptions = {
-    method: "POST",
+    method: 'POST',
     body: formData,
+    headers: {
+      'X-CSRFToken': csrftoken, // Include the CSRF token in the request headers
+    },
   };
 
-  fetch("/keysStorage/", requestOptions).then((response) => {
-    console.log(response);
-  });
-
-  // let data = localStorage;
-  // let xhr = new XMLHttpRequest();
-  // xhr.open("POST", "/keysStorage/", true);
-  // xhr.setRequestHeader("Content-Type", "application/json");
-  // xhr.send(JSON.stringify({ data: data }));
-  // console.log(JSON.stringify({ data: data }));
+  fetch('/gamekey/keysStorage/', requestOptions)
+    .then((response) => {
+      console.log(response['output']);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 }
+
 
 function keyGenerator() {
   const chrs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
