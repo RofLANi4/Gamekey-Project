@@ -139,7 +139,7 @@ class SearchView(View):
     def get(self, request):
         query = request.GET.get("q")
         if query:
-            results = Game.objects.filter(name__contains=query)[:4].values(
+            results = Game.objects.filter(name__icontains=query)[:4].values(
                 "id", "name", "image", "price", "discount"
             )
         else:
@@ -147,25 +147,10 @@ class SearchView(View):
         return JsonResponse({"results": list(results)})
 
 
-# class Order(View):
-#     def get(self, request):
-#         query = request.GET.COOKIES.get('cart')
-#         if query:
-#             results = Game.objects.filter(name__contains=query)[:4].values(
-#                 "id",
-#                 "name",
-#                 "image",
-#                 "price",
-#                 "discount"
-#             )
-#         else:
-#             results = []
-#         return JsonResponse({"results": list(results)})
-
-
 class GamePage(DetailView):
     template_name = "game_page.html"
     model = Game
+    queryset = Game.objects.all().select_related("developer").prefetch_related("genre")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -173,24 +158,25 @@ class GamePage(DetailView):
         cart = self.request.COOKIES.get("cart")
 
         context["cart"] = json.loads(cart) if cart else {}
-        games_in_cart = sum(
-            quantity["quantity"] for quantity in context["cart"].values()
-        )
+        games_in_cart = sum(quantity["quantity"] for quantity in context["cart"].values())
         if games_in_cart == 0:
             games_in_cart = None
 
         context["shop_cart"] = games_in_cart
 
-        context["genres"] = self.object.genre.all()
         release_date = DateFormat(self.object.release_date).format("d-m-Y")
         context["release_date"] = release_date
 
-        new_games = (Game.objects.filter(release_date__range=[SIX_MONTH_PAST, TODAY])
+        new_games = (
+            Game.objects.filter(release_date__range=[SIX_MONTH_PAST, TODAY])
             .order_by("?")[:4]
-            .values("id", "name", "image", "price", "discount"))
-        discount_games = (Game.objects.filter(discount__gt=0)
+            .values("id", "name", "image", "price", "discount")
+        )
+        discount_games = (
+            Game.objects.filter(discount__gt=0)
             .order_by("?")[:4]
-            .values("id", "name", "image", "price", "discount"))
+            .values("id", "name", "image", "price", "discount")
+        )
 
         context["recommend_games"] = new_games | discount_games
 
