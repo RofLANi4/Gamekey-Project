@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import HomeView, NewGame, Discounts, ComingSoon, GamePage, SearchView, GameListView, ShopCart
+from .views import HomeView, NewGame, Discounts, ComingSoon, GamePage, SearchView, GameListView, ShopCart, Profile
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -12,6 +12,7 @@ urlpatterns = [
     path("game-page/<int:pk>/", GamePage.as_view(), name="game_page"),
     path("game-list/", GameListView.as_view(), name="game_list"),
     path("shop-cart/", ShopCart.as_view(), name="shop_cart"),
+    path("profile/", Profile.as_view(), name="profile"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

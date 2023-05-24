@@ -139,7 +139,7 @@ a,
   outline: none;
   color: black;
   font-size: 20px;
-  width: auto;
+  max-width: 250px;
   font-weight: bold;
 }
 
@@ -196,6 +196,15 @@ a,
   margin-left: 5px;
 }
 
+.logo-profile a {
+  display: grid;
+  place-items: center;
+  margin-left: 3px;
+}
+/* .logo-profile svg {
+  stroke: red;
+} */
+
 .logo-cart a {
   width: 64px;
   height: 64px;
@@ -204,7 +213,7 @@ a,
   background-image: url("../Images/Game Cart.svg");
   background-position: center;
   background-size: 90px;
-  background-repeat: no-repeat; /* Отключение повторения изображения */
+  background-repeat: no-repeat;
 }
 .logo-cart p {
   /* position: absolute;

@@ -1,8 +1,13 @@
 const buyGame = document.querySelector("#buyGame");
 
-buyGame.addEventListener("click", keyGenerator);
+buyGame.addEventListener("click", confirmPurchase);
 
-function confirmPurchase() {}
+function confirmPurchase() {
+  let gamesId = document.querySelectorAll(".games-cart");
+  gamesId.forEach((value) => {
+    window.localStorage.setItem(keyGenerator(), value.getAttribute("game-id"));
+  });
+}
 
 function keyGenerator() {
   const chrs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
@@ -17,6 +22,6 @@ function keyGenerator() {
     key += chrs.charAt(Math.floor(Math.random() * chrs.length));
     counter++;
   }
-  console.log(key);
+
   return key;
 }

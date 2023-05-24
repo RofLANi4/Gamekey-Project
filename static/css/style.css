@@ -196,14 +196,14 @@ a,
   margin-left: 5px;
 }
 
-.logo-profile {
+.logo-profile a {
   display: grid;
   place-items: center;
   margin-left: 3px;
 }
-/* .logo-profile svg {
-  stroke: red;
-} */
+.logo-profile svg {
+  stroke: #88a8ff;
+}
 
 .logo-cart a {
   width: 64px;
