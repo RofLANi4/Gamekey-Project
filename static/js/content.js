@@ -1,7 +1,9 @@
+"use strict";
 const info = document.querySelectorAll(".info"),
   searchRequestActive = document.querySelector(".search-request"),
   inputActive = document.querySelector(".input"),
-  searchForm = document.querySelector("#search-form");
+  searchForm = document.querySelector("#search-form"),
+  releaseDate = document.querySelector(".data");
 
 const price = [];
 
@@ -22,6 +24,10 @@ document.querySelectorAll(".info .price").forEach((elem, num) => {
 colorizeGame(info, price);
 
 document.addEventListener("input", sendSearchRequest);
+
+if (releaseDate) {
+  checkReleaseDate(releaseDate);
+}
 
 function sendSearchRequest() {
   let searchTerm = document.getElementById("mySearch").value;
@@ -119,4 +125,20 @@ function searchLineIsFocus() {
 function searchLineIsEmptyOrUnfocus() {
   inputActive.style.borderRadius = "15px";
   searchRequestActive.style.display = "none";
+}
+
+function checkReleaseDate(date) {
+  date = date.innerHTML;
+  date = date.split("-");
+  const releaseDate = new Date(date[2], date[1] - 1, date[0]);
+  const currentDate = new Date();
+  if (releaseDate > currentDate) {
+    const gamePriceCart = document.querySelector(".game-price-cart");
+
+    gamePriceCart.innerHTML = '<p class="game-price">Гра ще не вийшла</p>';
+    const gamePrice = document.querySelector(".game-price");
+    gamePrice.style.marginLeft = "0px";
+    console.log(gamePriceCart);
+    // gamePrice.remove();
+  }
 }

@@ -77,12 +77,15 @@
               <a href="{% url 'game_keys:game_page' pk=game.id %}">
                 <img src="{{ MEDIA_URL }}{{ game.image }}" alt="" />
               </a>
-
               <p class="game-name">{{ game.name }}</p>
               {% if game.discount %}
               <p class="discount-percent">-{{ game.discount }}%</p>
               {% endif %}
-              <p class="price" text="{{ game.price|discount:game.discount }}₴" id="game-id-{{ game.id }}"></p>
+              <p
+                class="price price-coing-soon"
+                text="{{ game.price|discount:game.discount }}₴"
+                id="game-id-{{ game.id }}"
+              ></p>
             </div>
           </div>
           {% endfor %}

@@ -1,10 +1,14 @@
+"use strict";
 const priceElements = document.querySelectorAll("p.price");
-priceElements.forEach((priceElement) => {
-  priceElement.addEventListener("click", function () {
-    const productId = priceElement.id.replace("game-id-", "");
-    addToCart(productId);
+const comingSoonPrice = document.querySelectorAll(".price-coing-soon");
+console.log(comingSoonPrice);
+if (comingSoonPrice.length == 0)
+  priceElements.forEach((priceElement) => {
+    priceElement.addEventListener("click", function () {
+      const productId = priceElement.id.replace("game-id-", "");
+      addToCart(productId);
+    });
   });
-});
 
 function addToCart(product_id) {
   // Get the cart data from the cookie

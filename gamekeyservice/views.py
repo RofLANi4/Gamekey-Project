@@ -292,3 +292,4 @@ class OrderedGamesInfo(View):
             print("I wasn't used")
             return JsonResponse({'success': False, 'error': 'Invalid JSON data'})
     
+#1

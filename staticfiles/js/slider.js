@@ -1,4 +1,5 @@
-/* eslint-disable no-undef */
+"use strict";
+
 const next = document.getElementById("buttonNext"),
   prev = document.getElementById("buttonPrev"),
   slide = document.querySelector(".images"),
