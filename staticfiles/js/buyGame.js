@@ -33,8 +33,13 @@ function confirmPurchase() {
       document.cookie = "cart=" + JSON.stringify(cartDelete) + ";path=/;";
     }
   });
-
-  clearCart();
+  const modal = document.querySelector(".modal");
+  modal.style.display = "grid";
+  setTimeout(() => {
+    modal.style.display = "none";
+    clearCart();
+    window.location = "http://127.0.0.1:8000/gamekey/profile/";
+  }, 5000);
 }
 
 function clearCart() {

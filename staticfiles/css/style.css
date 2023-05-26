@@ -763,6 +763,7 @@ footer .links-footer li a:hover::after {
   position: relative;
   z-index: 2;
   width: 550px;
+  height: 200px;
   border-radius: 15px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
@@ -770,8 +771,16 @@ footer .links-footer li a:hover::after {
   -o-border-radius: 15px;
   box-shadow: 0 10px 15px black;
   background-color: white;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
+.modal-window img {
+  margin-top: 10px;
+}
+
 #cart {
   display: flex;
   font-family: "Helvetica";
