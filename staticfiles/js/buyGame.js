@@ -29,8 +29,9 @@ function confirmPurchase() {
       }
 
       storage.setItem(storageKey, storageValue);
+      console.log(cartDelete);
       delete cartDelete[storageKey];
-      document.cookie = "cart=" + JSON.stringify(cartDelete) + ";path=/;";
+      document.cookie = "cart=" + ";path=/;";
     }
   });
   const modal = document.querySelector(".modal");
@@ -65,5 +66,14 @@ function keyGenerator() {
     key += chrs.charAt(Math.floor(Math.random() * chrs.length));
     counter++;
   }
-  return key;
+  return `${key} (Дата придбання: ${showDate(new Date().getDate())}-${showDate(
+    new Date().getMonth() + 1,
+  )}-${new Date().getFullYear()})`;
+}
+
+function showDate(date) {
+  if (+date <= 9 && +date >= 1) {
+    return `0${date}`;
+  }
+  return date;
 }
