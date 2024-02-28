@@ -276,7 +276,6 @@ class OrderedGamesInfo(View):
             games_info = {}
             if data:
                 for game_id, keys in data.items():
-                    print(game_id, keys)
                     game = Game.objects.get(id=game_id)
                     games_info[game_id] = {
                         "name": game.name,
