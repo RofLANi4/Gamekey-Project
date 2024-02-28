@@ -271,7 +271,6 @@ class Profile(TemplateView):
 class OrderedGamesInfo(View):
     def post(self, request, *args, **kwargs):
         data = request.POST
-        print(data.get("data"))
         try:
             data = json.loads(data.get("data"))
             games_info = {}
@@ -284,12 +283,9 @@ class OrderedGamesInfo(View):
                         "image": MEDIA_URL + str(game.image),
                         "keys": keys
                     }
-                print(games_info)
             else:
                 return JsonResponse({'success': False, 'error': 'empty JSON'})
             return JsonResponse(games_info)
         except json.JSONDecodeError:
-            print("I wasn't used")
             return JsonResponse({'success': False, 'error': 'Invalid JSON data'})
-    
-#1
+            
